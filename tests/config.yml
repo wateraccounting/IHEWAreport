@@ -1,0 +1,14 @@
+doc:
+  name: 'data analysis'
+  saveas:
+    - PDF
+
+#template:
+#  null
+template:
+  provider: IHE
+  name: FAO
+
+layout:
+
+context:

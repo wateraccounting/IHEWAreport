@@ -12,6 +12,11 @@ import datetime
 import importlib
 
 import yaml
+import numpy as np
+
+from pylatex import Document, Section, Subsection, Tabular, Math, TikZ, Axis, \
+    Plot, Figure, Matrix, Alignat
+from pylatex.utils import italic
 
 # PyCharm
 # if __name__ == "__main__":
@@ -225,6 +230,9 @@ class Report(Base):
 
     def get_config(self):
         print(self.__conf)
+
+    def write(self):
+        doc = Document(geometry_options=geometry_options)
 
 
 if __name__ == "__main__":

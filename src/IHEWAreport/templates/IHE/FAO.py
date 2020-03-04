@@ -15,3 +15,4 @@ class Template(object):
 
     def create(self):
         print('Template.create()')
+

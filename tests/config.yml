@@ -1,14 +1,15 @@
 doc:
   name: 'data analysis'
   saveas:
-    - PDF
+    - 'PDF'
 
-#template:
-#  null
 template:
   provider: IHE
   name: FAO
-
 layout:
-
+  null
 context:
+  null
+
+#template:
+#  null

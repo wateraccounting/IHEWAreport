@@ -38,11 +38,9 @@ from pylatex.utils import italic
 
 try:
     # IHEClassInitError, IHEStringError, IHETypeError, IHEKeyError, IHEFileError
-    from .exception import IHEClassInitError,\
-        IHEKeyError
+    from .exception import IHEClassInitError
 except ImportError:
-    from IHEWAreport.exception import IHEClassInitError,\
-        IHEKeyError
+    from IHEWAreport.exception import IHEClassInitError
 
 
 class Base(object):
@@ -120,8 +118,11 @@ class Report(Base):
             self.__status['code'] = self._template()
 
         if self.__status['code'] == 0:
-            template = self.__tmp['module'].Template()
-            template.create()
+            template = self.__tmp['module'].Template(self.__conf)
+            # template.create()
+            # template.write()
+            # template.saveas()
+            # template.close()
 
         if self.__status['code'] != 0:
             raise IHEClassInitError('Report') from None
@@ -228,11 +229,9 @@ class Report(Base):
         self.__tmp['module'] = template['module']
         return status_code
 
+    @staticmethod
     def get_config(self):
         print(self.__conf)
-
-    def write(self):
-        doc = Document(geometry_options=geometry_options)
 
 
 if __name__ == "__main__":
@@ -248,7 +247,7 @@ if __name__ == "__main__":
     report = Report(path, 'config.yml')
 
     # report.get_config()
-    print(report._Report__conf['path'], '\n',
-          report._Report__conf['name'], '\n',
-          report._Report__conf['time'], '\n',
-          report._Report__conf['data'])
+    # print(report._Report__conf['path'], '\n',
+    #       report._Report__conf['name'], '\n',
+    #       report._Report__conf['time'], '\n',
+    #       report._Report__conf['data'])

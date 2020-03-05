@@ -113,7 +113,7 @@ Run the image with Jupyter Notebook. To access Jupyter http://192.168.99.100:888
 
 .. code-block:: console
 
-    $ docker run -it --name IHEWAreport -p 8888:8888 -v /d/IHEWAreport:/notebooks wateraccounting/ihewareport
+    $ docker run -it --name ihewareport -p 8888:8888 -v /d/IHEWAreport:/notebooks wateraccounting/ihewareport
 
 Check running image (container), in the new cmd window.
 
@@ -125,7 +125,7 @@ Access to running image, in the new cmd window.
 
 .. code-block:: console
 
-    $ docker exec -it IHEWAreport bash
+    $ docker exec -it ihewareport bash
 
     $ cd /notebooks/
 

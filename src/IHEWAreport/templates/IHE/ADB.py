@@ -34,7 +34,7 @@ class Template(object):
                 inspect.getfile(
                     inspect.currentframe()))
         )
-        print('{}\n{}'.format(path, template))
+        print('{}.{}'.format(path, template))
 
     def _conf(self, path, template):
         pass

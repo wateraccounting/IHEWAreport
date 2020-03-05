@@ -34,7 +34,7 @@ class Template(object):
                 inspect.getfile(
                     inspect.currentframe()))
         )
-        print('{}\n{}'.format(path, template))
+        print('{}.{}'.format(path, template))
 
         self.__conf = conf
 
@@ -80,7 +80,7 @@ class Template(object):
         for ftype in ftypes:
             file = os.path.join(self.__conf['path'], '{n}'.format(n=fname))
 
-            print('Saveas: "{}.{}"'.format(file, str(ftype).lower()))
+            print('Save as: "{}.{}"'.format(file, str(ftype).lower()))
             if str(ftype).upper() == 'PDF':
                 self.doc.generate_pdf(file, clean_tex=False)
 

@@ -67,15 +67,20 @@ content:
           1: 'Subsection 1.1 Paragraph 1 {min}'
           2: 'Subsection 1.1 Paragraph 2 {max}'
     2:
-      title: 'Section 2'
+      title: 'Methodology'
       paragraph:
         1: 'Section 2 Paragraph 1'
         2: 'Section 2 Paragraph 2'
       2.1:
-        title: 'Subsection 2.1'
+        title: 'WaPOR database'
         paragraph:
           1: 'Subsection 2.1 Paragraph 1 {mean}'
           2: 'Subsection 2.1 Paragraph 2'
+        2.1.1:
+          title: 'Precipitation'
+          paragraph:
+            1: 'Subsection 2.1.1 Paragraph 1 {mean}'
+            2: 'Subsection 2.1.1 Paragraph 2'
 
   reference:
     title: 'References'

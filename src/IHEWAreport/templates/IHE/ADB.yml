@@ -1,3 +1,18 @@
-layout:
-  tmargin: '1cm'
-  lmargin: '10cm'
+page:
+  layout:
+    paper: 'a4paper'
+    layout: 'a4paper'
+    includehead: True
+    includefoot: True
+  title:
+    title: 'Report'
+    author: 'WA+ team'
+    date: True
+  header:
+    left: 'ADB'
+    center: ''
+    right: 'IHE'
+  footer:
+    left: ''
+    center: ''
+    right: 'page_number'

@@ -1,3 +1,84 @@
 layout:
-  tmargin: '1cm'
-  lmargin: '10cm'
+  paper: 'a4paper'
+  layout: 'a4paper'
+  includehead: True
+  includefoot: True
+
+page:
+  header:
+    left: 'FAO'
+    center: ''
+    right: 'IHE'
+  footer:
+    left: ''
+    center: ''
+    right: 'page_number'
+
+content:
+  # Cover
+  cover:
+    title: 'Water Account
+            in the Litani River Basin'
+
+  # Title
+  title:
+    title: 'Report'
+    author: 'WA+ team'
+    date: True
+
+  # Preamble
+  acknowledgement:
+    title: 'Acknowledgements'
+    paragraph:
+      1: 'This report was prepared by Bich Tran, Solomon Seyoum, Marloes Mul, Elga Salvadore,
+          Amani Matar, Gonzalo E. Espinoza-Dávalos, Jonna van Opstal, Wim Bastiaanssen through
+          a collaboration between IHE'
+      2: 'Water Accounting is an approach based on open access data sets and information. The
+          validation of the water accounts for the Litani depends on observed data. The authors
+          are therefore grateful for the'
+
+  abbreviation:
+    title: 'Abbreviations and acronyms'
+    paragraph:
+      1: ReqTable
+
+  summary:
+    title: 'Executive summary'
+    paragraph:
+      1: 'This report was prepared by Bich Tran, Solomon Seyoum, Marloes Mul, Elga Salvadore,
+          Amani Matar, Gonzalo E. Espinoza-Dávalos, Jonna van Opstal, Wim Bastiaanssen through
+          a collaboration between IHE'
+      2: 'Water Accounting is an approach based on open access data sets and information. The
+          validation of the water accounts for the Litani depends on observed data. The authors
+          are therefore grateful for the'
+
+  # Section
+  section:
+    1:
+      title: 'Introduction'
+      paragraph:
+        1: 'The overall objective of the ‘Using Remote Sensing in support of solutions to reduce
+            agricultural water '
+        2: 'Section 1 Paragraph 2
+            '
+      1.1:
+        title: 'Subsection 1.1'
+        paragraph:
+          1: 'Subsection 1.1 Paragraph 1 {min}'
+          2: 'Subsection 1.1 Paragraph 2 {max}'
+    2:
+      title: 'Section 2'
+      paragraph:
+        1: 'Section 2 Paragraph 1'
+        2: 'Section 2 Paragraph 2'
+      2.1:
+        title: 'Subsection 2.1'
+        paragraph:
+          1: 'Subsection 2.1 Paragraph 1 {mean}'
+          2: 'Subsection 2.1 Paragraph 2'
+
+  reference:
+    title: 'References'
+
+  annex:
+    title: 'Annexes'

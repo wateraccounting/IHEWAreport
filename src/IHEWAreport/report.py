@@ -74,6 +74,13 @@ class Report(Base):
     def __init__(self, workspace='', config='', **kwargs):
         """Class instantiation
         """
+        self.allow_keys = {
+            'doc': ['name', 'saveas'],
+            'template': ['provider', 'name'],
+            'page': ['header', 'footer'],
+            'content': ['cover', 'title', 'section']
+        }
+
         self.__status = {
             'code': 0
         }
@@ -87,8 +94,8 @@ class Report(Base):
             },
             'data': {
                 'doc': {},
-                'template': {},
-                'layout': {},
+                'template': None,
+                'page': {},
                 'context': {}
             }
         }
@@ -118,17 +125,21 @@ class Report(Base):
             self.__status['code'] = self._template()
 
         if self.__status['code'] == 0:
-            template = self.__tmp['module'].Template(self.__conf)
-            # template.create()
-            # template.write()
-            # template.saveas()
-            # template.close()
+            if self.__tmp['module'] is None:
+                self.__status['code'] = 1
+            else:
+                template = self.__tmp['module'].Template(self.__conf)
+                # template.create()
+                # template.write()
+                # template.saveas()
+                # template.close()
 
         if self.__status['code'] != 0:
+            print('Status', self.__status['code'])
             raise IHEClassInitError('Report') from None
 
     def _conf(self) -> int:
-        status_code = -1
+        status_code = 0
         data = None
 
         file_conf = os.path.join(self.__conf['path'], self.__conf['name'])
@@ -136,10 +147,32 @@ class Report(Base):
             data = yaml.load(fp, Loader=yaml.FullLoader)
 
         if data is not None:
-            self.__conf['data'] = data
-            status_code = 0
+            status_code += self._conf_keys('doc', data)
+            status_code += self._conf_keys('template', data)
+            status_code += self._conf_keys('page', data)
+            status_code += self._conf_keys('content', data)
         else:
             status_code = 1
+
+        if status_code == 0:
+            self.__conf['data'] = data
+
+        return status_code
+
+    def _conf_keys(self, key, data) -> int:
+        status_code = 0
+        try:
+            if isinstance(data[key], dict):
+               data_keys = data[key].keys()
+            else:
+                raise KeyError
+        except KeyError:
+            status_code = 1
+        else:
+            for data_key in self.allow_keys[key]:
+                if data_key not in data_keys:
+                    status_code += 1
+
         return status_code
 
     def _time(self) -> int:
@@ -166,63 +199,72 @@ class Report(Base):
         """
         status_code = -1
         template = self.__tmp
-
         module_name = template['name']
         module_obj = template['module']
 
-        module_provider = self.__conf['data']['template']['provider']
-        module_template = self.__conf['data']['template']['name']
+        if self.__conf['data']['template'] is None:
+            print('Please select a template!')
 
-        module_name_base = '{tmp}.{nam}'.format(
-            tmp=module_provider,
-            nam=module_template)
+            status_code = 0
 
-        # Load module
-        # module_obj = None
-        if module_obj is None:
-            is_reload_module = False
-        else:
-            if module_name == module_name_base:
-                is_reload_module = True
-            else:
-                is_reload_module = False
-        template['name'] = module_name_base
-        # print(template)
-
-        if is_reload_module:
-            try:
-                module_obj = importlib.reload(module_obj)
-            except ImportError:
-                raise IHEClassInitError('Templates') from None
-            else:
-                template['module'] = module_obj
-                status_code = 0
-                print('Reloaded module.{nam}'.format(nam=template['name']))
         else:
             try:
-                # importlib.import_module('.FAO',
-                #                         '.templates.IHE')
-                #
-                # importlib.import_module('templates.IHE.FAO')
+                module_provider = self.__conf['data']['template']['provider']
+                module_template = self.__conf['data']['template']['name']
+            except KeyError:
+                status_code = 1
+            else:
+                module_name_base = '{tmp}.{nam}'.format(
+                    tmp=module_provider,
+                    nam=module_template)
 
-                # importlib.import_module('IHEWAreport.templates.IHE.FAO')
-                module_obj = \
-                    importlib.import_module('.{n}'.format(n=module_template),
-                                            '.templates.{p}'.format(p=module_provider))
-                print('Loaded module from .templates.{nam}'.format(
-                    nam=template['name']))
-            except ImportError:
-                module_obj = \
-                    importlib.import_module('IHEWAreport.templates.{nam}'.format(
-                        nam=template['name']))
-                print('Loaded module from IHEWAreport.templates.{nam}'.format(
-                    nam=template['name']))
-            finally:
-                if module_obj is not None:
-                    template['module'] = module_obj
-                    status_code = 0
+                # Load module
+                # module_obj = None
+                if module_obj is None:
+                    is_reload_module = False
                 else:
-                    raise IHEClassInitError('Templates') from None
+                    if module_name == module_name_base:
+                        is_reload_module = True
+                    else:
+                        is_reload_module = False
+                template['name'] = module_name_base
+                # print(template)
+
+                if is_reload_module:
+                    try:
+                        module_obj = importlib.reload(module_obj)
+                    except ImportError:
+                        status_code = 1
+                    else:
+                        template['module'] = module_obj
+                        print('Reloaded module.{nam}'.format(nam=template['name']))
+                        status_code = 0
+                else:
+                    try:
+                        # importlib.import_module('.FAO',
+                        #                         '.templates.IHE')
+                        #
+                        # importlib.import_module('templates.IHE.FAO')
+
+                        # importlib.import_module('IHEWAreport.templates.IHE.FAO')
+                        module_obj = \
+                            importlib.import_module('.{n}'.format(n=module_template),
+                                                    '.templates.{p}'.format(p=module_provider))
+                        print('Loaded module from .templates.{nam}'.format(
+                            nam=template['name']))
+                    except ImportError:
+                        module_obj = \
+                            importlib.import_module('IHEWAreport.templates.{nam}'.format(
+                                nam=template['name']))
+                        print('Loaded module from IHEWAreport.templates.{nam}'.format(
+                            nam=template['name']))
+                        status_code = 1
+                    finally:
+                        if module_obj is not None:
+                            template['module'] = module_obj
+                            status_code = 0
+                        else:
+                            status_code = 1
 
         # print(template)
         self.__tmp['name'] = template['name']

@@ -1,15 +1,62 @@
 doc:
-  name: 'data analysis'
+  name: 'report'
   saveas:
     - 'PDF'
 
 template:
   provider: IHE
   name: FAO
-layout:
-  null
-context:
-  null
 
-#template:
-#  null
+page:
+  header:
+    left: ''
+    center: ''
+    right: 'IHE'
+  footer:
+    left: ''
+    center: ''
+    right: 'page_number'
+
+content:
+  # Cover
+  cover:
+    title: 'Mindanao, Philippines'
+
+  # Title
+  title:
+    title: 'Data Analysis Report
+            Mindanao, Philippines'
+    author: 'Quan Pan'
+    date: '1984-11-18'
+
+  # TOC
+
+  # Preamble
+  acknowledgement:
+    text:
+      title: 'Acknowledgements'
+    value: null
+    equation: null
+    figure: null
+    table: null
+    reference: null
+
+  # Section
+  section:
+    text: null
+    value:
+      rand: -9999
+      min: 0.
+      max: 1.
+      mean: 0.5
+    equation:
+      1.1: 'a-b'
+    figure:
+      1.1: 'fig.jpg'
+    table:
+      1.1: 'tab.csv'
+    reference:
+      1.1: 'ref.pdf'
+
+#  reference: null
+#  annex: null

@@ -58,8 +58,10 @@ class Template(object):
 
             self.write_toc_page('TOCPage')
 
-            self.set_page('ContentPage')
+            self.set_page('PreambleHeader', 'roman')
             self.write_preamble_page('PreamblePage')
+
+            self.set_page('SectionHeader', 'arabic')
             self.write_section_page('SectionPage')
 
             self.saveas()
@@ -82,7 +84,7 @@ class Template(object):
 
         return doc
 
-    def set_page(self, sname):
+    def set_page(self, sname, ntype):
         opt_header = self.data['page']['header']
         if 'header' in self.__conf['data']['page'].keys():
             if self.__conf['data']['page']['header'] is not None:
@@ -110,6 +112,8 @@ class Template(object):
             self.page_header(doc_header, opt_footer['right'])
 
         self.doc.append(Command('clearpage'))
+
+        self.doc.append(Command('pagenumbering', ntype))
         # self.doc.append(NoEscape(r'\setcounter{page}{1}'))
         self.doc.append(Command('setcounter', ['page', '1']))
 
@@ -182,7 +186,18 @@ class Template(object):
 
         doc_page = PageStyle(sname)
 
+        page_keys = ['acknowledgement', 'abbreviation', 'summary']
+        for key in page_keys:
+            doc_page.append(Command('addcontentsline',
+                                    ['toc',
+                                     'section',
+                                     self.data['content'][key]['title']]))
         doc_page.append(Command('tableofcontents'))
+
+        doc_page.append(NewPage())
+        doc_page.append(Command('listoffigures'))
+        doc_page.append(NewPage())
+        doc_page.append(Command('listoftables'))
 
         doc_page.append(Command('thispagestyle', 'empty'))
         self.doc.preamble.append(doc_page)
@@ -194,7 +209,7 @@ class Template(object):
         for key in page_keys:
             self.doc.append(NewPage())
             self.doc.append(Command('RaggedRight'))
-            print('Writing {}'.format(key))
+            print('{}'.format(key))
 
             opt = self.data['content'][key]
             with self.doc.create(Section(opt['title'], numbering=False)):
@@ -215,37 +230,36 @@ class Template(object):
             raise KeyError
 
         # print(opt_content)
-        for key, val in opt.items():
+        for key_l1 in opt.keys():
             self.doc.append(NewPage())
             self.doc.append(Command('RaggedRight'))
-            print('Writing {}'.format(key))
 
-            subkey = list(val.keys())
-            # print(type(subkey), subkey)
-            sec_t = val['title']
-            sec_p = val['paragraph']
-            subkey.remove('title')
-            subkey.remove('paragraph')
-
-            with self.doc.create(Section(sec_t)):
-                for key_p, val_p in sec_p.items():
-                    self.doc.append(val_p.format_map(opt_val))
+            val_l1 = opt[key_l1]
+            val_l1_keys = val_l1.keys()
+            val_l1_t = val_l1['title']
+            val_l1_p = val_l1['paragraph']
+            with self.doc.create(Section(val_l1_t)):
+                print('{}'.format(val_l1_t))
+                for key, val in val_l1_p.items():
+                    print(' p{}'.format(key))
+                    self.doc.append(val.format_map(opt_val))
                     self.doc.append(LineBreak())
 
-                subval = val[subkey[0]]
+                # key_l2 = val_l1.keys()
+                # key_l2.remove('title')
+                # key_l2.remove('paragraph')
+                for key_l2 in val_l1.keys():
+                    if key_l2 != 'title' and key_l2 != 'paragraph':
 
-                subsubkey = list(subval.keys())
-                # print(type(subsubkey), subsubkey)
-                subsec_t = subval['title']
-                subsec_p = subval['paragraph']
-                subsubkey.remove('title')
-                subsubkey.remove('paragraph')
-
-                print('  Writing {}'.format(subkey[0]))
-                with self.doc.create(Subsection(subsec_t)):
-                    for subkey_p, subval_p in subsec_p.items():
-                        self.doc.append(subval_p.format_map(opt_val))
-                        self.doc.append(LineBreak())
+                        val_l2 = val_l1[key_l2]
+                        val_l2_t = val_l2['title']
+                        val_l2_p = val_l2['paragraph']
+                        with self.doc.create(Subsection(val_l2_t)):
+                            print(' {}'.format(val_l2_t))
+                            for key, val in val_l2_p.items():
+                                print('  p{}'.format(key))
+                                self.doc.append(val.format_map(opt_val))
+                                self.doc.append(LineBreak())
 
     def saveas(self):
         fname = self.__conf['data']['doc']['name']

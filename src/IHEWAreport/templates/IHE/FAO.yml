@@ -57,10 +57,21 @@ content:
     1:
       title: 'Introduction'
       paragraph:
-        1: 'The overall objective of the ‘Using Remote Sensing in support of solutions to reduce
-            agricultural water '
-        2: 'Section 1 Paragraph 2
-            '
+        1: 'The overall objective of the ‘Using Remote Sensing in support of solutions to reduce agricultural water
+            productivity gaps’ project of the Food and Agricultural Organization (FAO) supported by the Ministry of
+            Foreign Affairs of the Netherlands (DGIS) is to achieve future food security with less water, while using
+            water resources in a sustainable manner. Agriculture is a key water user and a careful monitoring of water
+            productivity in agriculture is a necessity. The FAO Water Productivity Open Access portal (WaPOR)
+            provides new opportunities to exploit spatial information related to water consumption in agriculture and
+            water productivity for Africa and Near East. Assessing sustainable use of water resources is evaluated
+            using the water accounting framework, utilising a combination of remote sensing data (in this case the
+            WaPOR database) open access global datasets and complemented with local measurements on weather
+            conditions and river flows.'
+        2: 'The Litani River basin is one of the selected pilot basins for making a more comprehensive assessment of
+            the multiple water user situation (see Figure 1 for location of the Litani basin). The assessment would
+            contribute to better understanding the possible consequences of water productivity increases on other
+            water users. A secondary objective is to demonstrate the value of the WaPOR database in preparing water
+            accounts for river basins.'
       1.1:
         title: 'Subsection 1.1'
         paragraph:

@@ -1,5 +1,5 @@
 doc:
-  name: 'report'
+  name: 'test_report_can_delete'
   saveas:
     - 'PDF'
 

@@ -6,7 +6,7 @@ layout:
 
 page:
   header:
-    left: 'ADB'
+    left: 'Manual'
     center: ''
     right: 'IHE'
   footer:

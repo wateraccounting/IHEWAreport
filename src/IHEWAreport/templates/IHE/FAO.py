@@ -58,10 +58,15 @@ class Template(object):
             # doc.preamble
             self.write_cover_page('CoverPage')
             self.write_title_page('FirstPage')
+
             self.write_toc_page('TOCPage')
 
             # doc
             self.set_page('PreambleHeader', 'roman')
+
+            self.write_lof_page('LOFPage')
+            self.write_lot_page('LOTPage')
+
             self.write_preamble_page('PreamblePage')
 
             self.set_page('SectionHeader', 'arabic')
@@ -86,9 +91,27 @@ class Template(object):
     def create(self) -> object:
         opt_geometry = self.data['layout']
         doc = Document(geometry_options=opt_geometry)
-        doc.packages.append(Package('ragged2e'))  # Text align
-        doc.packages.append(Package('hyperref'))  # Hyper link
-        doc.packages.append(Package('biblatex'))  # Reference
+        # Header and footer
+        doc.packages.append(Package('fancyhdr'))
+        # Text align
+        doc.packages.append(Package('ragged2e'))
+        # Hyper link
+        doc.packages.append(Package('hyperref'))
+        # Reference
+        # sorting=ynt
+        #   nty—sorts entries by name, title, year;
+        #   nyt—sorts entries by name, year, title;
+        #   nyvt—sorts entries by name, year, volume, title;
+        #   anyt—sorts entries by alphabetic label, name, year, title;
+        #   anyvt—sorts entries by alphabetic label, name, year, volume, title;
+        #   ynt—sorts entries by year, name, title;
+        #   ydnt—sorts entries by year (descending order), name, title;
+        #   none—no sorting. Entries appear in the order they appear in the text.
+        doc.packages.append(Package('biblatex',
+                                    options=[
+                                        'style=authoryear',
+                                        'sorting=ynt'
+                                    ]))
 
         return doc
 
@@ -202,22 +225,32 @@ class Template(object):
 
         doc_page = PageStyle(sname)
 
-        # page_keys = ['acknowledgement', 'abbreviation', 'summary']
-        # for key in page_keys:
-        #     doc_page.append(Command('addcontentsline',
-        #                             ['toc',
-        #                              'section',
-        #                              self.data['content'][key]['title']]))
+        # doc_page.append(NoEscape(r'\pdfbookmark[0]{\contentsname}{toc}'))
         doc_page.append(Command('tableofcontents'))
-
-        doc_page.append(NewPage())
-        doc_page.append(Command('listoffigures'))
-        doc_page.append(NewPage())
-        doc_page.append(Command('listoftables'))
 
         doc_page.append(Command('thispagestyle', 'empty'))
         self.doc.preamble.append(doc_page)
         self.doc.change_document_style(sname)
+        self.doc.append(Command('cleardoublepage'))
+
+    def write_lof_page(self, sname):
+        self.doc.append(NewPage())
+
+        # self.doc.append(NoEscape(r'\pdfbookmark[0]{Figures}{lof}'))
+        self.doc.append(Command('listoffigures'))
+
+        self.doc.append(Command('addcontentsline',
+                                ['toc', 'section', NoEscape(r'\listfigurename')]))
+        self.doc.append(Command('cleardoublepage'))
+
+    def write_lot_page(self, sname):
+        self.doc.append(NewPage())
+
+        # doc_page.append(NoEscape(r'\pdfbookmark[0]{Tables}{lot}'))
+        self.doc.append(Command('listoftables'))
+
+        self.doc.append(Command('addcontentsline',
+                                ['toc', 'section', NoEscape(r'\listtablename')]))
         self.doc.append(Command('cleardoublepage'))
 
     def write_preamble_page(self, sname):
@@ -294,26 +327,57 @@ class Template(object):
         self.doc.append(NewPage())
 
         key = 'reference'
+        files = []
         print('{}'.format(key))
 
         opt = self.data['content'][key]
-        if key in self.__conf['data']['content'].keys():
-            if self.__conf['data']['content'][key] is not None:
-                opt = self.__conf['data']['content'][key]
-
-        # file = opt['file']
-        # file = './{}'.format(opt['file'])
-        file = NoEscape('./{}'.format(opt['file']))
-        # file = os.path.join(self.path, opt['file']).replace(os.sep, '/')
+        file = os.path.join(self.path, opt['file'])
         # file = NoEscape(os.path.join(self.path, opt['file']))
-        self.doc.preamble.append(Command('addbibresource', file))
+        # file = os.path.join(self.path, opt['file']).replace(os.sep, '/')
+        # file = NoEscape(os.path.join(self.path, opt['file']).replace(os.sep, '/'))
 
+        files.append(os.path.splitext(file)[0])
+        # files.append(NoEscape(os.path.splitext(file)[0]))
+        if key in self.__conf['data']['content'].keys():
+            if 'file' in self.__conf['data']['content'][key].keys():
+                opt['file'] = self.__conf['data']['content'][key]['file']
+                file = opt['file']
+                # file = NoEscape(opt['file'])
+                # file = './{}'.format(opt['file'])
+                # file = NoEscape('./{}'.format(opt['file']))
+
+                files.append(os.path.splitext(file)[0])
+                # files.append(NoEscape(os.path.splitext(file)[0]))
+        print(files)
+
+        self.doc.preamble.append(Command('addbibresource', arguments=[file]))
+
+        # self.doc.preamble.append(Command('addbibresource', arguments=files))
+        # self.doc.preamble.append(Command('bibliography', arguments=files))
+
+        # Opt 1
         self.doc.append(Command('printbibliography'))
+
+        # # Opt 2
         # with self.doc.create(Section(opt['title'], numbering=False)):
-        #     self.doc.append(opt['file'])
-        #
+        #     tabledata = dict(
+        #         aksin=['Foo', 42],
+        #         angenendt=['Bar', 7],
+        #         bertram=['Baz', 3.14],
+        #         doody=['Foobar', 199]
+        #     )
+        #     with self.doc.create(Tabular("l l l", booktabs=True)) as table:
+        #         table.add_row(['Desc', 'Number', 'Cite'])
+        #         table.add_hline()
+        #         for key in tabledata.keys():
+        #             table.add_row(
+        #                 tabledata[key] + [
+        #                     Command('cite', arguments=[key])
+        #                 ])
+        # self.doc.append(Command('printbibliography'))
         # self.doc.append(Command('addcontentsline',
         #                         ['toc', 'section', opt['title']]))
+
         self.doc.append(Command('cleardoublepage'))
 
     def write_annex_page(self, sname):
@@ -347,7 +411,7 @@ class Template(object):
             try:
                 os.remove(file_with_ext)
             except PermissionError as err:
-                print('Could not delete file.')
+                print('Could not delete "{}"'.format(file_with_ext))
                 os._exit(1)
         self.doc.generate_tex(file)
 
@@ -359,7 +423,7 @@ class Template(object):
                     try:
                         os.remove(file_with_ext)
                     except PermissionError as err:
-                        print('Could not delete file.')
+                        print('Could not delete "{}"'.format(file_with_ext))
                         os._exit(1)
                 self.doc.generate_pdf(file, clean_tex=False)
 

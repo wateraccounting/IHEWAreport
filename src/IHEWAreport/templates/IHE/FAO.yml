@@ -38,9 +38,9 @@ content:
           are therefore grateful for the'
 
   abbreviation:
-    title: 'Abbreviations and acronyms'
+    title: 'Abbreviations and Acronyms'
     paragraph:
-      1: ReqTable
+      1: 'Abbreviations and acronyms'
 
   summary:
     title: 'Executive summary'
@@ -57,44 +57,89 @@ content:
     1:
       title: 'Introduction'
       paragraph:
-        1: 'The overall objective of the ‘Using Remote Sensing in support of solutions to reduce agricultural water
-            productivity gaps’ project of the Food and Agricultural Organization (FAO) supported by the Ministry of
-            Foreign Affairs of the Netherlands (DGIS) is to achieve future food security with less water, while using
-            water resources in a sustainable manner. Agriculture is a key water user and a careful monitoring of water
-            productivity in agriculture is a necessity. The FAO Water Productivity Open Access portal (WaPOR)
-            provides new opportunities to exploit spatial information related to water consumption in agriculture and
-            water productivity for Africa and Near East. Assessing sustainable use of water resources is evaluated
-            using the water accounting framework, utilising a combination of remote sensing data (in this case the
-            WaPOR database) open access global datasets and complemented with local measurements on weather
-            conditions and river flows.'
-        2: 'The Litani River basin is one of the selected pilot basins for making a more comprehensive assessment of
-            the multiple water user situation (see Figure 1 for location of the Litani basin). The assessment would
-            contribute to better understanding the possible consequences of water productivity increases on other
-            water users. A secondary objective is to demonstrate the value of the WaPOR database in preparing water
-            accounts for river basins.'
+        1-1: 'The overall objective of the ‘Using Remote Sensing in support of solutions to reduce agricultural water
+              productivity gaps’ project of the Food and Agricultural Organization (FAO) supported by the Ministry of
+              Foreign Affairs of the Netherlands (DGIS) is to achieve future food security with less water, while using
+              water resources in a sustainable manner. Agriculture is a key water user and a careful monitoring of water
+              productivity in agriculture is a necessity. The FAO Water Productivity Open Access portal (WaPOR)
+              provides new opportunities to exploit spatial information related to water consumption in agriculture and
+              water productivity for Africa and Near East. Assessing sustainable use of water resources is evaluated
+              using the water accounting framework, utilising a combination of remote sensing data (in this case the
+              WaPOR database) open access global datasets and complemented with local measurements on weather
+              conditions and river flows.'
+        1-2: 'The Litani River basin is one of the selected pilot basins for making a more comprehensive assessment of
+              the multiple water user situation (see Figure 1 for location of the Litani basin). The assessment would
+              contribute to better understanding the possible consequences of water productivity increases on other
+              water users. A secondary objective is to demonstrate the value of the WaPOR database in preparing water
+              accounts for river basins.'
+        1-3: IHEWAreport-fig1
+        1-4: IHEWAreport-tab1
+        1-5: IHEWAreport-eqa1
+        1-6: IHEWAreport-ref1
+        1-7: 'Paragraph 7'
       1.1:
         title: 'Subsection 1.1'
         paragraph:
-          1: 'Subsection 1.1 Paragraph 1 {min}'
-          2: 'Subsection 1.1 Paragraph 2 {max}'
+          1.1-1: 'Subsection 1.1 Paragraph 1 {val[min]}'
+          1.1-2: 'Subsection 1.1 Paragraph 2 {val[max]}'
+        1.1.1:
+          title: 'Subsection 1.1.1'
+          paragraph:
+            1.1.1-1: 'Subsection 1.1.1 Paragraph 1 {val[min]}'
+            1.1.1-2: 'Subsection 1.1.1 Paragraph 2 {val[max]}'
     2:
       title: 'Methodology'
       paragraph:
-        1: 'Section 2 Paragraph 1'
-        2: 'Section 2 Paragraph 2'
+        2-1: 'Section 2 Paragraph 1'
+        2-2: 'Section 2 Paragraph 2'
       2.1:
         title: 'WaPOR database'
         paragraph:
-          1: 'Subsection 2.1 Paragraph 1 {mean}'
-          2: 'Subsection 2.1 Paragraph 2'
+          2.1-1: 'Subsection 2.1 Paragraph 1 {val[mean]}'
+          2.1-2: 'Subsection 2.1 Paragraph 2'
         2.1.1:
           title: 'Precipitation'
           paragraph:
-            1: 'Subsection 2.1.1 Paragraph 1 {mean}'
-            2: 'Subsection 2.1.1 Paragraph 2'
+            2.1.1-1: 'Subsection 2.1.1 Paragraph 1 {val[mean]}'
+            2.1.1-2: 'Subsection 2.1.1 Paragraph 2'
 
   reference:
     title: 'References'
+    file: 'FAO.bib'
 
   annex:
     title: 'Annexes'
+    paragraph:
+      1: 'Annexes 1'
+      2: 'Annexes 2'
+
+#fig: 'IHEWAreport-fig1, \ref{figure:fig1}
+#      \begin{figure}[h]
+#      \centering
+#      \includegraphics[width=0.3\linewidth]{fig1.png}
+#      \caption{This image will be referenced below}
+#      \label{figure:fig1}
+#      \end{figure}'
+#
+#tab: 'IHEWAreport-tab1, \ref{table:tab1}
+#      \begin{table}[h!]
+#      \centering
+#      \begin{tabular}{||c c c c||}
+#       \hline
+#       Col1 & Col2 & Col2 & Col3 \\ [0.5ex]
+#       \hline\hline
+#       1 & 6 & 87837 & 787 \\
+#       2 & 7 & 78 & 5415 \\
+#       3 & 545 & 778 & 7507 \\
+#       4 & 545 & 18744 & 7560 \\
+#       5 & 88 & 788 & 6344 \\ [1ex]
+#       \hline
+#      \end{tabular}
+#      \caption{Table to test captions and labels}
+#      \label{table:tab1}
+#      \end{table}'
+#
+#eqa: 'IHEWAreport-eqa1, \ref{equation:eqa1}
+#      \begin{equation} \label{equation:eqa1}
+#      \sum_{i=0}^{\infty} a_i x^i
+#      \end{equation}'

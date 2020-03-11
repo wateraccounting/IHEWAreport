@@ -35,28 +35,31 @@ content:
   acknowledgement:
     text:
       title: 'Acknowledgements'
-    value: null
-    equation: null
-    figure: null
-    table: null
-    reference: null
 
   # Section
   section:
     text: null
+    # text:
+    #   title:
+    #     1: 'Introduction'
+    #     1.1: 'Subsection 1.1'
+    #   paragraph:
+    #     1-1: 'section 1 paragraph 1'
+    #     1.1-1: 'section 1.1 paragraph 1'
     value:
       rand: -9999
       min: 0.
       max: 1.
       mean: 0.5
     equation:
-      1.1: 'a-b'
+      equ1: 'a-b'
     figure:
-      1.1: 'fig.jpg'
+      fig1: 'fig-1.jpg'
     table:
-      1.1: 'tab.csv'
+      tab1: 'table-1.csv'
     reference:
-      1.1: 'ref.pdf'
+      ref1: 'ref-1.pdf'
 
-#  reference: null
+  reference:
+    file: 'test_report.bib'
 #  annex: null

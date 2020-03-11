@@ -5,11 +5,12 @@ from datetime import datetime, date
 import yaml
 import numpy as np
 
-from pylatex import Package, Document, Command, NewPage, LineBreak, \
+from pylatex import Package, Document, Command, NoEscape, \
     PageStyle, Head, Foot, \
-    Section, Subsection, \
+    Section, Subsection, NewPage, LineBreak, \
     Tabular, Math, TikZ, Axis, Plot, Figure, Matrix, Alignat
-from pylatex.utils import italic, NoEscape
+
+from pylatex.utils import italic
 
 try:
     # IHEClassInitError, IHEStringError, IHETypeError, IHEKeyError, IHEFileError
@@ -24,8 +25,7 @@ class Template(object):
     Load base.yml file.
 
     Args:
-        product (str): Product name of data products.
-        is_print (bool): Is to print status message.
+        conf (dict): User defined configuration data from yaml file.
     """
     def __init__(self, conf):
         """Class instantiation
@@ -53,16 +53,23 @@ class Template(object):
         if doc is not None:
             self.doc = doc
 
+            print('\nLaTex')
+            print('>>>>>')
+            # doc.preamble
             self.write_cover_page('CoverPage')
             self.write_title_page('FirstPage')
-
             self.write_toc_page('TOCPage')
 
+            # doc
             self.set_page('PreambleHeader', 'roman')
             self.write_preamble_page('PreamblePage')
 
             self.set_page('SectionHeader', 'arabic')
             self.write_section_page('SectionPage')
+
+            self.write_reference_page('ReferencePage')
+            self.write_annex_page('AnnexPage')
+            print('<<<<<\n')
 
             self.saveas()
             # self.close()
@@ -79,8 +86,9 @@ class Template(object):
     def create(self) -> object:
         opt_geometry = self.data['layout']
         doc = Document(geometry_options=opt_geometry)
-        doc.packages.append(Package('ragged2e'))
-        doc.packages.append(Package('hyperref'))
+        doc.packages.append(Package('ragged2e'))  # Text align
+        doc.packages.append(Package('hyperref'))  # Hyper link
+        doc.packages.append(Package('biblatex'))  # Reference
 
         return doc
 
@@ -132,10 +140,13 @@ class Template(object):
     def write_cover_page(self, sname):
         # fmt_date = "%d %b %Y"
 
-        opt = self.data['content']['cover']
-        if 'cover' in self.__conf['data']['content'].keys():
-            if self.__conf['data']['content']['cover'] is not None:
-                opt = self.__conf['data']['content']['cover']
+        key = 'cover'
+        print('{}'.format(key))
+
+        opt = self.data['content'][key]
+        if key in self.__conf['data']['content'].keys():
+            if self.__conf['data']['content'][key] is not None:
+                opt = self.__conf['data']['content'][key]
 
         doc_page = PageStyle(sname)
 
@@ -144,15 +155,19 @@ class Template(object):
         doc_page.append(Command('thispagestyle', 'empty'))
         self.doc.preamble.append(doc_page)
         self.doc.change_document_style(sname)
+        self.doc.append(Command('cleardoublepage'))
 
     def write_title_page(self, sname):
         fmt_date = "%d %b %Y"
         self.doc.append(NewPage())
 
-        opt = self.data['content']['title']
-        if 'title' in self.__conf['data']['content'].keys():
-            if self.__conf['data']['content']['title'] is not None:
-                opt = self.__conf['data']['content']['title']
+        key = 'title'
+        print('{}'.format(key))
+
+        opt = self.data['content'][key]
+        if key in self.__conf['data']['content'].keys():
+            if self.__conf['data']['content'][key] is not None:
+                opt = self.__conf['data']['content'][key]
 
         doc_page = PageStyle(sname)
 
@@ -180,18 +195,19 @@ class Template(object):
         doc_page.append(Command('thispagestyle', 'empty'))
         self.doc.preamble.append(doc_page)
         self.doc.change_document_style(sname)
+        self.doc.append(Command('cleardoublepage'))
 
     def write_toc_page(self, sname):
         self.doc.append(NewPage())
 
         doc_page = PageStyle(sname)
 
-        page_keys = ['acknowledgement', 'abbreviation', 'summary']
-        for key in page_keys:
-            doc_page.append(Command('addcontentsline',
-                                    ['toc',
-                                     'section',
-                                     self.data['content'][key]['title']]))
+        # page_keys = ['acknowledgement', 'abbreviation', 'summary']
+        # for key in page_keys:
+        #     doc_page.append(Command('addcontentsline',
+        #                             ['toc',
+        #                              'section',
+        #                              self.data['content'][key]['title']]))
         doc_page.append(Command('tableofcontents'))
 
         doc_page.append(NewPage())
@@ -202,20 +218,26 @@ class Template(object):
         doc_page.append(Command('thispagestyle', 'empty'))
         self.doc.preamble.append(doc_page)
         self.doc.change_document_style(sname)
+        self.doc.append(Command('cleardoublepage'))
 
     def write_preamble_page(self, sname):
         page_keys = ['acknowledgement', 'abbreviation', 'summary']
 
         for key in page_keys:
+            print('{}'.format(key))
+
             self.doc.append(NewPage())
             self.doc.append(Command('RaggedRight'))
-            print('{}'.format(key))
 
             opt = self.data['content'][key]
             with self.doc.create(Section(opt['title'], numbering=False)):
                 for i in opt['paragraph'].keys():
                     self.doc.append(opt['paragraph'][i])
                     self.doc.append(LineBreak())
+
+            self.doc.append(Command('addcontentsline',
+                                    ['toc', 'section', opt['title']]))
+        self.doc.append(Command('cleardoublepage'))
 
     def write_section_page(self, sname):
         opt = self.data['content']['section']
@@ -235,14 +257,17 @@ class Template(object):
             self.doc.append(Command('RaggedRight'))
 
             val_l1 = opt[key_l1]
-            val_l1_keys = val_l1.keys()
+            # val_l1_keys = val_l1.keys()
             val_l1_t = val_l1['title']
             val_l1_p = val_l1['paragraph']
+            print('{}'.format(val_l1_t))
+
             with self.doc.create(Section(val_l1_t)):
-                print('{}'.format(val_l1_t))
                 for key, val in val_l1_p.items():
-                    print(' p{}'.format(key))
-                    self.doc.append(val.format_map(opt_val))
+                    print(' {}'.format(key))
+
+                    # self.doc.append(val.format_map(opt_val))
+                    self.doc.append(val.format(val=opt_val))
                     self.doc.append(LineBreak())
 
                 # key_l2 = val_l1.keys()
@@ -254,12 +279,62 @@ class Template(object):
                         val_l2 = val_l1[key_l2]
                         val_l2_t = val_l2['title']
                         val_l2_p = val_l2['paragraph']
+                        print(' {}'.format(val_l2_t))
+
                         with self.doc.create(Subsection(val_l2_t)):
-                            print(' {}'.format(val_l2_t))
                             for key, val in val_l2_p.items():
-                                print('  p{}'.format(key))
-                                self.doc.append(val.format_map(opt_val))
+                                print('  {}'.format(key))
+
+                                # self.doc.append(val.format_map(opt_val))
+                                self.doc.append(val.format(val=opt_val))
                                 self.doc.append(LineBreak())
+        self.doc.append(Command('cleardoublepage'))
+
+    def write_reference_page(self, sname):
+        self.doc.append(NewPage())
+
+        key = 'reference'
+        print('{}'.format(key))
+
+        opt = self.data['content'][key]
+        if key in self.__conf['data']['content'].keys():
+            if self.__conf['data']['content'][key] is not None:
+                opt = self.__conf['data']['content'][key]
+
+        # file = opt['file']
+        # file = './{}'.format(opt['file'])
+        file = NoEscape('./{}'.format(opt['file']))
+        # file = os.path.join(self.path, opt['file']).replace(os.sep, '/')
+        # file = NoEscape(os.path.join(self.path, opt['file']))
+        self.doc.preamble.append(Command('addbibresource', file))
+
+        self.doc.append(Command('printbibliography'))
+        # with self.doc.create(Section(opt['title'], numbering=False)):
+        #     self.doc.append(opt['file'])
+        #
+        # self.doc.append(Command('addcontentsline',
+        #                         ['toc', 'section', opt['title']]))
+        self.doc.append(Command('cleardoublepage'))
+
+    def write_annex_page(self, sname):
+        self.doc.append(NewPage())
+
+        key = 'annex'
+        print('{}'.format(key))
+
+        opt = self.data['content'][key]
+        if key in self.__conf['data']['content'].keys():
+            if self.__conf['data']['content'][key] is not None:
+                opt = self.__conf['data']['content'][key]
+
+        with self.doc.create(Section(opt['title'], numbering=False)):
+            for i in opt['paragraph'].keys():
+                self.doc.append(opt['paragraph'][i])
+                self.doc.append(LineBreak())
+
+        self.doc.append(Command('addcontentsline',
+                                ['toc', 'section', opt['title']]))
+        self.doc.append(Command('cleardoublepage'))
 
     def saveas(self):
         fname = self.__conf['data']['doc']['name']

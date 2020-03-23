@@ -6,6 +6,7 @@ doc:
 template:
   provider: IHE
   name: FAO
+  # name: Manual
 
 page:
   header:
@@ -38,14 +39,24 @@ content:
 
   # Section
   section:
-    text: null
-    # text:
-    #   title:
-    #     1: 'Introduction'
-    #     1.1: 'Subsection 1.1'
-    #   paragraph:
-    #     1-1: 'section 1 paragraph 1'
-    #     1.1-1: 'section 1.1 paragraph 1'
+    1:
+      title: 'Introduction'
+      paragraph:
+        1-1: 'section 1 paragraph 1'
+      1.1:
+        title: 'Subsection 1.1'
+        paragraph:
+          1.1-1: 'section 1.1 paragraph 1'
+
+  reference:
+    title: 'References'
+    file: 'test_report.bib'
+
+  annex:
+    title: 'Annexes'
+    file: 'Annexes.csv'
+
+  data:
     value:
       rand: -9999
       min: 0.
@@ -59,7 +70,3 @@ content:
       tab1: 'table-1.csv'
     reference:
       ref1: 'ref-1.pdf'
-
-  reference:
-    file: 'test_report.bib'
-#  annex: null

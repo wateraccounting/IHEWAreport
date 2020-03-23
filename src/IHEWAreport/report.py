@@ -278,14 +278,15 @@ class Report(Base):
 
 if __name__ == "__main__":
     print('\nReport\n=====')
-    path = os.path.join(
-        os.getcwd(),
-        os.path.dirname(
-            inspect.getfile(
-                inspect.currentframe()))
-    )
-
-    report = Report(path, 'test_report.yml')
+    # path = os.path.join(
+    #     os.getcwd(),
+    #     os.path.dirname(
+    #         inspect.getfile(
+    #             inspect.currentframe())),
+    #     '../', '../', 'tests'
+    # )
+    #
+    # report = Report(path, 'test_report.yml')
 
     # report.get_config()
     # print(report._Report__conf['path'], '\n',

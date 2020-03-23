@@ -13,6 +13,7 @@ if __name__ == "__main__":
             inspect.getfile(
                 inspect.currentframe()))
     )
+    os.chdir(path)
 
     report = IHEWAreport.Report(path, 'test_report.yml')
 

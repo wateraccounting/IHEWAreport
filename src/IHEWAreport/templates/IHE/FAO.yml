@@ -80,13 +80,13 @@ content:
       1.1:
         title: 'Subsection 1.1'
         paragraph:
-          1.1-1: 'Subsection 1.1 Paragraph 1 {val[min]}'
-          1.1-2: 'Subsection 1.1 Paragraph 2 {val[max]}'
+          1.1-1: 'Subsection 1.1 Paragraph 1 {data[value][min]}'
+          1.1-2: 'Subsection 1.1 Paragraph 2 {data[value][max]}'
         1.1.1:
           title: 'Subsection 1.1.1'
           paragraph:
-            1.1.1-1: 'Subsection 1.1.1 Paragraph 1 {val[min]}'
-            1.1.1-2: 'Subsection 1.1.1 Paragraph 2 {val[max]}'
+            1.1.1-1: 'Subsection 1.1.1 Paragraph 1 {data[value][min]}'
+            1.1.1-2: 'Subsection 1.1.1 Paragraph 2 {data[value][max]}'
     2:
       title: 'Methodology'
       paragraph:
@@ -95,13 +95,20 @@ content:
       2.1:
         title: 'WaPOR database'
         paragraph:
-          2.1-1: 'Subsection 2.1 Paragraph 1 {val[mean]}'
+          2.1-1: 'Subsection 2.1 Paragraph 1 {data[value][mean]}'
           2.1-2: 'Subsection 2.1 Paragraph 2'
         2.1.1:
           title: 'Precipitation'
           paragraph:
-            2.1.1-1: 'Subsection 2.1.1 Paragraph 1 {val[mean]}'
+            2.1.1-1: 'Subsection 2.1.1 Paragraph 1 {data[value][mean]}'
             2.1.1-2: 'Subsection 2.1.1 Paragraph 2'
+    3:
+      title: 'Test from YAML'
+      paragraph:
+        3-1: 'Figure {data[figure][fig1]}'
+        3-2: 'Equation {data[equation][equ1]}'
+        3-3: 'Table {data[table][tab1]}'
+        3-4: 'Reference {data[reference][ref1]}'
 
   reference:
     title: 'References'
@@ -109,9 +116,22 @@ content:
 
   annex:
     title: 'Annexes'
-    paragraph:
-      1: 'Annexes 1'
-      2: 'Annexes 2'
+    file: 'Annexes.csv'
+
+  data:
+    value:
+      rand: -9999
+      min: 0.
+      max: 1.
+      mean: 0.5
+    equation:
+      equ1: 'a-b'
+    figure:
+      fig1: 'fig-1.jpg'
+    table:
+      tab1: 'table-1.csv'
+    reference:
+      ref1: 'ref-1.pdf'
 
 #fig: 'IHEWAreport-fig1, \ref{figure:fig1}
 #      \begin{figure}[h]

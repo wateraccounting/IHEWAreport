@@ -3,12 +3,22 @@ import inspect
 import os
 from datetime import datetime, date
 import yaml
+
+import matplotlib
+matplotlib.use('Agg')  # Not to use X server. For TravisCI.
+import matplotlib.pyplot as plt
+
 import numpy as np
+import quantities as pq
 
 from pylatex import Package, Document, Command, NoEscape, \
     PageStyle, Head, Foot, \
-    Section, Subsection, NewPage, LineBreak, \
-    Tabular, Math, TikZ, Axis, Plot, Figure, Matrix, Alignat
+    Section, Subsection, NewPage, NewLine, LineBreak, \
+    Itemize, \
+    Label, Ref, \
+    LongTable, MultiColumn, MultiRow, Table, Tabular, \
+    TikZ, Axis, Plot, Figure, Alignat, \
+    Math, Matrix, VectorName, Quantity
 
 from pylatex.utils import italic
 
@@ -71,6 +81,7 @@ class Template(object):
 
             self.set_page('SectionHeader', 'arabic')
             self.write_section_page('SectionPage')
+            self.write_test_page('TestPage')
 
             self.write_reference_page('ReferencePage')
             self.write_annex_page('AnnexPage')
@@ -112,6 +123,8 @@ class Template(object):
                                         'style=authoryear',
                                         'sorting=ynt'
                                     ]))
+        #                                 'backend=bibtex',
+        # doc.packages.append(Package('natbib'))
 
         return doc
 
@@ -159,6 +172,162 @@ class Template(object):
             obj.append(simple_page_number())
         else:
             obj.append(txt)
+
+    def insert_figure(self, obj_sec, name, caption, width, *args, **kwargs):
+        # with obj_sec.create(Figure(position='htbp')) as plot:
+        with obj_sec.create(Figure(position='h!')) as plot:
+            plot.add_plot(width=NoEscape(width), *args, **kwargs)
+            plot.add_caption('{}'.format(caption))
+            plot.append(Label('figure:{}'.format(name)))
+            # obj_sec.append(plot)
+
+    def insert_table(self, obj_sec, name, caption, width, header, data):
+        tab_style = '|{}|'.format('|'.join(['c' for i in range(data.shape[1])]))
+        with obj_sec.create(LongTable(tab_style)) as table:
+            table.append(Command('caption',
+                                 options=[],
+                                 arguments=['{}'.format(caption)]))
+            table.append(NoEscape(r'\label{%s}\\' % 'table:{}'.format(name)))
+
+            table.add_hline()
+            table.add_row(header)
+            table.add_hline()
+            table.end_table_header()
+
+            # table.add_hline()
+            # table.add_row((MultiColumn(3,
+            #                            align='r',
+            #                            data='Continued on Next Page'),))
+            table.add_hline()
+            table.end_table_footer()
+
+            # table.add_hline()
+            # table.add_row((MultiColumn(3,
+            #                            align='r',
+            #                            data='Not Continued on Next Page'),))
+            table.add_hline()
+            table.end_table_last_footer()
+
+            for i in range(data.shape[0]):
+                table.add_row(data[i])
+
+        # with self.doc.create(Table(position="htbp")) as table:
+        #     table.append(NoEscape(r'\centering'))
+        #
+        #     tabular = Tabular('|c|c|c|')
+        #     tabular.add_hline()
+        #     tabular.add_row(["header 1", "header 2", "header 3"])
+        #     tabular.add_hline()
+        #
+        #     for i in range(150):
+        #         tabular.add_row(row)
+        #     tabular.add_hline()
+        #
+        #     table.append(tabular)
+        #     table.add_caption('Caption Table {}'.format('Caption'))
+        #     table.append(Label('table:{}'.format('tab1')))
+
+    def write_test_page(self, sname):
+        self.doc.append(NewPage())
+        with self.doc.create(Section('Test')):
+            # Reference
+            with self.doc.create(Subsection('Reference')):
+                self.doc.append(Command('cite', options=[], arguments='bertram'))
+                self.doc.append(LineBreak())
+                self.doc.append(Command('cite', options=[], arguments='simon06'))
+                self.doc.append(LineBreak())
+
+            # List
+            with self.doc.create(Subsection('List')) as obj_sec:
+                with self.doc.create(Itemize()) as itemize:
+                    itemize.add_item("the first item")
+                    itemize.add_item("the second item")
+                    itemize.add_item("the third etc")
+                    # you can append to existing items
+                    itemize.append(Command("ldots"))
+                    obj_sec.append(itemize)
+
+            # Figure, matplotlib
+            with self.doc.create(Subsection('Figure')) as obj_sec:
+                name = 'fig1'
+                caption = 'Caption Figure'
+                self.doc.append(NoEscape('Fig. ' + Ref('figure:{}'.format(name)).dumps_as_content()))
+
+                dpi = 3000
+
+                x = [0, 1, 2, 3, 4, 5, 6]
+                y = [15, 2, 7, 1, 5, 6, 9]
+                plt.plot(x, y)
+
+                self.insert_figure(obj_sec, name, caption, r'1\textwidth', dpi=dpi)
+
+            # Table, multi-page LongTable
+            with self.doc.create(Subsection('Talbe')) as obj_sec:
+                name = 'tab1'
+                caption = 'Caption Table'
+                self.doc.append(NoEscape('Tab. ' + Ref('table:{}'.format(name)).dumps_as_content()))
+
+                header = ['header 1', 'header 2', 'header 3']
+                # data = np.array([['1', 2, 3]])
+                data = np.zeros((50, 3))
+
+                self.insert_table(obj_sec, name, caption, r'1\textwidth', header, data)
+
+            # Math, equation, numpy
+            with self.doc.create(Subsection('Equation numpy')) as obj_sec:
+                name = 'equ1'
+                caption = 'Caption Equation 1'
+                self.doc.append(NoEscape('Equ. ' + Ref('equation:{}'.format(name)).dumps_as_content()))
+
+                M = np.asmatrix(
+                    np.array([
+                        [2, 3, 4],
+                        [0, 0, 1],
+                        [0, 0, 2]
+                    ]))
+                a = np.asmatrix(
+                    np.array(
+                        [
+                            [100, 10, 20]
+                        ]).T)
+
+                with obj_sec.create(Alignat(aligns=2,
+                                            numbering=True,
+                                            escape=False)) as obj_agn:
+                    # vec = Matrix(a)
+                    # vec_name = VectorName(name)
+                    # math = Math(data=[vec_name, '=', vec])
+                    # obj_sec.append(math)
+                    obj_agn.append(r'\frac{a}{b} &= 0 \\')
+                    obj_agn.extend([Matrix(M), Matrix(a), '&=', Matrix(M * a)])
+                    obj_agn.append(Label('equation:{}'.format(name)))
+                    # print(obj_agn)
+
+            # Math, equation, quantities
+            with self.doc.create(Subsection('Equation quantities')) as obj_sec:
+                name = 'equ2'
+                self.doc.append(NoEscape('Equ. ' + Ref('equation:{}'.format(name)).dumps_as_content()))
+
+                with obj_sec.create(Alignat(aligns=2,
+                                            numbering=True,
+                                            escape=False)) as obj_agn:
+                    G = pq.constants.Newtonian_constant_of_gravitation
+                    moon_earth_distance = 384400 * pq.km
+                    moon_mass = 7.34767309e22 * pq.kg
+                    earth_mass = 5.972e24 * pq.kg
+                    moon_earth_force = G * moon_mass * earth_mass / moon_earth_distance ** 2
+                    q1 = Quantity(moon_earth_force.rescale(pq.newton),
+                                  options={
+                                      'round-precision': 4,
+                                      'round-mode': 'figures'})
+                    # math = Math(data=['F=', q1])
+                    # obj_sec.append(math)
+
+                    obj_agn.extend(['F', '&=', q1])
+                    obj_agn.append(Label('equation:{}'.format(name)))
+                    # print(obj_agn)
+
+        self.doc.append(Command('cleardoublepage'))
 
     def write_cover_page(self, sname):
         # fmt_date = "%d %b %Y"
@@ -275,12 +444,8 @@ class Template(object):
     def write_section_page(self, sname):
         opt = self.data['content']['section']
         try:
-            opt_txt = self.__conf['data']['content']['section']['text']
-            opt_val = self.__conf['data']['content']['section']['value']
-            opt_equ = self.__conf['data']['content']['section']['equation']
-            opt_fig = self.__conf['data']['content']['section']['figure']
-            opt_tab = self.__conf['data']['content']['section']['table']
-            opt_ref = self.__conf['data']['content']['section']['reference']
+            opt_sect = self.__conf['data']['content']['section']
+            opt_data = self.__conf['data']['content']['data']
         except KeyError:
             raise KeyError
 
@@ -299,8 +464,8 @@ class Template(object):
                 for key, val in val_l1_p.items():
                     print(' {}'.format(key))
 
-                    # self.doc.append(val.format_map(opt_val))
-                    self.doc.append(val.format(val=opt_val))
+                    # self.doc.append(val.format_map(opt_data))
+                    self.doc.append(val.format(data=opt_data))
                     self.doc.append(LineBreak())
 
                 # key_l2 = val_l1.keys()
@@ -318,10 +483,9 @@ class Template(object):
                             for key, val in val_l2_p.items():
                                 print('  {}'.format(key))
 
-                                # self.doc.append(val.format_map(opt_val))
-                                self.doc.append(val.format(val=opt_val))
+                                # self.doc.append(val.format_map(opt_data))
+                                self.doc.append(val.format(data=opt_data))
                                 self.doc.append(LineBreak())
-        self.doc.append(Command('cleardoublepage'))
 
     def write_reference_page(self, sname):
         self.doc.append(NewPage())
@@ -331,53 +495,38 @@ class Template(object):
         print('{}'.format(key))
 
         opt = self.data['content'][key]
-        file = os.path.join(self.path, opt['file'])
-        # file = NoEscape(os.path.join(self.path, opt['file']))
+        # file = os.path.join(self.path, opt['file'])
+        file = NoEscape(os.path.join(self.path, opt['file']))
         # file = os.path.join(self.path, opt['file']).replace(os.sep, '/')
         # file = NoEscape(os.path.join(self.path, opt['file']).replace(os.sep, '/'))
 
-        files.append(os.path.splitext(file)[0])
+        # files.append(os.path.splitext(file)[0])
         # files.append(NoEscape(os.path.splitext(file)[0]))
         if key in self.__conf['data']['content'].keys():
             if 'file' in self.__conf['data']['content'][key].keys():
                 opt['file'] = self.__conf['data']['content'][key]['file']
-                file = opt['file']
-                # file = NoEscape(opt['file'])
+                # file = opt['file']
+                file = NoEscape(opt['file'])
                 # file = './{}'.format(opt['file'])
                 # file = NoEscape('./{}'.format(opt['file']))
 
-                files.append(os.path.splitext(file)[0])
+                # files.append(os.path.splitext(file)[0])
                 # files.append(NoEscape(os.path.splitext(file)[0]))
-        print(files)
+        # print(files)
 
-        self.doc.preamble.append(Command('addbibresource', arguments=[file]))
-
-        # self.doc.preamble.append(Command('addbibresource', arguments=files))
+        self.doc.preamble.append(Command('addbibresource',
+                                         options=[],
+                                         arguments=[file]))
         # self.doc.preamble.append(Command('bibliography', arguments=files))
 
-        # Opt 1
-        self.doc.append(Command('printbibliography'))
+        with self.doc.create(Section(opt['title'], numbering=False)):
+            self.doc.append(Command('printbibliography',
+                                    options=[
+                                        'heading=none'],
+                                    arguments=[]))
 
-        # # Opt 2
-        # with self.doc.create(Section(opt['title'], numbering=False)):
-        #     tabledata = dict(
-        #         aksin=['Foo', 42],
-        #         angenendt=['Bar', 7],
-        #         bertram=['Baz', 3.14],
-        #         doody=['Foobar', 199]
-        #     )
-        #     with self.doc.create(Tabular("l l l", booktabs=True)) as table:
-        #         table.add_row(['Desc', 'Number', 'Cite'])
-        #         table.add_hline()
-        #         for key in tabledata.keys():
-        #             table.add_row(
-        #                 tabledata[key] + [
-        #                     Command('cite', arguments=[key])
-        #                 ])
-        # self.doc.append(Command('printbibliography'))
-        # self.doc.append(Command('addcontentsline',
-        #                         ['toc', 'section', opt['title']]))
-
+        self.doc.append(Command('addcontentsline',
+                                ['toc', 'section', opt['title']]))
         self.doc.append(Command('cleardoublepage'))
 
     def write_annex_page(self, sname):
@@ -388,13 +537,13 @@ class Template(object):
 
         opt = self.data['content'][key]
         if key in self.__conf['data']['content'].keys():
-            if self.__conf['data']['content'][key] is not None:
-                opt = self.__conf['data']['content'][key]
+            if 'file' in self.__conf['data']['content'][key].keys():
+                opt['file'] = self.__conf['data']['content'][key]['file']
+                file = NoEscape(opt['file'])
 
         with self.doc.create(Section(opt['title'], numbering=False)):
-            for i in opt['paragraph'].keys():
-                self.doc.append(opt['paragraph'][i])
-                self.doc.append(LineBreak())
+            self.doc.append(file)
+            self.doc.append(LineBreak())
 
         self.doc.append(Command('addcontentsline',
                                 ['toc', 'section', opt['title']]))
@@ -415,6 +564,8 @@ class Template(object):
                 os._exit(1)
         self.doc.generate_tex(file)
 
+        # if file != '.bib' os.path.splitext(file)[0]
+
         for ftype in ftypes:
             file_with_ext = '{}.{}'.format(file, str(ftype).lower())
             print('Saving: "{}"'.format(file_with_ext))
@@ -425,7 +576,28 @@ class Template(object):
                     except PermissionError as err:
                         print('Could not delete "{}"'.format(file_with_ext))
                         os._exit(1)
-                self.doc.generate_pdf(file, clean_tex=False)
+                # pkg natbib will cause latex style error!
+                # Opt 1
+                # self.doc.generate_pdf(file, clean=True, clean_tex=False)
+                self.doc.generate_pdf(file, clean=False, clean_tex=False)
+
+                # Opt 2
+                # .py  -> latexmk  -> .tex & .run.xml
+                # .tex -> pdflatex -> .bcf
+                # .bcf -> biber    -> .bbl
+                # .bbl -> pdflatex -> .pdf 1st time
+                # .bbl -> pdflatex -> .pdf 2ed time, make sure
+                #
+                # import subprocess
+                # commands = [
+                #     ['pdflatex', file + '.tex'],
+                #     ['biber', file],
+                #     # ['bibtex', file + '.aux'],
+                #     ['pdflatex', file + '.tex'],
+                #     ['pdflatex', file + '.tex']
+                # ]
+                # for c in commands:
+                #     subprocess.call(c)
 
     def close(self):
         if self.doc is not None:

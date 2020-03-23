@@ -20,7 +20,7 @@ from pylatex import Package, Document, Command, NoEscape, \
     TikZ, Axis, Plot, Figure, Alignat, \
     Math, Matrix, VectorName, Quantity
 
-from pylatex.utils import italic
+from pylatex.utils import italic, make_temp_dir, rm_temp_dir
 
 try:
     # IHEClassInitError, IHEStringError, IHETypeError, IHEKeyError, IHEFileError
@@ -63,7 +63,9 @@ class Template(object):
         if doc is not None:
             self.doc = doc
 
-            print('\nLaTex')
+            print('\nLaTex Start')
+            print('Create temp dir:', make_temp_dir())
+
             print('>>>>>')
             # doc.preamble
             self.write_cover_page('CoverPage')
@@ -88,7 +90,11 @@ class Template(object):
             print('<<<<<\n')
 
             self.saveas()
-            # self.close()
+            self.close()
+            print('\nLaTex End')
+
+            print('Remove temp dir')
+            rm_temp_dir()
 
     def _conf(self, path, template) -> dict:
         data = {}
@@ -600,5 +606,6 @@ class Template(object):
                 #     subprocess.call(c)
 
     def close(self):
-        if self.doc is not None:
-            self.doc = None
+        # if self.doc is not None:
+        #     self.doc = None
+        pass

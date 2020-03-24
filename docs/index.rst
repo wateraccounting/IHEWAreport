@@ -7,8 +7,13 @@ This is the documentation of **IHEWAreport**.
 **IHEWAreport** is a Reportion of tools to write standard report.
 This project is fully developed by Water Accounting team at IHE-Delft.
 
-GDAL library is required, see `How to install GDAL
-<https://sandbox.idre.ucla.edu/sandbox/tutorials/installing-gdal-for-windows>`_.
+`MiKTeX <https://miktex.org/>`_ is required to generate tex and pdf file.
+
+    - .py  -> latexmk  -> .tex & .run.xml
+    - .tex -> pdflatex -> .bcf
+    - .bcf -> biber    -> .bbl
+    - .bbl -> pdflatex -> .pdf 1st time
+    - .bbl -> pdflatex -> .pdf 2ed time, make sure
 
 .. warning::
 
@@ -267,7 +272,7 @@ Contents
    Authors <authors>
    Contributing <contributing>
    Changelog <changelog>
-   Products <products>
+   Templates <templates>
    Module Reference <api/modules>
 
 

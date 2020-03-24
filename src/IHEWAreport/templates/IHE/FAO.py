@@ -214,6 +214,7 @@ class Template(object):
     def insert_table(self, obj_sec, name, caption, width, header, data):
         # tab_style = '|{}|'.format('|'.join(['c' for i in range(data.shape[1])]))
         tab_style = '|{}|'.format('|'.join(['l' for i in range(data.shape[1])]))
+
         with obj_sec.create(LongTable(tab_style)) as table:
             if isinstance(caption, str):
                 if len(caption) > 0:
@@ -247,7 +248,7 @@ class Template(object):
         # with self.doc.create(Table(position="htbp")) as table:
         #     table.append(NoEscape(r'\centering'))
         #
-        #     tabular = Tabular('|c|c|c|')
+        #     tabular = Tabular(tab_style)
         #     tabular.add_hline()
         #     tabular.add_row(["header 1", "header 2", "header 3"])
         #     tabular.add_hline()
@@ -281,9 +282,9 @@ class Template(object):
                     obj_sec.append(itemize)
 
             # Figure, matplotlib
-            with self.doc.create(Subsection('Figure')) as obj_sec:
+            with self.doc.create(Subsection('Figure plot')) as obj_sec:
                 name = 'fig1'
-                caption = 'Caption Figure'
+                caption = 'Caption Figure plot'
                 self.doc.append(NoEscape('Fig. ' + Ref('figure:{}'.format(name)).dumps_as_content()))
 
                 dpi = 3000
@@ -295,6 +296,12 @@ class Template(object):
                 self.insert_plot(obj_sec, name, caption, r'1\textwidth', dpi=dpi)
 
             # Figure, image
+            with self.doc.create(Subsection('Figure image')) as obj_sec:
+                name = 'fig2'
+                caption = 'Caption Figure image'
+                self.doc.append(NoEscape('Fig. ' + Ref('figure:{}'.format(name)).dumps_as_content()))
+
+                self.insert_image(obj_sec, name, caption, r'1\textwidth', dpi=dpi)
 
             # Table, multi-page LongTable
             with self.doc.create(Subsection('Talbe')) as obj_sec:

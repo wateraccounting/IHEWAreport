@@ -101,6 +101,14 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\cbx\authoryear.cbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\cbx\authoryear.cbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.cfg
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\tabu\tabu.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\tabu\tabu.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\varwidth\varwidth.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\varwidth\varwidth.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty
@@ -111,8 +119,6 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty
@@ -131,8 +137,6 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\l3keys2e\l3keys2e.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\l3keys2e\l3keys2e.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator.sty
@@ -234,10 +238,10 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ts1-lmr10.tfm
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\510db65b-45be-4e64-9061-c2a410f7e437.pdf
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\510db65b-45be-4e64-9061-c2a410f7e437.pdf
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\510db65b-45be-4e64-9061-c2a410f7e437.pdf
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\510db65b-45be-4e64-9061-c2a410f7e437.pdf
+INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\c3c4116f-e586-4167-8867-a30eb55e1b47.pdf
+INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\c3c4116f-e586-4167-8867-a30eb55e1b47.pdf
+INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\c3c4116f-e586-4167-8867-a30eb55e1b47.pdf
+INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\c3c4116f-e586-4167-8867-a30eb55e1b47.pdf
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr5.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmri10.tfm

@@ -17,12 +17,11 @@ page:
 content:
   # Cover
   cover:
-    title: 'Water Account
-            in the Litani River Basin'
+    title: 'Water Account'
 
   # Title
   title:
-    title: 'Report'
+    title: 'Water Account\\ in the Litani River Basin'
     author: 'WA+ team'
     date: True
 
@@ -40,7 +39,7 @@ content:
   abbreviation:
     title: 'Abbreviations and Acronyms'
     paragraph:
-      1: 'Abbreviations and acronyms'
+      KEY: 'Value'
 
   summary:
     title: 'Executive summary'

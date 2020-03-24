@@ -16,7 +16,7 @@ from pylatex import Package, Document, Command, NoEscape, \
     Section, Subsection, NewPage, NewLine, LineBreak, \
     Itemize, \
     Label, Ref, \
-    LongTable, MultiColumn, MultiRow, Table, Tabular, \
+    LongTabu, LongTable, MultiColumn, MultiRow, Table, Tabular, \
     TikZ, Axis, Plot, Figure, Alignat, \
     Math, Matrix, VectorName, Quantity
 
@@ -67,28 +67,37 @@ class Template(object):
             print('Create temp dir:', make_temp_dir())
 
             print('>>>>>')
-            # doc.preamble
+            # doc Cover
             self.write_cover_page('CoverPage')
             self.write_title_page('FirstPage')
 
+            # doc TOC
             self.write_toc_page('TOCPage')
 
-            # doc
+            # doc Preamble style
             self.set_page('PreambleHeader', 'roman')
 
+            # doc LOF, LOT
             self.write_lof_page('LOFPage')
             self.write_lot_page('LOTPage')
 
-            self.write_preamble_page('PreamblePage')
+            # doc Preamble
+            self.write_acknowledgment_page('AcknowledgementPage')
+            self.write_abbreviation_page('AbbreviationPage')
+            self.write_summary_page('SummaryPage')
 
+            # doc Contents style
             self.set_page('SectionHeader', 'arabic')
+            # doc Contents
             self.write_section_page('SectionPage')
             self.write_test_page('TestPage')
 
+            # doc Appendix
             self.write_reference_page('ReferencePage')
             self.write_annex_page('AnnexPage')
             print('<<<<<\n')
 
+            # doc Appendix
             self.saveas()
             self.close()
             print('\nLaTex End')
@@ -179,20 +188,38 @@ class Template(object):
         else:
             obj.append(txt)
 
-    def insert_figure(self, obj_sec, name, caption, width, *args, **kwargs):
+    def insert_plot(self, obj_sec, name, caption, width, *args, **kwargs):
         # with obj_sec.create(Figure(position='htbp')) as plot:
         with obj_sec.create(Figure(position='h!')) as plot:
             plot.add_plot(width=NoEscape(width), *args, **kwargs)
-            plot.add_caption('{}'.format(caption))
+            if isinstance(caption, str):
+                if len(caption) > 0:
+                    plot.add_caption('{}'.format(caption))
             plot.append(Label('figure:{}'.format(name)))
             # obj_sec.append(plot)
 
+    def insert_image(self, obj_sec, name, caption, width, *args, **kwargs):
+        pass
+
+    def insert_abbre(self, obj_sec, width, data):
+        tab_style = '{}'.format(' '.join(['X[l]' for i in range(2)]))
+        with obj_sec.create(LongTabu(tab_style)) as table:
+            table.end_table_header()
+            table.end_table_footer()
+            table.end_table_last_footer()
+
+            for key, val in data.items():
+                table.add_row([key, val])
+
     def insert_table(self, obj_sec, name, caption, width, header, data):
-        tab_style = '|{}|'.format('|'.join(['c' for i in range(data.shape[1])]))
+        # tab_style = '|{}|'.format('|'.join(['c' for i in range(data.shape[1])]))
+        tab_style = '|{}|'.format('|'.join(['l' for i in range(data.shape[1])]))
         with obj_sec.create(LongTable(tab_style)) as table:
-            table.append(Command('caption',
-                                 options=[],
-                                 arguments=['{}'.format(caption)]))
+            if isinstance(caption, str):
+                if len(caption) > 0:
+                    table.append(Command('caption',
+                                         options=[],
+                                         arguments=['{}'.format(caption)]))
             table.append(NoEscape(r'\label{%s}\\' % 'table:{}'.format(name)))
 
             table.add_hline()
@@ -265,7 +292,9 @@ class Template(object):
                 y = [15, 2, 7, 1, 5, 6, 9]
                 plt.plot(x, y)
 
-                self.insert_figure(obj_sec, name, caption, r'1\textwidth', dpi=dpi)
+                self.insert_plot(obj_sec, name, caption, r'1\textwidth', dpi=dpi)
+
+            # Figure, image
 
             # Table, multi-page LongTable
             with self.doc.create(Subsection('Talbe')) as obj_sec:
@@ -369,7 +398,7 @@ class Template(object):
 
         doc_page = PageStyle(sname)
 
-        doc_page.append(Command('title', opt['title']))
+        doc_page.append(Command('title', NoEscape(opt['title'])))
         doc_page.append(Command('author', opt['author']))
         if isinstance(opt['date'], str):
             doc_page.append(
@@ -428,23 +457,53 @@ class Template(object):
                                 ['toc', 'section', NoEscape(r'\listtablename')]))
         self.doc.append(Command('cleardoublepage'))
 
-    def write_preamble_page(self, sname):
-        page_keys = ['acknowledgement', 'abbreviation', 'summary']
+    def write_acknowledgment_page(self, sname):
+        key = 'acknowledgement'
+        print('{}'.format(key))
 
-        for key in page_keys:
-            print('{}'.format(key))
+        self.doc.append(NewPage())
+        self.doc.append(Command('RaggedRight'))
 
-            self.doc.append(NewPage())
-            self.doc.append(Command('RaggedRight'))
+        opt = self.data['content'][key]
+        with self.doc.create(Section(opt['title'], numbering=False)):
+            for i in opt['paragraph'].keys():
+                self.doc.append(opt['paragraph'][i])
+                self.doc.append(LineBreak())
 
-            opt = self.data['content'][key]
-            with self.doc.create(Section(opt['title'], numbering=False)):
-                for i in opt['paragraph'].keys():
-                    self.doc.append(opt['paragraph'][i])
-                    self.doc.append(LineBreak())
+        self.doc.append(Command('addcontentsline',
+                                ['toc', 'section', opt['title']]))
+        self.doc.append(Command('cleardoublepage'))
 
-            self.doc.append(Command('addcontentsline',
-                                    ['toc', 'section', opt['title']]))
+    def write_abbreviation_page(self, sname):
+        key = 'abbreviation'
+        print('{}'.format(key))
+
+        self.doc.append(NewPage())
+        self.doc.append(Command('RaggedRight'))
+
+        opt = self.data['content'][key]
+        with self.doc.create(Section(opt['title'], numbering=False)) as obj_sec:
+            self.insert_abbre(obj_sec, r'1\textwidth', opt['paragraph'])
+
+        self.doc.append(Command('addcontentsline',
+                                ['toc', 'section', opt['title']]))
+        self.doc.append(Command('cleardoublepage'))
+
+    def write_summary_page(self, sname):
+        key = 'summary'
+        print('{}'.format(key))
+
+        self.doc.append(NewPage())
+        self.doc.append(Command('RaggedRight'))
+
+        opt = self.data['content'][key]
+        with self.doc.create(Section(opt['title'], numbering=False)):
+            for i in opt['paragraph'].keys():
+                self.doc.append(opt['paragraph'][i])
+                self.doc.append(LineBreak())
+
+        self.doc.append(Command('addcontentsline',
+                                ['toc', 'section', opt['title']]))
         self.doc.append(Command('cleardoublepage'))
 
     def write_section_page(self, sname):

@@ -9,8 +9,9 @@
 \usepackage{ragged2e}%
 \usepackage{hyperref}%
 \usepackage[style=authoryear,sorting=ynt]{biblatex}%
-\usepackage{graphicx}%
 \usepackage{longtable}%
+\usepackage{tabu}%
+\usepackage{graphicx}%
 \usepackage{amsmath}%
 \usepackage[separate-uncertainty=true]{siunitx}%
 \DeclareSIUnit\rpm{rpm}%
@@ -32,7 +33,7 @@ Mindanao, Philippines%
 }%
 \fancyfoot{ 
 }%
-\title{Data Analysis Report Mindanao, Philippines}%
+\title{Data Analysis Report\\Mindanao, Philippines}%
 \author{Quan Pan}%
 \date{02 Mar 2020}%
 \maketitle%
@@ -127,15 +128,21 @@ Water Accounting is an approach based on open access data sets and information. 
 
 %
 \addcontentsline{toc}{section}{Acknowledgements}%
+\cleardoublepage%
 \newpage%
 \RaggedRight%
 \section*{Abbreviations and Acronyms}%
 \label{sec:AbbreviationsandAcronyms}%
-Abbreviations and acronyms%
-\linebreak
+\begin{longtabu}{X[l] X[l]}%
+\endhead%
+\endfoot%
+\endlastfoot%
+KEY&Value\\%
+\end{longtabu}
 
 %
 \addcontentsline{toc}{section}{Abbreviations and Acronyms}%
+\cleardoublepage%
 \newpage%
 \RaggedRight%
 \section*{Executive summary}%
@@ -248,7 +255,7 @@ Fig. \ref{figure:fig1}%
 
 \begin{figure}[h!]%
 \centering%
-\includegraphics[width=1\textwidth]{C:/Users/qpa001/AppData/Local/Temp/pylatex/510db65b-45be-4e64-9061-c2a410f7e437.pdf}%
+\includegraphics[width=1\textwidth]{C:/Users/qpa001/AppData/Local/Temp/pylatex/c3c4116f-e586-4167-8867-a30eb55e1b47.pdf}%
 \caption{Caption Figure}%
 \label{figure:fig1}%
 \end{figure}
@@ -257,7 +264,7 @@ Fig. \ref{figure:fig1}%
 \subsection{Talbe}%
 \label{subsec:Talbe}%
 Tab. \ref{table:tab1}%
-\begin{longtable}{|c|c|c|}%
+\begin{longtable}{|l|l|l|}%
 \caption{Caption Table}%
 \label{table:tab1}\\%
 \hline%

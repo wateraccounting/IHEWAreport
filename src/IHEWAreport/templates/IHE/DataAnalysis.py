@@ -40,7 +40,7 @@ class Template(object):
     def __init__(self, conf):
         """Class instantiation
         """
-        template = 'FAO.yml'
+        template = 'DataAnalysis.yml'
         path = os.path.join(
             os.getcwd(),
             os.path.dirname(
@@ -205,7 +205,7 @@ class Template(object):
 
     def insert_abbre(self, obj_sec, width, data):
         # tab_style = '{}'.format(' '.join(['X[l]' for i in range(2)]))
-        tab_style = '|L{3cm}|X[l]'
+        tab_style = 'X[l]X[l]'
         with obj_sec.create(LongTabu(tab_style)) as table:
             table.end_table_header()
             table.end_table_footer()

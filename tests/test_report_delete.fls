@@ -1,7 +1,7 @@
 PWD D:\IHEProjects\TempDev\IHEWAreport\tests
 INPUT C:\Users\qpa001\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
-INPUT test_report_can_delete.tex
-OUTPUT test_report_can_delete.log
+INPUT test_report_delete.tex
+OUTPUT test_report_delete.log
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo
@@ -142,9 +142,9 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\l3keys2e\l3keys2e.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator.sty
-INPUT test_report_can_delete.aux
-INPUT test_report_can_delete.aux
-OUTPUT test_report_can_delete.aux
+INPUT test_report_delete.aux
+INPUT test_report_delete.aux
+OUTPUT test_report_delete.aux
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr10.tfm
@@ -154,20 +154,20 @@ INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\refcount\refcount.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\refcount\refcount.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\generic\gettitlestring\gettitlestring.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\generic\gettitlestring\gettitlestring.sty
-INPUT test_report_can_delete.out
-INPUT test_report_can_delete.out
-INPUT test_report_can_delete.out
-INPUT test_report_can_delete.out
-OUTPUT test_report_can_delete.pdf
-INPUT .\test_report_can_delete.out
-INPUT .\test_report_can_delete.out
-OUTPUT test_report_can_delete.out
+INPUT test_report_delete.out
+INPUT test_report_delete.out
+INPUT test_report_delete.out
+INPUT test_report_delete.out
+OUTPUT test_report_delete.pdf
+INPUT .\test_report_delete.out
+INPUT .\test_report_delete.out
+OUTPUT test_report_delete.out
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\english.lbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\english.lbx
-OUTPUT test_report_can_delete.bcf
-INPUT test_report_can_delete.bbl
-INPUT test_report_can_delete.bbl
-INPUT test_report_can_delete.bbl
+OUTPUT test_report_delete.bcf
+INPUT test_report_delete.bbl
+INPUT test_report_delete.bbl
+INPUT test_report_delete.bbl
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\epstopdf-pkg\epstopdf-base.sty
@@ -224,24 +224,24 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmtt8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmtt8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
-INPUT test_report_can_delete.toc
-INPUT test_report_can_delete.toc
+INPUT test_report_delete.toc
+INPUT test_report_delete.toc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx10.tfm
-OUTPUT test_report_can_delete.toc
-INPUT test_report_can_delete.lof
-INPUT test_report_can_delete.lof
-OUTPUT test_report_can_delete.lof
-INPUT test_report_can_delete.lot
-INPUT test_report_can_delete.lot
-OUTPUT test_report_can_delete.lot
+OUTPUT test_report_delete.toc
+INPUT test_report_delete.lof
+INPUT test_report_delete.lof
+OUTPUT test_report_delete.lof
+INPUT test_report_delete.lot
+INPUT test_report_delete.lot
+OUTPUT test_report_delete.lot
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ts1-lmr10.tfm
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\c3c4116f-e586-4167-8867-a30eb55e1b47.pdf
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\c3c4116f-e586-4167-8867-a30eb55e1b47.pdf
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\c3c4116f-e586-4167-8867-a30eb55e1b47.pdf
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\c3c4116f-e586-4167-8867-a30eb55e1b47.pdf
+INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\1aa5f4d6-c77d-4b66-9cf1-7a65fe5f8bc9.pdf
+INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\1aa5f4d6-c77d-4b66-9cf1-7a65fe5f8bc9.pdf
+INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\1aa5f4d6-c77d-4b66-9cf1-7a65fe5f8bc9.pdf
+INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\1aa5f4d6-c77d-4b66-9cf1-7a65fe5f8bc9.pdf
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr5.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmri10.tfm
@@ -249,11 +249,11 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmcsc10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmtt10.tfm
-INPUT test_report_can_delete.aux
-INPUT .\test_report_can_delete.out
-INPUT .\test_report_can_delete.out
-INPUT test_report_can_delete.run.xml
-OUTPUT test_report_can_delete.run.xml
+INPUT test_report_delete.aux
+INPUT .\test_report_delete.out
+INPUT .\test_report_delete.out
+INPUT test_report_delete.run.xml
+OUTPUT test_report_delete.run.xml
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-ec.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-rm.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-mathsy.enc

@@ -1,11 +1,12 @@
 doc:
-  name: 'test_report_can_delete'
+  name: 'test_report_delete'
   saveas:
     - 'PDF'
 
 template:
   provider: IHE
-  name: FAO
+  # name: FAO
+  name: DataAnalysis
   # name: Manual
 
 page:
@@ -25,8 +26,8 @@ content:
 
   # Title
   title:
-    title: 'Data Analysis Report\\Mindanao, Philippines'
-    author: 'Quan Pan'
+    title: 'Evaluating Remote Sensing Products for Water Accounting\\Mindanao River Basin, Philippines'
+    author: 'WA+ team'
     date: '2020-03-02'
 
   # TOC
@@ -35,17 +36,11 @@ content:
   acknowledgement:
     text:
       title: 'Acknowledgements'
+      paragraph:
+        1-1: 'Acknowledgements section 1 paragraph 1'
 
   # Section
-  section:
-    1:
-      title: 'Introduction'
-      paragraph:
-        1-1: 'section 1 paragraph 1'
-      1.1:
-        title: 'Subsection 1.1'
-        paragraph:
-          1.1-1: 'section 1.1 paragraph 1'
+  section: null
 
   reference:
     title: 'References'
@@ -57,6 +52,13 @@ content:
 
   data:
     value:
+      basin:
+        name: 'Mindanao River Basin'
+        area: 2
+        bbox: 'EN'
+        detail: 'The catchment contains the area from the mountains of Impasug-ong in Bukidnon
+                 (known as Upper Pulangi River), Kabacan River (relabeled as Mindanao River), Lower Pulangi
+                 River and Ligawasan Marsh.'
       rand: -9999
       min: 0.
       max: 1.
@@ -64,8 +66,8 @@ content:
     equation:
       equ1: 'a-b'
     figure:
-      fig1: 'fig-1.jpg'
+      fig1: 'fig1.jpg'
     table:
-      tab1: 'table-1.csv'
+      tab1: 'table1.csv'
     reference:
-      ref1: 'ref-1.pdf'
+      ref1: 'ref1.pdf'

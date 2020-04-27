@@ -119,10 +119,17 @@ class Report(Base):
 
         if self.__status['code'] == 0:
             self.__status['code'] = self._time()
+            if self.__status['code'] != 0:
+                print('_time', self.__status['code'])
+
             self.__status['code'] = self._conf()
+            if self.__status['code'] != 0:
+                print('_conf', self.__status['code'])
 
         if self.__status['code'] == 0:
             self.__status['code'] = self._template()
+            if self.__status['code'] != 0:
+                print('_template', self.__status['code'])
 
         if self.__status['code'] == 0:
             if self.__tmp['module'] is None:

@@ -44,10 +44,10 @@
   <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>test_report_can_delete.bcf</file>
+      <file>test_report_delete.bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>test_report_can_delete.bbl</file>
+      <file>test_report_delete.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -64,19 +64,19 @@
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
-      <infile>test_report_can_delete</infile>
+      <infile>test_report_delete</infile>
     </cmdline>
     <input>
-      <file>test_report_can_delete.bcf</file>
+      <file>test_report_delete.bcf</file>
     </input>
     <output>
-      <file>test_report_can_delete.bbl</file>
+      <file>test_report_delete.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>test_report_can_delete.bbl</file>
+      <file>test_report_delete.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>test_report_can_delete.bcf</file>
+      <file>test_report_delete.bcf</file>
     </requires>
     <requires type="editable">
       <file>test_report.bib</file>

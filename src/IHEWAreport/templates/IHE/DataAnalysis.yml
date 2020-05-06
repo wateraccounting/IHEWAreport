@@ -3,10 +3,11 @@ layout:
   layout: 'a4paper'
   includehead: True
   includefoot: True
+  margin: '1in'
 
 page:
   header:
-    left: 'FAO'
+    left: 'Data Analysis'
     center: ''
     right: 'IHE'
   footer:
@@ -17,7 +18,7 @@ page:
 content:
   # Cover
   cover:
-    title: 'Water Account'
+    title: 'Water Accounting, Data Analysis'
 
   # Title
   title:
@@ -29,9 +30,7 @@ content:
   acknowledgement:
     title: 'Acknowledgements'
     paragraph:
-      1: 'Water Accounting is an approach based on open access data sets and information. The
-          validation of the water accounts for the Litani depends on observed data. The authors
-          are therefore grateful for the'
+      1: ''
 
   abbreviation:
     title: 'Abbreviations and Acronyms'
@@ -41,59 +40,221 @@ content:
   summary:
     title: 'Executive summary'
     paragraph:
-      1: 'This report was prepared by Bich Tran, Solomon Seyoum, Marloes Mul, Elga Salvadore,
-          Amani Matar, Gonzalo E. Espinoza-Dávalos, Jonna van Opstal, Wim Bastiaanssen through
-          a collaboration between IHE'
-      2: 'Water Accounting is an approach based on open access data sets and information. The
-          validation of the water accounts for the Litani depends on observed data. The authors
-          are therefore grateful for the'
+      1: ''
 
   # Section
   section:
     1:
       title: 'Introduction'
       paragraph:
-        1-1: 'TThe {data[value][basin][name]} is one of the selected pilot basins for Rapid Water Accounting.
+        1-1: 'The {data[value][basin][name]} is one of the selected pilot basins for Rapid Water Accounting.
               It covers an area of {data[value][basin][area]} km2 (between {data[value][basin][bbox]}),
-              see {data[figure][fig1]}.'
-        1-2: ''
-        1-3: IHEWAreport-fig1
-        1-4: IHEWAreport-tab1
-        1-5: IHEWAreport-eqa1
-        1-6: IHEWAreport-ref1
-        1-7: 'Paragraph 7'
+              see {data[figure][fig1][reference]}.'
+        1-2: '{data[value][basin][detail]}'
+        1-3:
+          type: 'figure'
+          name: 'fig1'
+
       1.1:
-        title: 'Observation data '
+        title: 'Observation data'
         paragraph:
-          1.1-1: 'Subsection 1.1 Paragraph 1 {data[value][min]}'
-          1.1-2: 'Subsection 1.1 Paragraph 2 {data[value][max]}'
-        1.1.1:
-          title: 'Subsection 1.1.1'
-          paragraph:
-            1.1.1-1: 'Subsection 1.1.1 Paragraph 1 {data[value][min]}'
-            1.1.1-2: 'Subsection 1.1.1 Paragraph 2 {data[value][max]}'
+          1.1-1: '{data[value][basin][observation]}'
+          1.1-2:
+            type: 'figure'
+            name: 'fig2'
+
     2:
-      title: 'Methodology'
+      title: 'RS data analysis'
       paragraph:
-        2-1: 'Section 2 Paragraph 1'
-        2-2: 'Section 2 Paragraph 2'
+        2-1: 'The purpose of this study is to select remote sensing products for water accounting, by
+              evaluating the performance of water balance analysis. Three evaluation criteria are applied
+              in the study, Pearson correlation coefficient (PCC), coefficient of determination (R2) and
+              root mean square error (RMSE).'
+        2-2: 'PCC - The covariance of the two variables divided by the product of their standard deviations.
+              It has a value between +1 and -1, where 1 is total positive linear correlation, 0 is no linear
+              correlation, and -1 is total negative linear correlation.'
+        2-3: 'R2 - The proportion of the variance in the dependent variable that is predictable from the
+              independent variable(s). Best possible score is 1.0 and it can be negative (because the model
+              can be arbitrarily worse).'
+        2-4: 'RMSE - The standard deviation of the residuals (prediction errors). It is a measure of how
+              spread out these residuals are. In other words, it tells you how concentrated the data is
+              around the line of best fit.'
+
       2.1:
-        title: 'WaPOR database'
+        title: 'Review of RS products'
         paragraph:
-          2.1-1: 'Subsection 2.1 Paragraph 1 {data[value][mean]}'
-          2.1-2: 'Subsection 2.1 Paragraph 2'
+          2.1-1: 'To evaluate remote sensing products for water balance analysis, {data[value][PCP][total]}
+                  precipitation products, {data[value][ETA][total]} evapotranspiration products and
+                  {data[value][dS][total]} GRACE solutions are collected, see {data[table][tab1][reference]}.
+                  After download products, all data was clipped to {data[value][basin][name]}. Then the datasets
+                  were resampled to spatial resolution of {data[value][RS][resolution]} degree and aggregated
+                  to monthly and yearly time series. The detail description of each product can be found in Annexes.'
+          2.1-2:
+            type: 'table'
+            name: 'tab1'
+
         2.1.1:
-          title: 'Precipitation'
+          title: 'Precipitation products'
           paragraph:
-            2.1.1-1: 'Subsection 2.1.1 Paragraph 1 {data[value][mean]}'
-            2.1.1-2: 'Subsection 2.1.1 Paragraph 2'
+            2.1.1-1: 'The precipitation products present {data[value][PCP][pattern]}.
+                      {data[figure][fig3][reference]} shows the time series plots of precipitation from the
+                      {data[value][PCP][total]} products. {data[value][PCP][missing]} {data[value][PCP][strange]}'
+            2.1.1-2:
+              type: 'figure'
+              name: 'fig3'
+            2.1.1-3: '{data[figure][fig4][reference]} shows the correlation between the products.
+                      {data[value][PCP][score][PCC][max][0]} and {data[value][PCP][score][PCC][max][1]} obtained the
+                      highest correlation with PCC of {data[value][PCP][score][PCC][max][2]},
+                      while {data[value][PCP][score][PCC][min][0]} versus {data[value][PCP][score][PCC][min][1]} had the
+                      lowest PCC of {data[value][PCP][score][PCC][min][2]}.'
+            2.1.1-4:
+              type: 'figure'
+              name: 'fig4'
+            2.1.1-5: 'The monthly mean and annual precipitation from the products are illustrated in the
+                      {data[figure][fig5][reference]} and {data[figure][fig6][reference]}.
+                      {data[value][PCP][hyd][wet]} had highest values in wet season
+                      while {data[value][PCP][hyd][dry]} shows lowest values in dry months.
+                      {data[value][PCP][hyd][medium]} values were largely between
+                      {data[value][PCP][hyd][wet]} and {data[value][PCP][hyd][dry]} in most of the months.
+                      The annual precipitation values do not show significant differences either among the different products
+                      except for {data[value][PCP][hyd][dif][1]} when {data[value][PCP][hyd][dif][0]} showed
+                      a significant higher value compared to the other products (up to {data[value][PCP][hyd][dif][2]} mm/year)'
+            2.1.1-6:
+              type: 'figure'
+              name: 'fig5'
+            2.1.1-7:
+              type: 'figure'
+              name: 'fig6'
+
+        2.1.2:
+          title: 'Evapotranspiration products'
+          paragraph:
+            2.1.2-1: 'The evapotranspiration products have {data[value][ETA][pattern]}.
+                      {data[figure][fig7][reference]} shows the time series plots of precipitation from the
+                      {data[value][ETA][total]} products. {data[value][PCP][strange]}'
+            2.1.2-2:
+              type: 'figure'
+              name: 'fig7'
+            2.1.2-3: 'In terms of correlation, {data[value][ETA][score][PCC][max][0]} and {data[value][ETA][score][PCC][max][1]}
+                      showed the highest correlation with PCC of {data[value][ETA][score][PCC][max][2]},
+                      while  {data[value][ETA][score][PCC][min][0]} versus  {data[value][ETA][score][PCC][min][1]} had the
+                      lowest PCC of  {data[value][ETA][score][PCC][min][2]}, see {data[figure][fig8][reference]}.'
+            2.1.2-4:
+              type: 'figure'
+              name: 'fig8'
+            2.1.2-5: 'The monthly mean and annual actual evapotranspiration from the products are plotted in the
+                      {data[figure][fig9][reference]} and {data[figure][fig10][reference]}.
+                      The highest values in wet season was occurred in {data[value][ETA][hyd][wet]}
+                      while {data[value][ETA][hyd][wet]} presented highest values in dry months.
+                      {data[value][ETA][hyd][medium]} values were largely between
+                      {data[value][ETA][hyd][wet]} and {data[value][ETA][hyd][dry]} in most of the months.'
+            2.1.2-6: 'The annual actual evapotranspiration values do not show significant differences
+                      either among the different products except for {data[value][ETA][hyd][dif][1]}
+                      when {data[value][ETA][hyd][dif][0]} showed a significant higher value compared to the other products
+                      (up to {data[value][ETA][hyd][dif][2]}mm/year)'
+            2.1.2-7:
+              type: 'figure'
+              name: 'fig9'
+            2.1.2-8:
+              type: 'figure'
+              name: 'fig10'
+
+        2.1.3:
+          title: 'Grace solutions (change in storage)'
+          paragraph:
+            2.1.3-1: 'The GRACE products show {data[value][dS][pattern]}.
+                      {data[figure][fig11][reference]} is the time series plots of precipitation from
+                      the {data[value][dS][total]} products. {data[value][dS][strange]}'
+            2.1.3-2:
+              type: 'figure'
+              name: 'fig11'
+            2.1.3-3: 'In terms of correlation, {data[value][ETA][score][PCC][max][0]} and {data[value][ETA][score][PCC][max][1]}
+                      showed the correlation with PCC of {data[value][ETA][score][PCC][max][2]},
+                      which means the products are relatively correlated, see {data[figure][fig12][reference]}.'
+            2.1.3-4:
+              type: 'figure'
+              name: 'fig12'
+            2.1.3-5: 'The monthly mean and annual storage change from the products are illustrated in the
+                      {data[figure][fig13][reference]} and {data[figure][fig14][reference]}.
+                      {data[value][dS][hyd][wet]} solution produced larger volume of storage gain in wet season,
+                      {data[value][ETA][hyd][dry]}lost less storage in dry months.'
+            2.1.3-6:
+              type: 'figure'
+              name: 'fig13'
+            2.1.3-7:
+              type: 'figure'
+              name: 'fig14'
+
+      2.2:
+        title: 'Runoff comparison'
+        paragraph:
+          2.2-1: 'Total {data[value][WB][total]} different possible combinations to compute the water balance for
+                {data[value][basin][name]} from {data[value][PCP][total]} precipitation,
+                {data[value][ETA][total]} evapotranspiration and
+                {data[value][dS][total]} GRACE solutions, see {data[figure][fig15][reference]}.'
+          2.2-2: 'PCC values vary from {data[value][WB][score][PCC][min][3]} to {data[value][WB][score][PCC][max][3]}.
+                  The best performing combination in terms of PCC is
+                  {data[value][WB][score][PCC][max][1]} for evapotranspiration,
+                  {data[value][WB][score][PCC][max][0]} for precipitation and
+                  {data[value][WB][score][PCC][max][2]} for change in storage.
+                  The second best combination is
+                  {data[value][WB][score][PCC][max1][1]},
+                  {data[value][WB][score][PCC][max1][0]} and
+                  {data[value][WB][score][PCC][max1][2]} with PCC of {data[value][WB][score][PCC][max1][3]}.'
+          2.2-3: 'R2 values are in the range from {data[value][WB][score][R2][min][3]} to {data[value][WB][score][R2][max][3]}.
+                  The best performing combination in terms of R2 is
+                  {data[value][WB][score][R2][max][1]} for evapotranspiration,
+                  {data[value][WB][score][R2][max][0]} for precipitation and
+                  {data[value][WB][score][R2][max][2]} for change in storage.
+                  The second best combination is
+                  {data[value][WB][score][R2][max1][1]},
+                  {data[value][WB][score][R2][max1][0]} and
+                  {data[value][WB][score][R2][max1][2]} with PCC of {data[value][WB][score][R2][max1][3]}.'
+          2.2-4: 'The minimum RMSE value is {data[value][WB][score][RMSE][min][3]}.
+                  The best performing combination in terms of RMSE is
+                  {data[value][WB][score][RMSE][min][1]} for evapotranspiration,
+                  {data[value][WB][score][RMSE][min][0]} for precipitation and
+                  {data[value][WB][score][RMSE][min][2]} for change in storage.
+                  The second best combination is
+                  {data[value][WB][score][RMSE][min1][1]},
+                  {data[value][WB][score][RMSE][min1][0]}and
+                  {data[value][WB][score][RMSE][min1][2]} with PCC of {data[value][WB][score][RMSE][min1][3]}.'
+          2.2-5:
+            type: 'figure'
+            name: 'fig15'
+
+      2.3:
+        title: 'Water Balance error'
+        paragraph:
+          2.3-1: 'Water balance error is the difference between $P-ET-\Delta S$ and runoff.
+                  {data[figure][fig16][reference]} shows the yearly mean water balance error.
+                  The combination {data[value][WB][diffpct][min][0]} and {data[value][WB][diffpct][min][1]}
+                  has the lowest error ranging around {data[value][WB][diffpct][min][3]}\%.
+                  However {data[value][WB][diff][min][0]}, {data[value][WB][diff][min][1]} and {data[value][WB][diff][min][2]}
+                  has the lowest absolute error {data[value][WB][diff][min][3]} $Mm^3/year$.
+                  The runoff maps of these two are plotted in {data[figure][fig17][reference]}.'
+          2.3-2:
+            type: 'figure'
+            name: 'fig16'
+          2.3-3:
+            type: 'figure'
+            name: 'fig17'
+
     3:
-      title: 'Test from YAML'
+      title: 'Selection of RS products for WA'
       paragraph:
-        3-1: 'Figure {data[figure][fig1]}'
-        3-2: 'Equation {data[equation][equ1]}'
-        3-3: 'Table {data[table][tab1]}'
-        3-4: 'Reference {data[reference][ref1]}'
+        3-1: '{data[value][RS][select]}'
+        3-2: 'Thus, evapotranspiration precipitation product {data[value][RS][ETA]},
+              product {data[value][RS][PCP]} and GRACE solution {data[value][RS][dS]}
+              are selected for further analysis.'
+        3-3: 'Without the full information on other basin transfers, the water balance $P-ET-\Delta S$ is considered in
+              reasonable agreement with outflow. The total observed outflow is {data[value][RS][dif][mean][pct]}\% lower
+              than the water balance. The average $P-ET-\Delta S$ is {data[value][RS][dif][mean][val]} $Mm^3/year$ higher
+              than the sum of flow at outlet. The largest difference is found in the year {data[value][RS][dif][max][year]},
+              which might be attributed to other unaccounted transfers, see {data[table][tab2][reference]}.'
+        3-4:
+          type: 'table'
+          name: 'tab2'
 
   reference:
     title: 'References'
@@ -101,7 +262,7 @@ content:
 
   annex:
     title: 'Annexes'
-    file: 'Annexes.csv'
+#    file: 'Annexes.csv'
 
   data:
     value:
@@ -112,7 +273,7 @@ content:
     equation:
       equ1: 'a-b'
     figure:
-      fig1: 'fig-1.jpg'
+      fig1: 'fig1.jpg'
     table:
       tab1: 'table-1.csv'
     reference:

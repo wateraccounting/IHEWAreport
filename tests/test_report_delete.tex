@@ -4,41 +4,17 @@
 \usepackage{lmodern}%
 \usepackage{textcomp}%
 \usepackage{lastpage}%
-\usepackage[paper=a4paper,layout=a4paper,includehead=True,includefoot=True]{geometry}%
+\usepackage[paper=a4paper,layout=a4paper,includehead=True,includefoot=True,margin=1in]{geometry}%
 \usepackage{fancyhdr}%
 \usepackage{ragged2e}%
 \usepackage{hyperref}%
+\usepackage{float}%
+\usepackage[format=plain,labelfont={bf,it},textfont=it]{caption}%
 \usepackage[style=authoryear,sorting=ynt]{biblatex}%
-\usepackage{longtable}%
-\usepackage{tabu}%
 \usepackage{graphicx}%
-\usepackage{amsmath}%
-\usepackage[separate-uncertainty=true]{siunitx}%
-\DeclareSIUnit\rpm{rpm}%
+\usepackage{longtable}%
+\usepackage{subcaption}%
 %
-\fancypagestyle{CoverPage}{ 
-\renewcommand{\headrulewidth}{0pt}%
-\renewcommand{\footrulewidth}{0pt}%
-\fancyhead{ 
-}%
-\fancyfoot{ 
-}%
-Mindanao, Philippines%
-\thispagestyle{empty}
-}%
-\fancypagestyle{FirstPage}{ 
-\renewcommand{\headrulewidth}{0pt}%
-\renewcommand{\footrulewidth}{0pt}%
-\fancyhead{ 
-}%
-\fancyfoot{ 
-}%
-\title{Evaluating Remote Sensing Products for Water Accounting\\Mindanao River Basin, Philippines}%
-\author{WA+ team}%
-\date{02 Mar 2020}%
-\maketitle%
-\thispagestyle{empty}
-}%
 \fancypagestyle{TOCPage}{ 
 \renewcommand{\headrulewidth}{0pt}%
 \renewcommand{\footrulewidth}{0pt}%
@@ -97,11 +73,6 @@ IHE
 %
 \begin{document}%
 \normalsize%
-\pagestyle{CoverPage}%
-\cleardoublepage%
-\newpage%
-\pagestyle{FirstPage}%
-\cleardoublepage%
 \newpage%
 \pagestyle{TOCPage}%
 \cleardoublepage%
@@ -117,42 +88,6 @@ IHE
 \listoftables%
 \addcontentsline{toc}{section}{\listtablename}%
 \cleardoublepage%
-\newpage%
-\RaggedRight%
-\section*{Acknowledgements}%
-\label{sec:Acknowledgements}%
-Water Accounting is an approach based on open access data sets and information. The validation of the water accounts for the Litani depends on observed data. The authors are therefore grateful for the%
-\linebreak
-
-%
-\addcontentsline{toc}{section}{Acknowledgements}%
-\cleardoublepage%
-\newpage%
-\RaggedRight%
-\section*{Abbreviations and Acronyms}%
-\label{sec:AbbreviationsandAcronyms}%
-\begin{longtabu}{X[l]X[l]}%
-\endhead%
-\endfoot%
-\endlastfoot%
-KEY&Value\\%
-\end{longtabu}
-
-%
-\addcontentsline{toc}{section}{Abbreviations and Acronyms}%
-\cleardoublepage%
-\newpage%
-\RaggedRight%
-\section*{Executive summary}%
-\label{sec:Executivesummary}%
-This report was prepared by Bich Tran, Solomon Seyoum, Marloes Mul, Elga Salvadore, Amani Matar, Gonzalo E. Espinoza{-}Dávalos, Jonna van Opstal, Wim Bastiaanssen through a collaboration between IHE%
-\linebreak%
-Water Accounting is an approach based on open access data sets and information. The validation of the water accounts for the Litani depends on observed data. The authors are therefore grateful for the%
-\linebreak
-
-%
-\addcontentsline{toc}{section}{Executive summary}%
-\cleardoublepage%
 \clearpage%
 \pagenumbering{arabic}%
 \setcounter{page}{1}%
@@ -161,213 +96,303 @@ Water Accounting is an approach based on open access data sets and information. 
 \RaggedRight%
 \section{Introduction}%
 \label{sec:Introduction}%
-TThe Mindanao River Basin is one of the selected pilot basins for Rapid Water Accounting. It covers an area of 2 km2 (between EN), see fig{-}1.jpg.%
+The Mindanao River Basin is one of the selected pilot basins for Rapid Water Accounting. It covers an area of 21,503 km2 (between 124°6’E 6°3’N and 125°27’E 8°33’N), see Figure \ref{figure:fig1}.%
 \linebreak%
-%
+The catchment contains the area from the mountains of Impasug-ong in Bukidnon (known as Upper Pulangi River), Kabacan River (relabeled as Mindanao River), Lower Pulangi River and Ligawasan Marsh.%
 \linebreak%
-IHEWAreport{-}fig1%
-\linebreak%
-IHEWAreport{-}tab1%
-\linebreak%
-IHEWAreport{-}eqa1%
-\linebreak%
-IHEWAreport{-}ref1%
-\linebreak%
-Paragraph 7%
-\linebreak%
-\subsection{Observation data }%
-\label{subsec:Observationdata}%
-Subsection 1.1 Paragraph 1 0.0%
-\linebreak%
-Subsection 1.1 Paragraph 2 1.0%
-\linebreak
-
-%
-\newpage%
-\RaggedRight%
-\section{Methodology}%
-\label{sec:Methodology}%
-Section 2 Paragraph 1%
-\linebreak%
-Section 2 Paragraph 2%
-\linebreak%
-\subsection{WaPOR database}%
-\label{subsec:WaPORdatabase}%
-Subsection 2.1 Paragraph 1 0.5%
-\linebreak%
-Subsection 2.1 Paragraph 2%
-\linebreak
-
-%
-\newpage%
-\RaggedRight%
-\section{Test from YAML}%
-\label{sec:TestfromYAML}%
-Figure fig{-}1.jpg%
-\linebreak%
-Equation a{-}b%
-\linebreak%
-Table table{-}1.csv%
-\linebreak%
-Reference ref{-}1.pdf%
-\linebreak
-
-%
-\newpage%
-\section{Test}%
-\label{sec:Test}%
-\subsection{Reference}%
-\label{subsec:Reference}%
-\cite{bertram}%
-\linebreak%
-\cite{simon06}%
-\linebreak
-
-%
-\subsection{List}%
-\label{subsec:List}%
-\begin{itemize}%
-\item%
-the first item%
-\item%
-the second item%
-\item%
-the third etc%
-\ldots%
-\end{itemize}%
-\begin{itemize}%
-\item%
-the first item%
-\item%
-the second item%
-\item%
-the third etc%
-\ldots%
-\end{itemize}
-
-%
-\subsection{Figure plot}%
-\label{subsec:Figureplot}%
-Fig. \ref{figure:fig1}%
 
 
-\begin{figure}[h!]%
+\begin{figure}[H]%
 \centering%
-\includegraphics[width=1\textwidth]{C:/Users/qpa001/AppData/Local/Temp/pylatex/1aa5f4d6-c77d-4b66-9cf1-7a65fe5f8bc9.pdf}%
-\caption{Caption Figure plot}%
+\includegraphics[width=0.6\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig1.png}%
+\caption{Mindanao River Basin}%
 \label{figure:fig1}%
 \end{figure}
 
 %
-\subsection{Figure image}%
-\label{subsec:Figureimage}%
-Fig. \ref{figure:fig2}
+\subsection{Observation data}%
+\label{subsec:Observationdata}%
+Discharge is collected from Flood Observatory. Two flooding periods can be found, which happened in 2008 and 2011, see Figure \ref{figure:fig2}.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig1e.jpg}%
+\caption{Discharge at river mouth of Mindanao River}%
+\label{figure:fig2}%
+\end{figure}
 
 %
-\subsection{Talbe}%
-\label{subsec:Talbe}%
-Tab. \ref{table:tab1}%
-\begin{longtable}{|l|l|l|}%
-\caption{Caption Table}%
+\RaggedRight%
+\section{RS data analysis}%
+\label{sec:RSdataanalysis}%
+The purpose of this study is to select remote sensing products for water accounting, by evaluating the performance of water balance analysis. Three evaluation criteria are applied in the study, Pearson correlation coefficient (PCC), coefficient of determination (R2) and root mean square error (RMSE).%
+\linebreak%
+PCC - The covariance of the two variables divided by the product of their standard deviations. It has a value between +1 and -1, where 1 is total positive linear correlation, 0 is no linear correlation, and -1 is total negative linear correlation.%
+\linebreak%
+R2 - The proportion of the variance in the dependent variable that is predictable from the independent variable(s). Best possible score is 1.0 and it can be negative (because the model can be arbitrarily worse).%
+\linebreak%
+RMSE - The standard deviation of the residuals (prediction errors). It is a measure of how spread out these residuals are. In other words, it tells you how concentrated the data is around the line of best fit.%
+\linebreak%
+\subsection{Review of RS products}%
+\label{subsec:ReviewofRSproducts}%
+To evaluate remote sensing products for water balance analysis, three precipitation products, five evapotranspiration products and three GRACE solutions are collected, see Table \ref{table:tab1}. After download products, all data was clipped to Mindanao River Basin. Then the datasets were resampled to spatial resolution of 0.05 degree and aggregated to monthly and yearly time series. The detail description of each product can be found in Annexes.%
+\linebreak%
+\begin{longtable}{|l|l|l|l|l|}%
+\caption{Remote sensing products}%
 \label{table:tab1}\\%
 \hline%
-header 1&header 2&header 3\\%
+Product&Type&Duration&Temporal Res.&Spatial Res.\\%
+\hline%
+\endfirsthead%
+\hline%
+Product&Type&Duration&Temporal Res.&Spatial Res.\\%
 \hline%
 \endhead%
 \hline%
 \endfoot%
+ALEXI&Evapotranspiration&2005 - 2012&daily&$0.05^{o}$\\%
+CMRSET&Evapotranspiration&2005 - 2012&monthly&$0.05^{o}$\\%
+GLEAM&Evapotranspiration&2005 - 2012&monthly&$0.25^{o}$\\%
+MOD16A2&Evapotranspiration&2005 - 2012&eight-daily&463m\\%
+SSEBop&Evapotranspiration&2005 - 2012&monthly&1km\\%
+CHIRPS&Precipitation&2005 - 2012&monthly&$0.05^{o}$\\%
+GPM&Precipitation&2005 - 2012&monthly&$0.1^{o}$\\%
+TRMM&Precipitation&2005 - 2012&monthly&$0.25^{o}$\\%
+CSR&GRACE&2005 - 2012&quasi-monthly&$1^{o}$\\%
+GFZ&GRACE&2005 - 2012&quasi-monthly&$1^{o}$\\%
+JPL&GRACE&2005 - 2012&quasi-monthly&$1^{o}$\\%
+\end{longtable}%
+\subsection{Precipitation products}%
+\label{subsec:Precipitationproducts}%
+The precipitation products present similar pattern. Figure \ref{figure:fig3} shows the time series plots of precipitation from the three products. There is no missing values from 2005 to 2013. CHIRPS has the higher precipitation in the summer.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig1a.jpg}%
+\caption{Precipitation products for Mindanao River Basin}%
+\label{figure:fig3}%
+\end{figure}
+
+%
+Figure \ref{figure:fig4} shows the correlation between the products. TRMM and GPM obtained the highest correlation with PCC of 0.97, while CHIRPS versus GPM had the lowest PCC of 0.29.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig2a.jpg}%
+\caption{Correlation between precipitation products (unit: mm/month)}%
+\label{figure:fig4}%
+\end{figure}
+
+%
+The monthly mean and annual precipitation from the products are illustrated in the Figure \ref{figure:fig5} and Figure \ref{figure:fig6}. CHIRPS had highest values in wet season while TRMM shows lowest values in dry months. GPM values were largely between CHIRPS and TRMM in most of the months. The annual precipitation values do not show significant differences either among the different products except for 2012 when CHIRPS showed a significant higher value compared to the other products (up to 85 mm/year)%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig3a_monthly.jpg}%
+\caption{Monthly mean precipitation for Mindanao River Basin}%
+\label{figure:fig5}%
+\end{figure}
+
+%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig3a_yearly.jpg}%
+\caption{Annual precipitation for Mindanao River Basin}%
+\label{figure:fig6}%
+\end{figure}
+
+%
+\subsection{Evapotranspiration products}%
+\label{subsec:Evapotranspirationproducts}%
+The evapotranspiration products have similar pattern. Figure \ref{figure:fig7} shows the time series plots of precipitation from the five products. CHIRPS has the higher precipitation in the summer.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig1b.jpg}%
+\caption{Annual evapotranspiration  for Mindanao River Basin}%
+\label{figure:fig7}%
+\end{figure}
+
+%
+In terms of correlation, CMRSET and GLEAM showed the highest correlation with PCC of 0.82, while  SSEBop versus  MOD16A2 had the lowest PCC of  -0.3, see Figure \ref{figure:fig8}.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig2b.jpg}%
+\caption{Correlation between actual evapotranspiration products (unit: mm/month)}%
+\label{figure:fig8}%
+\end{figure}
+
+%
+The monthly mean and annual actual evapotranspiration from the products are plotted in the Figure \ref{figure:fig9} and Figure \ref{figure:fig10}. The highest values in wet season was occurred in MOD16A2 while MOD16A2 presented highest values in dry months. GLEAM values were largely between MOD16A2 and CMRSET in most of the months.%
+\linebreak%
+The annual actual evapotranspiration values do not show significant differences either among the different products except for 2010 when MOD16A2 showed a significant higher value compared to the other products (up to 800mm/year)%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig3b_monthly.jpg}%
+\caption{Monthly mean actual evapotranspiration for Mindanao River Basin}%
+\label{figure:fig9}%
+\end{figure}
+
+%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig3b_yearly.jpg}%
+\caption{Annual actual evapotranspiration for Mindanao River Basin}%
+\label{figure:fig10}%
+\end{figure}
+
+%
+\subsection{Grace solutions (change in storage)}%
+\label{subsec:Gracesolutions(changeinstorage)}%
+The GRACE products show similar pattern. Figure \ref{figure:fig11} is the time series plots of precipitation from the three products. CSR estimates larger dynamic of storage change compare with other products.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig1c.jpg}%
+\caption{GRACE products for Mindanao River Basin}%
+\label{figure:fig11}%
+\end{figure}
+
+%
+In terms of correlation, CMRSET and GLEAM showed the correlation with PCC of 0.82, which means the products are relatively correlated, see Figure \ref{figure:fig12}.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig2c.jpg}%
+\caption{Correlation between GRACE products (unit: mm/month)}%
+\label{figure:fig12}%
+\end{figure}
+
+%
+The monthly mean and annual storage change from the products are illustrated in the Figure \ref{figure:fig13} and Figure \ref{figure:fig14}. GFZ solution produced larger volume of storage gain in wet season, CMRSETlost less storage in dry months.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig3c_monthly.jpg}%
+\caption{Monthly mean storage change for Mindanao River Basin}%
+\label{figure:fig13}%
+\end{figure}
+
+%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig3c_yearly.jpg}%
+\caption{Annual storage change  for Mindanao River Basin}%
+\label{figure:fig14}%
+\end{figure}
+
+%
+\subsection{Runoff comparison}%
+\label{subsec:Runoffcomparison}%
+Total 60 different possible combinations to compute the water balance for Mindanao River Basin from three precipitation, five evapotranspiration and three GRACE solutions, see Figure \ref{figure:fig15}.%
+\linebreak%
+PCC values vary from -0.04 to 0.29. The best performing combination in terms of PCC is GLEAM for evapotranspiration, GPM for precipitation and CSR for change in storage. The second best combination is GLEAM, GPM and GFZ with PCC of 0.26.%
+\linebreak%
+R2 values are in the range from -0.90 to 0.06. The best performing combination in terms of R2 is MOD16A2 for evapotranspiration, GPM for precipitation and CSR for change in storage. The second best combination is CMRSET, GPM and CSR with PCC of 0.05.%
+\linebreak%
+The minimum RMSE value is 64.44. The best performing combination in terms of RMSE is CMRSET for evapotranspiration, GPM for precipitation and GFZ for change in storage. The second best combination is CMRSET, GPMand JPL with PCC of 64.72.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig6.jpg}%
+\caption{Performance of different combinations of the remote sensing products to calculate the runoff generated}%
+\label{figure:fig15}%
+\end{figure}
+
+%
+\subsection{Water Balance error}%
+\label{subsec:WaterBalanceerror}%
+Water balance error is the difference between $P-ET-\Delta S$ and runoff. Figure \ref{figure:fig16} shows the yearly mean water balance error. The combination GPM and MOD16A2 has the lowest error ranging around 1.35\%. However GPM, CMRSET and GFZ has the lowest absolute error 584.81 $Mm^3/year$. The runoff maps of these two are plotted in Figure \ref{figure:fig17}.%
+\linebreak%
+
+
+\begin{figure}[H]%
+\centering%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig7.jpg}%
+\caption{Water Balance error}%
+\label{figure:fig16}%
+\end{figure}
+
+%
+
+
+\begin{figure}[H]%
+\begin{subfigure}[c]{0.5\textwidth}%
+\includegraphics[width=\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig8_GPM-CMRSET-GFZ.jpg}%
+\caption{In term of difference}%
+\end{subfigure}%
+\begin{subfigure}[c]{0.5\textwidth}%
+\includegraphics[width=\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig8_GPM-MOD16A2-GFZ.jpg}%
+\caption{In term of difference percentage}%
+\end{subfigure}%
+\caption{Yearly mean runoff generation map of the best combination}%
+\label{figure:fig17}%
+\end{figure}
+
+%
+\RaggedRight%
+\section{Selection of RS products for WA}%
+\label{sec:SelectionofRSproductsforWA}%
+Due to the PCC and R2 scores are not large enough, which means the correlation is not significant between water balance calculated by different combination and runoff. RMSE is considered as the first criteria to select the best combination of remote sensing products in this study.%
+\linebreak%
+Thus, evapotranspiration precipitation product GPM, product CMRSET and GRACE solution GFZ are selected for further analysis.%
+\linebreak%
+Without the full information on other basin transfers, the water balance $P-ET-\Delta S$ is considered in reasonable agreement with outflow. The total observed outflow is 3\% lower than the water balance. The average $P-ET-\Delta S$ is 585 $Mm^3/year$ higher than the sum of flow at outlet. The largest difference is found in the year 2012, which might be attributed to other unaccounted transfers, see Table \ref{table:tab2}.%
+\linebreak%
+\begin{longtable}{|l|l|l|l|l|l|l|l|}%
+\caption{The annual $P-ET-\Delta S$ and $\Delta S$, (unit: $Mm^3/year$)}%
+\label{table:tab2}\\%
 \hline%
-\endlastfoot%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
-0.0&0.0&0.0\\%
+Year&P&ET&$\Delta S$&$P-ET-\Delta S$&Q&Diff&\%Diff\\%
+\hline%
+\endfirsthead%
+\hline%
+Year&P&ET&$\Delta S$&$P-ET-\Delta S$&Q&Diff&\%Diff\\%
+\hline%
+\endhead%
+\hline%
+\endfoot%
+2005&43522&29755&{-}151&13918&13171&747&6\\%
+2006&43777&29616&{-}10&14170&16063&{-}1892&{-}12\\%
+2007&43650&29405&366&13879&15815&{-}1936&{-}12\\%
+2008&59217&29764&273&29180&26240&2940&11\\%
+2009&55307&29938&{-}653&26022&25128&894&4\\%
+2010&51478&30601&337&20541&16035&4506&28\\%
+2011&58280&29171&762&28347&23374&4974&21\\%
+2012&49785&30214&{-}158&19730&25283&{-}5553&{-}22\\%
 \end{longtable}
 
 %
-\subsection{Equation numpy}%
-\label{subsec:Equationnumpy}%
-Equ. \ref{equation:equ1}%
-\begin{alignat}{2}%
-\frac{a}{b} &= 0 \\%
-\begin{pmatrix}%
-2&3&4\\%
-0&0&1\\%
-0&0&2%
-\end{pmatrix}%
-\begin{pmatrix}%
-100\\%
-10\\%
-20%
-\end{pmatrix}%
-&=%
-\begin{pmatrix}%
-310\\%
-20\\%
-40%
-\end{pmatrix}%
-\label{equation:equ1}%
-\end{alignat}
-
-%
-\subsection{Equation quantities}%
-\label{subsec:Equationquantities}%
-Equ. \ref{equation:equ2}%
-\begin{alignat}{2}%
-F%
-&=%
-\SI[round-precision=4,round-mode=figures]{1.9820166063855052e+20}{\newton}%
-\label{equation:equ2}%
-\end{alignat}
-
-%
-\cleardoublepage%
 \newpage%
 \section*{References}%
 \label{sec:References}%

@@ -5,9 +5,7 @@ doc:
 
 template:
   provider: IHE
-  # name: FAO
   name: DataAnalysis
-  # name: Manual
 
 page:
   header:
@@ -51,23 +49,314 @@ content:
     file: 'Annexes.csv'
 
   data:
+    # paragraph:
+    #   1-3: ''
     value:
       basin:
         name: 'Mindanao River Basin'
-        area: 2
-        bbox: 'EN'
+        area: '21,503'
+        bbox: '124°6’E 6°3’N and 125°27’E 8°33’N'
         detail: 'The catchment contains the area from the mountains of Impasug-ong in Bukidnon
-                 (known as Upper Pulangi River), Kabacan River (relabeled as Mindanao River), Lower Pulangi
-                 River and Ligawasan Marsh.'
+                 (known as Upper Pulangi River), Kabacan River (relabeled as Mindanao River),
+                 Lower Pulangi River and Ligawasan Marsh.'
+        observation: 'Discharge is collected from Flood Observatory.
+                      Two flooding periods can be found, which happened in 2008 and 2011,
+                      see {data[figure][fig2][reference]}.'
+      OBS:
+        Q:
+          location: 'Mindanao River'
+
+      PCP:
+        total: 'three'
+        pattern: 'similar pattern'
+        missing: 'There is no missing values from 2005 to 2013.'
+        strange: 'CHIRPS has the higher precipitation in the summer.'
+        score:
+          PCC:
+            max:
+              - 'TRMM'
+              - 'GPM'
+              - '0.97'
+            min:
+              - 'CHIRPS'
+              - 'GPM'
+              - '0.29'
+        hyd:
+          wet: 'CHIRPS'
+          dry: 'TRMM'
+          medium: 'GPM'
+          dif:
+            - 'CHIRPS'
+            - '2012'
+            - '85'
+      ETA:
+        total: 'five'
+        pattern: 'similar pattern'
+        missing: 'There is no missing values from 2005 to 2013.'
+        strange: 'MOD16A2 estimates much higher evapotranspiration compare with other products.'
+        score:
+          PCC:
+            max:
+              - 'CMRSET'
+              - 'GLEAM'
+              - '0.82'
+            min:
+              - 'SSEBop'
+              - 'MOD16A2'
+              - '-0.3'
+        hyd:
+          wet: 'MOD16A2'
+          dry: 'CMRSET'
+          medium: 'GLEAM'
+          dif:
+            - 'MOD16A2'
+            - '2010'
+            - '800'
+      dS:
+        total: 'three'
+        pattern: 'similar pattern'
+        missing: ''
+        strange: 'CSR estimates larger dynamic of storage change compare with other products.'
+        score:
+          PCC:
+            max:
+              - 'CSR'
+              - 'JPL'
+              - '0.72'
+            min:
+              - 'CHIRPS'
+              - 'GPM'
+              - '0.29'
+        hyd:
+          wet: 'GFZ'
+          dry: 'GFZ'
+          medium: ''
+          dif:
+            - 'CHIRPS'
+            - '2012'
+            - '85'
+      WB:
+        total: '60'
+        score:
+          PCC:
+            max:
+              - 'GPM'
+              - 'GLEAM'
+              - 'CSR'
+              - '0.29'
+            max1:
+              - 'GPM'
+              - 'GLEAM'
+              - 'GFZ'
+              - '0.26'
+            min:
+              - ''
+              - ''
+              - ''
+              - '-0.04'
+          R2:
+            max:
+              - 'GPM'
+              - 'MOD16A2'
+              - 'CSR'
+              - '0.06'
+            max1:
+              - 'GPM'
+              - 'CMRSET'
+              - 'CSR'
+              - '0.05'
+            min:
+              - ''
+              - ''
+              - ''
+              - '-0.90'
+          RMSE:
+            max:
+              - ''
+              - ''
+              - ''
+              - ''
+            min1:
+              - 'GPM'
+              - 'CMRSET'
+              - 'JPL'
+              - '64.72'
+            min:
+              - 'GPM'
+              - 'CMRSET'
+              - 'GFZ'
+              - '64.44'
+        diff:
+            min:
+              - 'GPM'
+              - 'CMRSET'
+              - 'GFZ'
+              - '584.81'
+        diffpct:
+            min:
+              - 'GPM'
+              - 'MOD16A2'
+              - ''
+              - '1.35'
+
+      RS:
+        resolution: '0.05'
+        select: 'Due to the PCC and R2 scores are not large enough, which means
+                 the correlation is not significant between water balance
+                 calculated by different combination and runoff. RMSE is
+                 considered as the first criteria to select the best combination
+                 of remote sensing products in this study.'
+        PCP: 'CMRSET'
+        ETA: 'GPM'
+        dS: 'GFZ'
+        dif:
+          mean:
+            pct: '3'
+            val: '585'
+          max:
+            year: '2012'
+
       rand: -9999
       min: 0.
       max: 1.
       mean: 0.5
-    equation:
-      equ1: 'a-b'
+
+#    equation:
+#      dir: 'data/area1/fig/'
+#      equ1:
+#        reference: 'Equation \ref{equation:equ1}'
+#        fname: ''
+#        formula: 'Mindanao River Basin'
+
     figure:
-      fig1: 'fig1.jpg'
+      dir: 'data/area1/fig/'
+      fig1:
+        reference: 'Figure \ref{figure:fig1}'
+        caption: '{data[value][basin][name]}'
+        main:
+          fname: 'fig1.png'
+          width: '0.6'
+      fig2:
+        reference: 'Figure \ref{figure:fig2}'
+        caption: 'Discharge at river mouth of {data[value][OBS][Q][location]}'
+        main:
+          fname: 'fig1e.jpg'
+          width: '0.8'
+      fig3:
+        reference: 'Figure \ref{figure:fig3}'
+        caption: 'Precipitation products for {data[value][basin][name]}'
+        main:
+          fname: 'fig1a.jpg'
+          width: '0.8'
+      fig4:
+        reference: 'Figure \ref{figure:fig4}'
+        caption: 'Correlation between precipitation products (unit: mm/month)'
+        main:
+          fname: 'fig2a.jpg'
+          width: '0.8'
+      fig5:
+        reference: 'Figure \ref{figure:fig5}'
+        caption: 'Monthly mean precipitation for {data[value][basin][name]}'
+        main:
+          fname: 'fig3a_monthly.jpg'
+          width: '0.8'
+      fig6:
+        reference: 'Figure \ref{figure:fig6}'
+        caption: 'Annual precipitation for {data[value][basin][name]}'
+        main:
+          fname: 'fig3a_yearly.jpg'
+          width: '0.8'
+      fig7:
+        reference: 'Figure \ref{figure:fig7}'
+        caption: 'Annual evapotranspiration  for {data[value][basin][name]}'
+        main:
+          fname: 'fig1b.jpg'
+          width: '0.8'
+      fig8:
+        reference: 'Figure \ref{figure:fig8}'
+        caption: 'Correlation between actual evapotranspiration products (unit: mm/month)'
+        main:
+          fname: 'fig2b.jpg'
+          width: '0.8'
+      fig9:
+        reference: 'Figure \ref{figure:fig9}'
+        caption: 'Monthly mean actual evapotranspiration for {data[value][basin][name]}'
+        main:
+          fname: 'fig3b_monthly.jpg'
+          width: '0.8'
+      fig10:
+        reference: 'Figure \ref{figure:fig10}'
+        caption: 'Annual actual evapotranspiration for {data[value][basin][name]}'
+        main:
+          fname: 'fig3b_yearly.jpg'
+          width: '0.8'
+      fig11:
+        reference: 'Figure \ref{figure:fig11}'
+        caption: 'GRACE products for {data[value][basin][name]}'
+        main:
+          fname: 'fig1c.jpg'
+          width: '0.8'
+      fig12:
+        reference: 'Figure \ref{figure:fig12}'
+        caption: 'Correlation between GRACE products (unit: mm/month)'
+        main:
+          fname: 'fig2c.jpg'
+          width: '0.8'
+      fig13:
+        reference: 'Figure \ref{figure:fig13}'
+        caption: 'Monthly mean storage change for {data[value][basin][name]}'
+        main:
+          fname: 'fig3c_monthly.jpg'
+          width: '0.8'
+      fig14:
+        reference: 'Figure \ref{figure:fig14}'
+        caption: 'Annual storage change  for {data[value][basin][name]}'
+        main:
+          fname: 'fig3c_yearly.jpg'
+          width: '0.8'
+      fig15:
+        reference: 'Figure \ref{figure:fig15}'
+        caption: 'Performance of different combinations of the remote sensing products to calculate the runoff generated'
+        main:
+          fname: 'fig6.jpg'
+          width: '0.8'
+      fig16:
+        reference: 'Figure \ref{figure:fig16}'
+        caption: 'Water Balance error'
+        main:
+          fname: 'fig7.jpg'
+          width: '0.8'
+      fig17:
+        reference: 'Figure \ref{figure:fig17}'
+        caption: 'Yearly mean runoff generation map of the best combination'
+        width: '1'
+        sub:
+          a:
+            fname: 'fig8_GPM-CMRSET-GFZ.jpg'
+            caption: 'In term of difference'
+          b:
+            fname: 'fig8_GPM-MOD16A2-GFZ.jpg'
+            caption: 'In term of difference percentage'
+
     table:
-      tab1: 'table1.csv'
+      dir: 'data/area1/csv/'
+      tab1:
+        reference: 'Table \ref{table:tab1}'
+        fname: 'tab1.csv'
+        caption: 'Remote sensing products'
+        width: '0.8'
+      tab2:
+        reference: 'Table \ref{table:tab2}'
+        fname: 'fig7_yearly-GPM-CMRSET-GFZ.FloodObservatory.csv'
+        caption: 'The annual $P-ET-\Delta S$ and $\Delta S$, (unit: $Mm^3/year$)'
+        width: '0.8'
+      tab3:
+        reference: 'Annex \ref{table:tab3}'
+        fname: 'fig7_yearly.csv'
+        caption: 'The annual $P-ET-\Delta S$ and $\Delta S$, (unit: $Mm^3/year$)'
+        width: '0.8'
+
     reference:
-      ref1: 'ref1.pdf'
+      dir: 'data/area1/ref/'
+      ref1:
+        reference: '\cite{bertram}'

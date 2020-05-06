@@ -77,6 +77,12 @@ INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\rerunfilecheck\rerunf
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\rerunfilecheck\rerunfilecheck.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\generic\uniquecounter\uniquecounter.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\float\float.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\float\float.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty
@@ -101,14 +107,6 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\cbx\authoryear.cbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\cbx\authoryear.cbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.cfg
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\tabu\tabu.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\tabu\tabu.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\varwidth\varwidth.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\varwidth\varwidth.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty
@@ -119,29 +117,12 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\siunitx\siunitx.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\siunitx\siunitx.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\subcaption.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\l3keys2e\l3keys2e.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\l3keys2e\l3keys2e.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator.sty
 INPUT test_report_delete.aux
 INPUT test_report_delete.aux
 OUTPUT test_report_delete.aux
@@ -162,6 +143,8 @@ OUTPUT test_report_delete.pdf
 INPUT .\test_report_delete.out
 INPUT .\test_report_delete.out
 OUTPUT test_report_delete.out
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\ltcaption.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\ltcaption.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\english.lbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\english.lbx
 OUTPUT test_report_delete.bcf
@@ -172,10 +155,11 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\epstopdf-pkg\epstopdf-base.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator-basic-dictionary-English.dict
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator-basic-dictionary-English.dict
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\siunitx\siunitx-abbreviations.cfg
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\siunitx\siunitx-abbreviations.cfg
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
+INPUT test_report_delete.toc
+INPUT test_report_delete.toc
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr10.tfm
@@ -194,93 +178,142 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy5.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmex10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmss10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmss8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmss8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmtt10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmtt8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmtt8.tfm
-INPUT C:\Users\qpa001\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr17.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr6.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi6.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy6.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmss12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmss8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmss8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmtt12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmtt8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmtt8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
-INPUT test_report_delete.toc
-INPUT test_report_delete.toc
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx10.tfm
 OUTPUT test_report_delete.toc
+INPUT C:\Users\qpa001\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
 INPUT test_report_delete.lof
 INPUT test_report_delete.lof
 OUTPUT test_report_delete.lof
 INPUT test_report_delete.lot
 INPUT test_report_delete.lot
 OUTPUT test_report_delete.lot
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ts1-lmr10.tfm
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\1aa5f4d6-c77d-4b66-9cf1-7a65fe5f8bc9.pdf
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\1aa5f4d6-c77d-4b66-9cf1-7a65fe5f8bc9.pdf
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\1aa5f4d6-c77d-4b66-9cf1-7a65fe5f8bc9.pdf
-INPUT C:\Users\qpa001\AppData\Local\Temp\pylatex\1aa5f4d6-c77d-4b66-9cf1-7a65fe5f8bc9.pdf
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr5.tfm
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1.png
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1.png
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1.png
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1.png
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1.png
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbxi10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmri10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmcsc10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmtt10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1e.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1e.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1e.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1e.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1e.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2a.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3a_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2b.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3b_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig2c.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_monthly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig3c_yearly.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig6.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig6.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig6.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig6.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig6.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig7.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig7.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig7.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig7.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig7.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-CMRSET-GFZ.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-CMRSET-GFZ.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-CMRSET-GFZ.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-CMRSET-GFZ.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-CMRSET-GFZ.jpg
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr9.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx9.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbxi10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmri9.tfm
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-MOD16A2-GFZ.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-MOD16A2-GFZ.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-MOD16A2-GFZ.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-MOD16A2-GFZ.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-MOD16A2-GFZ.jpg
 INPUT test_report_delete.aux
 INPUT .\test_report_delete.out
 INPUT .\test_report_delete.out
 INPUT test_report_delete.run.xml
 OUTPUT test_report_delete.run.xml
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-ec.enc
-INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-rm.enc
-INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-mathsy.enc
-INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-mathex.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-ts1.enc
+INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-rm.enc
+INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-mathsy.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbx12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbx12.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmcsc10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmcsc10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmex10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmex10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbxi10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbxi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi7.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr12.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr12.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr17.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr17.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmri10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmri10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmri9.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmri9.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmsy10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmsy10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmtt10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmtt10.pfb

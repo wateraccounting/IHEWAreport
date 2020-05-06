@@ -1,17 +1,9 @@
 [0] Config.pm:304> INFO - This is Biber 2.14
 [0] Config.pm:307> INFO - Logfile is 'test_report_delete.blg'
-[93] biber-MSWIN64:322> INFO - === 
-[125] Biber.pm:415> INFO - Reading 'test_report_delete.bcf'
-[235] Biber.pm:943> INFO - Found 2 citekeys in bib section 0
-[254] Biber.pm:4256> INFO - Processing section 0
-[255] Utils.pm:75> INFO - Globbing data source 'test_report.bib'
-[269] Utils.pm:91> INFO - Globbed data source 'test_report.bib' to test_report.bib
-[289] Biber.pm:4455> INFO - Looking for bibtex format file 'test_report.bib' for section 0
-[302] bibtex.pm:1653> INFO - LaTeX decoding ...
-[577] bibtex.pm:1471> INFO - Found BibTeX data source 'test_report.bib'
-[641] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[641] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[641] Biber.pm:4084> INFO - Sorting list 'ynt/global//global/global' of type 'entry' with template 'ynt' and locale 'en-US'
-[641] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[645] bbl.pm:652> INFO - Writing 'test_report_delete.bbl' with encoding 'UTF-8'
-[647] bbl.pm:755> INFO - Output to test_report_delete.bbl
+[68] biber-MSWIN64:322> INFO - === 
+[87] Biber.pm:415> INFO - Reading 'test_report_delete.bcf'
+[181] Biber.pm:943> INFO - Found 0 citekeys in bib section 0
+[187] Utils.pm:304> WARN - The file 'test_report_delete.bcf' does not contain any citations!
+[197] bbl.pm:652> INFO - Writing 'test_report_delete.bbl' with encoding 'UTF-8'
+[197] bbl.pm:755> INFO - Output to test_report_delete.bbl
+[197] Biber.pm:128> INFO - WARNINGS: 1

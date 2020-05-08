@@ -26,7 +26,8 @@ content:
   title:
     title: 'Evaluating Remote Sensing Products for Water Accounting\\Mindanao River Basin, Philippines'
     author: 'WA+ team'
-    date: '2020-03-02'
+    date: True
+#    date: '2020-03-02'
 
   # TOC
 
@@ -45,12 +46,9 @@ content:
     file: 'test_report.bib'
 
   annex:
-    title: 'Annexes'
-    file: 'Annexes.csv'
+    title: null
 
   data:
-    # paragraph:
-    #   1-3: ''
     value:
       basin:
         name: 'Mindanao River Basin'
@@ -216,18 +214,6 @@ content:
           max:
             year: '2012'
 
-      rand: -9999
-      min: 0.
-      max: 1.
-      mean: 0.5
-
-#    equation:
-#      dir: 'data/area1/fig/'
-#      equ1:
-#        reference: 'Equation \ref{equation:equ1}'
-#        fname: ''
-#        formula: 'Mindanao River Basin'
-
     figure:
       dir: 'data/area1/fig/'
       fig1:
@@ -338,6 +324,13 @@ content:
             fname: 'fig8_GPM-MOD16A2-GFZ.jpg'
             caption: 'In term of difference percentage'
 
+      ann1:
+        reference: 'Annex \ref{figure:ann1}'
+        caption: 'The water balance $P-ET-\Delta S$ and discharge Q, (unit: mm/month)'
+        main:
+          fname: 'fig5.jpg'
+          width: '0.8'
+
     table:
       dir: 'data/area1/csv/'
       tab1:
@@ -348,15 +341,74 @@ content:
       tab2:
         reference: 'Table \ref{table:tab2}'
         fname: 'fig7_yearly-GPM-CMRSET-GFZ.FloodObservatory.csv'
-        caption: 'The annual $P-ET-\Delta S$ and $\Delta S$, (unit: $Mm^3/year$)'
+        caption: 'The annual $P-ET-\Delta S$ and $Q$, (unit: $Mm^3/year$)'
         width: '0.8'
-      tab3:
-        reference: 'Annex \ref{table:tab3}'
+
+      ann1:
+        reference: 'Annex \ref{table:ann1}'
         fname: 'fig7_yearly.csv'
-        caption: 'The annual $P-ET-\Delta S$ and $\Delta S$, (unit: $Mm^3/year$)'
+        caption: 'The yearly mean $P-ET-\Delta S$ and $Q$, (unit: $Mm^3/year$)'
         width: '0.8'
+
+    equation:
+      equ1:
+        reference: 'Equation \ref{equation:equ1}'
+        formula: 'Mindanao River Basin'
 
     reference:
       dir: 'data/area1/ref/'
       ref1:
         reference: '\cite{bertram}'
+
+    annex:
+      products:
+        reference: 'Annex \ref{annex:products}'
+        caption: 'Remote sensing products'
+        detail:
+          Precipitation:
+            CHIRPS: '\textbf{CHIRPS} – The Climate Hazards group Infrared Precipitation with Stations (CHIRPS) dataset,
+                     developed by the U.S. Geological Survey Earth Resources Observation and Science Center and
+                     Santa Barbara Climate Hazards Group at the University of California is precipitation
+                     product based on multiple data sources (Funk et al., 2015). CHIRPS incorporates monthly
+                     precipitation climatology (Climate Hazards Group Precipitation Climatology, CHPClim),
+                     quasi-global geostationary thermal infrared satellite observations, TRMM product, atmospheric
+                     model precipitation fields from the National Oceanic and Atmospheric Administration (NOAA)
+                     Climate Forecast System (CFS), and observed precipitation (Funk et al., 2015).'
+            TRMM: '\textbf{TRMM} – The Tropical Rainfall Measuring Mission (TRMM), a joint mission of NASA and the Japan
+                   Aerospace Exploration Agency, was launched in 1997 to study rainfall for weather and climate
+                   research. TRMM Multi-satellite Precipitation Analysis (TMPA) algorithm merges a variety of
+                   existing ground- and satellite-based observations to yield high spatial () and temporal
+                   esolution (three-hourly instantaneous retrievals) observations with a higher degree of
+                   accuracy (Huffman et al., 2007).'
+            GPM: '\textbf{GPM} - NASA/JAXA Global precipitation measurement (GPM) mission in coordination with the
+                  Goddard Earth Sciences Data and Information Services Center (GES DISC) is the Integrated
+                  Multi-satellite Retrievals for GPM, which merges precipitation estimates from passive
+                  microwave (PMW), calibrated infrared (IR) sensors and monthly surface precipitation gauge
+                  analysis data to provide half-hourly precipitation estimates on a  grid over the  N-S
+                  domain. GPM extend the spatial coverage from its predecessor (TRMM), and also provide
+                  improved measurements of precipitation globally (Liu et al., 2017).'
+
+          Evapotranspiration:
+            ALEXI: '\textbf{ALEXI} - Is a coupled two source land surface one dimensional atmospheric boundary layer
+                    (ABL) model. The lower boundary conditions for the two source model are provided by
+                    thermal IR observations taken at two times during the morning hours.  The ABL model
+                    then relates the rise in air temperature above the canopy and the growth of the ABL to
+                    the time integrated influx of sensible heating from the surface. (Anderson et al., 2007).'
+            CMRSET: '\textbf{CMRSET} - CSIRO MODIS Reflectance-based Evapotranspiration (Guerschman et al., 2009).'
+            GLEAM: '\textbf{GLEAM} - A set of algorithms that separately estimate the different components of land
+                    evaporation (or “evapotranspiration”): transpiration, bare-soil evaporation, interception
+                    loss, open-water evaporation and sublimation. Additionally, GLEAM provides surface and
+                    root-zone soil moisture, potential evaporation and evaporative stress conditions.
+                    (Miralles et al., 2011).'
+            MOD16A2: '\textbf{MOD16A2} - Based on surface reflectance from MODIS-Terra and interpolated climate data.
+                      The algorithm uses monthly values of the Enhanced Vegetation Index (EVI) and the Global
+                      Vegetation Moisture Index (GVMI) derived from the MODIS nadir bidirectional reflectance
+                      distribution function – adjusted reflectance product (MOD43B4) to scale Priestley-Taylor
+                      potential evapotranspiration derived from the climate surfaces. (Mu et al., 2011).'
+            SSEBop: '\textbf{SSEBop} - Operational Simplified Surface Energy Balance (Senay et al., 2013).'
+
+          GRACE Solution:
+            CSR: '\textbf{CSR} - Center for Space Research at University of Texas, Austin.'
+            GFZ: '\textbf{GFZ} - GeoforschungsZentrum Potsdam'
+            JPL: '\textbf{JPL} - Jet Propulsion Laboratory processing centers (Swenson and Wahr, 2006; Landerer
+                  and Swenson, 2012; Swenson, 2012).'

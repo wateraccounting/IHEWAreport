@@ -14,14 +14,14 @@ import quantities as pq
 
 from pylatex import Package, Document, Command, NoEscape, \
     PageStyle, Head, Foot, \
-    Section, Subsection, NewPage, NewLine, LineBreak, \
+    Section, Subsection, Subsubsection, NewPage, NewLine, LineBreak, \
     Itemize, \
     Label, Ref, \
     LongTabu, LongTable, MultiColumn, MultiRow, Table, Tabular, \
     TikZ, Axis, Plot, Figure, SubFigure, Alignat, \
     Math, Matrix, VectorName, Quantity
 
-from pylatex.utils import italic, make_temp_dir, rm_temp_dir
+from pylatex.utils import italic, bold, make_temp_dir, rm_temp_dir
 
 try:
     # IHEClassInitError, IHEStringError, IHETypeError, IHEKeyError, IHEFileError
@@ -73,13 +73,14 @@ class Template(object):
             print('>>>>>')
             # doc Cover
             # self.write_cover_page('CoverPage')
-            # self.write_title_page('FirstPage')
+            self.write_title_page('FirstPage')
 
-            # doc TOC
+            # TOC
+            # doc TOC, no page number
+            # self.write_page_toc_no_pagenumber('TOCPage')
+
+            # doc TOC, with page number
             self.write_page_toc('TOCPage')
-
-            # doc Preamble style
-            self.set_page('PreambleHeader', 'roman')
 
             # doc LOF, LOT
             self.write_page_lof('LOFPage')
@@ -130,9 +131,18 @@ class Template(object):
         # Text align
         doc.packages.append(Package('ragged2e'))
         # Hyper link
-        doc.packages.append(Package('hyperref'))
+        doc.packages.append(Package('hyperref',
+                                    options=[
+                                        'hidelinks'
+                                    ]))
+        # doc.packages.append(Package('hyperref',
+        #                             options=[
+        #                                 'pdfencoding=auto',
+        #                                 'psdextra'
+        #                             ]))
         # Figure position
         doc.packages.append(Package('float'))
+        # doc.packages.append(Package('alphabeta'))
 
         # Caption
         doc.packages.append(Package('caption',
@@ -222,7 +232,9 @@ class Template(object):
             img.add_image(file,
                           width=NoEscape(width),
                           placement=NoEscape(r'\centering'))
-            img.add_caption(NoEscape('{}'.format(caption)))
+            if isinstance(caption, str):
+                if len(caption) > 0:
+                    img.add_caption(NoEscape('{}'.format(caption)))
             img.append(Label('figure:{}'.format(name)))
 
     def insert_images(self, obj_sec, name, caption, width, sub_files, sub_captions):
@@ -237,9 +249,12 @@ class Template(object):
                                       r'{}\textwidth'.format(sub_width)))) as sub_img:
                     sub_img.add_image(sub_files[i],
                                       width=NoEscape(r'\textwidth'))
-                    sub_img.add_caption(NoEscape('{}'.format(sub_captions[i])))
+                    if len(sub_captions) == nfiles:
+                        sub_img.add_caption(NoEscape('{}'.format(sub_captions[i])))
 
-            img.add_caption(NoEscape('{}'.format(caption)))
+            if isinstance(caption, str):
+                if len(caption) > 0:
+                    img.add_caption(NoEscape('{}'.format(caption)))
             img.append(Label('figure:{}'.format(name)))
 
     def insert_abbre(self, obj_sec, width, data):
@@ -273,10 +288,10 @@ class Template(object):
                     table.append(Command('caption',
                                          options=[],
                                          arguments=[NoEscape('{}'.format(caption))]))
-            table.append(NoEscape(r'\label{%s}\\' % 'table:{}'.format(name)))
+                    table.append(NoEscape(r'\label{%s}\\' % 'table:{}'.format(name)))
 
             table.add_hline()
-            table.add_row([NoEscape(val) for val in header])
+            table.add_row([bold(NoEscape(val)) for val in header])
             table.add_hline()
             table.append(Command('endfirsthead'))
 
@@ -500,17 +515,34 @@ class Template(object):
         self.doc.change_document_style(sname)
         self.doc.append(Command('cleardoublepage'))
 
-    def write_page_toc(self, sname):
+    def write_page_toc_no_pagenumber(self, sname):
         self.doc.append(NewPage())
 
         doc_page = PageStyle(sname)
-
         # doc_page.append(NoEscape(r'\pdfbookmark[0]{\contentsname}{toc}'))
         doc_page.append(Command('tableofcontents'))
-
+        # doc_page.append(Command('addcontentsline',
+        #                         ['toc', 'section', NoEscape(r'\contentsname')]))
         doc_page.append(Command('thispagestyle', 'empty'))
+
         self.doc.preamble.append(doc_page)
         self.doc.change_document_style(sname)
+        self.doc.append(Command('cleardoublepage'))
+
+        # doc Preamble style
+        self.set_page('PreambleHeader', 'roman')
+
+    def write_page_toc(self, sname):
+        # doc Preamble style
+        self.set_page('PreambleHeader', 'roman')
+
+        self.doc.append(NewPage())
+
+        # doc_page.append(NoEscape(r'\pdfbookmark[0]{\contentsname}{toc}'))
+        self.doc.append(Command('tableofcontents'))
+
+        self.doc.append(Command('addcontentsline',
+                                ['toc', 'section', NoEscape(r'\contentsname')]))
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_lof(self, sname):
@@ -541,7 +573,7 @@ class Template(object):
         self.doc.append(Command('RaggedRight'))
 
         opt = self.data['content'][key]
-        with self.doc.create(Section(opt['title'], numbering=False)):
+        with self.doc.create(Section(NoEscape(opt['title']), numbering=False)):
             for i in opt['paragraph'].keys():
                 self.doc.append(opt['paragraph'][i])
                 self.doc.append(LineBreak())
@@ -558,7 +590,7 @@ class Template(object):
         self.doc.append(Command('RaggedRight'))
 
         opt = self.data['content'][key]
-        with self.doc.create(Section(opt['title'], numbering=False)) as obj_sec:
+        with self.doc.create(Section(NoEscape(opt['title']), numbering=False)) as obj_sec:
             self.insert_abbre(obj_sec, r'1\textwidth', opt['paragraph'])
 
         self.doc.append(Command('addcontentsline',
@@ -573,7 +605,7 @@ class Template(object):
         self.doc.append(Command('RaggedRight'))
 
         opt = self.data['content'][key]
-        with self.doc.create(Section(opt['title'], numbering=False)):
+        with self.doc.create(Section(NoEscape(opt['title']), numbering=False)):
             for i in opt['paragraph'].keys():
                 self.doc.append(opt['paragraph'][i])
                 self.doc.append(LineBreak())
@@ -602,24 +634,40 @@ class Template(object):
             val_l1_p = val_l1['paragraph']
             print('{} {}'.format(key_l1, val_l1_t))
 
-            with self.doc.create(Section(val_l1_t)) as obj_sec_l1:
+            with self.doc.create(Section(NoEscape(val_l1_t))) as obj_sec_l1:
                 for tmp_key_l1, tmp_val_l1 in val_l1_p.items():
                     print(' {}'.format(tmp_key_l1))
 
                     # self.doc.append(val.format_map(opt_data))
                     if isinstance(tmp_val_l1, dict):
-                        type = tmp_val_l1['type']
-                        name = tmp_val_l1['name']
-                        if type == 'equation':
+                        type_l1 = tmp_val_l1['type']
+
+                        if type_l1 == 'list':
+                            items = tmp_val_l1['item']
+
+                            with obj_sec_l1.create(Itemize()) as itemize:
+                                for iitem, item in items.items():
+                                    try:
+                                        tmp_str_para = item.format(data=opt_data)
+                                    except KeyError:
+                                        tmp_str_para = item
+                                    itemize.add_item(tmp_str_para)
+                                    itemize.append(Command("ldots"))
+                                # obj_sec_l1.append(itemize)
+
+                        if type_l1 == 'equation':
                             pass
-                        if type == 'figure':
-                            dir = opt_data[type]['dir']
 
-                            if 'main' in opt_data[type][name].keys():
-                                caption = opt_data[type][name]['caption'].format(data=opt_data)
+                        if type_l1 == 'figure':
+                            name = tmp_val_l1['name']
 
-                                fname = opt_data[type][name]['main']['fname']
-                                width = opt_data[type][name]['main']['width']
+                            dir = opt_data[type_l1]['dir']
+
+                            if 'main' in opt_data[type_l1][name].keys():
+                                caption = opt_data[type_l1][name]['caption'].format(data=opt_data)
+
+                                fname = opt_data[type_l1][name]['main']['fname']
+                                width = opt_data[type_l1][name]['main']['width']
 
                                 file = os.path.join(self.workspace, dir, fname)
                                 self.insert_image(obj_sec_l1,
@@ -627,13 +675,13 @@ class Template(object):
                                                   caption,
                                                   r'{}\textwidth'.format(width),
                                                   file)
-                            if 'sub' in opt_data[type][name].keys():
-                                caption = opt_data[type][name]['caption'].format(data=opt_data)
-                                width = opt_data[type][name]['width']
+                            if 'sub' in opt_data[type_l1][name].keys():
+                                caption = opt_data[type_l1][name]['caption'].format(data=opt_data)
+                                width = opt_data[type_l1][name]['width']
 
                                 sub_files = []
                                 sub_captions = []
-                                for key, sub_img in opt_data[type][name]['sub'].items():
+                                for key, sub_img in opt_data[type_l1][name]['sub'].items():
                                     sub_files.append(os.path.join(self.workspace, dir, sub_img['fname']))
                                     sub_captions.append(sub_img['caption'])
 
@@ -644,11 +692,14 @@ class Template(object):
                                                    sub_files,
                                                    sub_captions)
 
-                        if type == 'table':
-                            dir = opt_data[type]['dir']
-                            fname = opt_data[type][name]['fname']
-                            caption = opt_data[type][name]['caption'].format(data=opt_data)
-                            width = opt_data[type][name]['width']
+                        if type_l1 == 'table':
+                            name = tmp_val_l1['name']
+
+                            dir = opt_data[type_l1]['dir']
+
+                            fname = opt_data[type_l1][name]['fname']
+                            caption = opt_data[type_l1][name]['caption'].format(data=opt_data)
+                            width = opt_data[type_l1][name]['width']
 
                             file = os.path.join(self.workspace, dir, fname)
                             self.insert_table(obj_sec_l1,
@@ -657,13 +708,17 @@ class Template(object):
                                               r'1\textwidth',
                                               file)
 
-                        if type == 'reference':
+                        if type_l1 == 'reference':
                             pass
                     else:
                         if tmp_val_l1[0] == '{' and tmp_val_l1[-1] == '}':
                             tmp_val_l1 = tmp_val_l1.format(data=opt_data)
 
-                        tmp_str_para = tmp_val_l1.format(data=opt_data)
+                        try:
+                            tmp_str_para = tmp_val_l1.format(data=opt_data)
+                        except KeyError:
+                            tmp_str_para = tmp_val_l1
+
                         try:
                             self.doc.append(NoEscape(tmp_str_para.format(data=opt_data)))
                         except KeyError:
@@ -680,24 +735,40 @@ class Template(object):
                         val_l2_t = val_l2['title']
                         val_l2_p = val_l2['paragraph']
 
-                        with self.doc.create(Subsection(val_l2_t)) as obj_sec_l2:
+                        with self.doc.create(Subsection(NoEscape(val_l2_t))) as obj_sec_l2:
                             for tmp_key_l2, tmp_val_l2 in val_l2_p.items():
                                 print('  {}'.format(tmp_key_l2))
 
                                 # self.doc.append(val.format_map(opt_data))
                                 if isinstance(tmp_val_l2, dict):
-                                    type = tmp_val_l2['type']
-                                    name = tmp_val_l2['name']
-                                    if type == 'equation':
+                                    type_l2 = tmp_val_l2['type']
+
+                                    if type_l2 == 'list':
+                                        items = tmp_val_l2['item']
+
+                                        with obj_sec_l2.create(Itemize()) as itemize:
+                                            for iitem, item in items.items():
+                                                try:
+                                                    tmp_str_para = item.format(data=opt_data)
+                                                except KeyError:
+                                                    tmp_str_para = item
+                                                itemize.add_item(tmp_str_para)
+                                                itemize.append(Command("ldots"))
+                                            # obj_sec_l2.append(itemize)
+
+                                    if type_l2 == 'equation':
                                         pass
-                                    if type == 'figure':
-                                        dir = opt_data[type]['dir']
 
-                                        if 'main' in opt_data[type][name].keys():
-                                            caption = opt_data[type][name]['caption'].format(data=opt_data)
+                                    if type_l2 == 'figure':
+                                        name = tmp_val_l2['name']
 
-                                            fname = opt_data[type][name]['main']['fname']
-                                            width = opt_data[type][name]['main']['width']
+                                        dir = opt_data[type_l2]['dir']
+
+                                        if 'main' in opt_data[type_l2][name].keys():
+                                            caption = opt_data[type_l2][name]['caption'].format(data=opt_data)
+
+                                            fname = opt_data[type_l2][name]['main']['fname']
+                                            width = opt_data[type_l2][name]['main']['width']
 
                                             file = os.path.join(self.workspace, dir, fname)
                                             self.insert_image(obj_sec_l2,
@@ -705,13 +776,13 @@ class Template(object):
                                                               caption,
                                                               r'{}\textwidth'.format(width),
                                                               file)
-                                        if 'sub' in opt_data[type][name].keys():
-                                            caption = opt_data[type][name]['caption'].format(data=opt_data)
-                                            width = opt_data[type][name]['width']
+                                        if 'sub' in opt_data[type_l2][name].keys():
+                                            caption = opt_data[type_l2][name]['caption'].format(data=opt_data)
+                                            width = opt_data[type_l2][name]['width']
 
                                             sub_files = []
                                             sub_captions = []
-                                            for key, sub_img in opt_data[type][name]['sub'].items():
+                                            for key, sub_img in opt_data[type_l2][name]['sub'].items():
                                                 sub_files.append(os.path.join(self.workspace, dir, sub_img['fname']))
                                                 sub_captions.append(sub_img['caption'])
 
@@ -722,11 +793,14 @@ class Template(object):
                                                                sub_files,
                                                                sub_captions)
 
-                                    if type == 'table':
-                                        dir = opt_data[type]['dir']
-                                        fname = opt_data[type][name]['fname']
-                                        caption = opt_data[type][name]['caption'].format(data=opt_data)
-                                        width = opt_data[type][name]['width']
+                                    if type_l2 == 'table':
+                                        name = tmp_val_l2['name']
+
+                                        dir = opt_data[type_l2]['dir']
+
+                                        fname = opt_data[type_l2][name]['fname']
+                                        caption = opt_data[type_l2][name]['caption'].format(data=opt_data)
+                                        width = opt_data[type_l2][name]['width']
 
                                         file = os.path.join(self.workspace, dir, fname)
                                         self.insert_table(obj_sec_l2,
@@ -735,13 +809,17 @@ class Template(object):
                                                           r'1\textwidth',
                                                           file)
 
-                                    if type == 'reference':
+                                    if type_l2 == 'reference':
                                         pass
                                 else:
                                     if tmp_val_l2[0] == '{' and tmp_val_l2[-1] == '}':
                                         tmp_val_l2 = tmp_val_l2.format(data=opt_data)
 
-                                    tmp_str_para = tmp_val_l2.format(data=opt_data)
+                                    try:
+                                        tmp_str_para = tmp_val_l2.format(data=opt_data)
+                                    except KeyError:
+                                        tmp_str_para = tmp_val_l2
+
                                     try:
                                         self.doc.append(NoEscape(tmp_str_para.format(data=opt_data)))
                                     except KeyError:
@@ -758,22 +836,38 @@ class Template(object):
                                     val_l3_t = val_l3['title']
                                     val_l3_p = val_l3['paragraph']
 
-                                    with self.doc.create(Subsection(val_l3_t)) as obj_sec_l3:
+                                    with self.doc.create(Subsubsection(NoEscape(val_l3_t))) as obj_sec_l3:
                                         for tmp_key_l3, tmp_val_l3 in val_l3_p.items():
                                             if isinstance(tmp_val_l3, dict):
-                                                type = tmp_val_l3['type']
-                                                name = tmp_val_l3['name']
-                                                if type == 'equation':
+                                                type_l3 = tmp_val_l3['type']
+
+                                                if type_l3 == 'list':
+                                                    items = tmp_val_l3['item']
+
+                                                    with obj_sec_l3.create(Itemize()) as itemize:
+                                                        for iitem, item in items.items():
+                                                            try:
+                                                                tmp_str_para = item.format(data=opt_data)
+                                                            except KeyError:
+                                                                tmp_str_para = item
+                                                            itemize.add_item(tmp_str_para)
+                                                            itemize.append(Command("ldots"))
+                                                        # obj_sec_l3.append(itemize)
+
+                                                if type_l3 == 'equation':
                                                     pass
-                                                if type == 'figure':
-                                                    dir = opt_data[type]['dir']
 
-                                                    if 'main' in opt_data[type][
+                                                if type_l3 == 'figure':
+                                                    name = tmp_val_l3['name']
+
+                                                    dir = opt_data[type_l3]['dir']
+
+                                                    if 'main' in opt_data[type_l3][
                                                         name].keys():
-                                                        caption = opt_data[type][name]['caption'].format(data=opt_data)
+                                                        caption = opt_data[type_l3][name]['caption'].format(data=opt_data)
 
-                                                        fname = opt_data[type][name]['main']['fname']
-                                                        width = opt_data[type][name]['main']['width']
+                                                        fname = opt_data[type_l3][name]['main']['fname']
+                                                        width = opt_data[type_l3][name]['main']['width']
 
                                                         file = os.path.join(self.workspace, dir, fname)
                                                         self.insert_image(obj_sec_l3,
@@ -782,13 +876,13 @@ class Template(object):
                                                                           r'{}\textwidth'.format(
                                                                               width),
                                                                           file)
-                                                    if 'sub' in opt_data[type][name].keys():
-                                                        caption = opt_data[type][name]['caption'].format(data=opt_data)
-                                                        width = opt_data[type][name]['width']
+                                                    if 'sub' in opt_data[type_l3][name].keys():
+                                                        caption = opt_data[type_l3][name]['caption'].format(data=opt_data)
+                                                        width = opt_data[type_l3][name]['width']
 
                                                         sub_files = []
                                                         sub_captions = []
-                                                        for key, sub_img in opt_data[type][name]['sub'].items():
+                                                        for key, sub_img in opt_data[type_l3][name]['sub'].items():
                                                             sub_files.append(os.path.join(self.workspace, dir, sub_img['fname']))
                                                             sub_captions.append(sub_img['caption'])
 
@@ -798,11 +892,14 @@ class Template(object):
                                                                            r'{}'.format(width),
                                                                            sub_files,
                                                                            sub_captions)
-                                                if type == 'table':
-                                                    dir = opt_data[type]['dir']
-                                                    fname = opt_data[type][name]['fname']
-                                                    caption = opt_data[type][name]['caption'].format(data=opt_data)
-                                                    width = opt_data[type][name]['width']
+                                                if type_l3 == 'table':
+                                                    name = tmp_val_l3['name']
+
+                                                    dir = opt_data[type_l3]['dir']
+
+                                                    fname = opt_data[type_l3][name]['fname']
+                                                    caption = opt_data[type_l3][name]['caption'].format(data=opt_data)
+                                                    width = opt_data[type_l3][name]['width']
 
                                                     file = os.path.join(self.workspace,
                                                                         dir, fname)
@@ -812,13 +909,17 @@ class Template(object):
                                                                       r'1\textwidth',
                                                                       file)
 
-                                                if type == 'reference':
+                                                if type_l3 == 'reference':
                                                     pass
                                             else:
                                                 if tmp_val_l3[0] == '{' and tmp_val_l3[-1] == '}':
                                                     tmp_val_l3 = tmp_val_l3.format(data=opt_data)
 
-                                                tmp_str_para = tmp_val_l3.format(data=opt_data)
+                                                try:
+                                                    tmp_str_para = tmp_val_l3.format(data=opt_data)
+                                                except KeyError:
+                                                    tmp_str_para = tmp_val_l3
+
                                                 try:
                                                     self.doc.append(NoEscape(tmp_str_para.format(data=opt_data)))
                                                 except KeyError:
@@ -857,34 +958,151 @@ class Template(object):
                                          arguments=[file]))
         # self.doc.preamble.append(Command('bibliography', arguments=files))
 
-        with self.doc.create(Section(opt['title'], numbering=False)):
+        with self.doc.create(Section(NoEscape(opt['title']), numbering=False)):
+            self.doc.append(Command('addcontentsline',
+                                    ['toc', 'section', opt['title']]))
+
             self.doc.append(Command('printbibliography',
                                     options=[
                                         'heading=none'],
                                     arguments=[]))
 
-        self.doc.append(Command('addcontentsline',
-                                ['toc', 'section', opt['title']]))
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_annex(self, sname):
+        print('{}'.format('annex'))
+
+        opt = self.data['content']['annex']
+        try:
+            opt_annx = self.__conf['data']['content']['annex']
+            opt_data = self.__conf['data']['content']['data']
+        except KeyError:
+            raise KeyError
+
         self.doc.append(NewPage())
+        with self.doc.create(Section(NoEscape(opt['title']), numbering=False)):
+            self.doc.append(Command('addcontentsline',
+                                    ['toc', 'section', opt['title']]))
 
-        key = 'annex'
-        print('{}'.format(key))
+            for key in opt['section'].keys():
+                # self.doc.append(NewPage())
+                self.doc.append(Command('RaggedRight'))
 
-        opt = self.data['content'][key]
-        if key in self.__conf['data']['content'].keys():
-            if 'file' in self.__conf['data']['content'][key].keys():
-                opt['file'] = self.__conf['data']['content'][key]['file']
-                file = NoEscape(opt['file'])
+                val = opt['section'][key]
+                if isinstance(val, dict):
+                    type = val['type']
 
-        with self.doc.create(Section(opt['title'], numbering=False)):
-            self.doc.append(file)
-            self.doc.append(LineBreak())
+                    if type == 'annex':
+                        name = val['name']
+                        section = opt_data[type][name]['caption'].format(data=opt_data)
+                        print('{} {}'.format(key, section))
 
-        self.doc.append(Command('addcontentsline',
-                                ['toc', 'section', opt['title']]))
+                        with self.doc.create(Subsection(NoEscape(section),
+                                                        numbering=False)) as obj_sec_l1:
+                            self.doc.append(Command('addcontentsline',
+                                                    ['toc', 'subsection', NoEscape(section)]))
+                            obj_sec_l1.append(Label('annex:{}'.format(name)))
+
+                            for var_name, var_val in opt_data[type][name]['detail'].items():
+                                with self.doc.create(Subsubsection(NoEscape(var_name),
+                                                                   numbering=False)) as obj_sec_l2:
+                                    if isinstance(var_val, dict):
+                                        for prod_name, prod_val in var_val.items():
+                                            try:
+                                                tmp_str_para = prod_val.format(data=opt_data)
+                                            except KeyError:
+                                                tmp_str_para = prod_val
+
+                                            try:
+                                                obj_sec_l2.append(
+                                                    NoEscape(tmp_str_para.format(data=opt_data)))
+                                            except KeyError:
+                                                obj_sec_l2.append(NoEscape(tmp_str_para))
+                                            obj_sec_l2.append(LineBreak())
+
+                                    else:
+                                        pass
+
+                    if type == 'equation':
+                        pass
+
+                    if type == 'figure':
+                        name = val['name']
+                        section = opt_data[type][name]['caption'].format(data=opt_data)
+                        print('{} {}'.format(key, section))
+
+                        with self.doc.create(Subsection(NoEscape(section),
+                                                        numbering=False)) as obj_sec_l1:
+                            self.doc.append(Command('addcontentsline',
+                                                    ['toc', 'subsection', NoEscape(section)]))
+
+                            dir = opt_data[type]['dir']
+
+                            caption = ''
+                            if 'main' in opt_data[type][name].keys():
+                                fname = opt_data[type][name]['main']['fname']
+                                width = opt_data[type][name]['main']['width']
+
+                                file = os.path.join(self.workspace, dir, fname)
+                                self.insert_image(obj_sec_l1,
+                                                  name,
+                                                  caption,
+                                                  r'{}\textwidth'.format(width),
+                                                  file)
+                            if 'sub' in opt_data[type][name].keys():
+                                width = opt_data[type][name]['width']
+
+                                sub_files = []
+                                sub_captions = []
+                                for key, sub_img in opt_data[type][name]['sub'].items():
+                                    sub_files.append(os.path.join(self.workspace, dir, sub_img['fname']))
+
+                                self.insert_images(obj_sec_l1,
+                                                   name,
+                                                   caption,
+                                                   r'{}'.format(width),
+                                                   sub_files,
+                                                   sub_captions)
+
+                    if type == 'table':
+                        name = val['name']
+                        section = opt_data[type][name]['caption'].format(data=opt_data)
+                        print('{} {}'.format(key, section))
+
+                        with self.doc.create(Subsection(NoEscape(section),
+                                                        numbering=False)) as obj_sec_l1:
+                            self.doc.append(Command('addcontentsline',
+                                                    ['toc', 'subsection', NoEscape(section)]))
+                            dir = opt_data[type]['dir']
+
+                            caption = ''
+                            fname = opt_data[type][name]['fname']
+                            width = opt_data[type][name]['width']
+
+                            file = os.path.join(self.workspace, dir, fname)
+                            self.insert_table(obj_sec_l1,
+                                              name,
+                                              caption,
+                                              r'1\textwidth',
+                                              file)
+                else:
+                    if val[0] == '{' and val[-1] == '}':
+                        val = val.format(data=opt_data)
+
+                    try:
+                        tmp_str_para = val.format(data=opt_data)
+                    except KeyError:
+                        tmp_str_para = val
+
+                    try:
+                        self.doc.append(
+                            NoEscape(tmp_str_para.format(data=opt_data)))
+                    except KeyError:
+                        self.doc.append(NoEscape(tmp_str_para))
+                    self.doc.append(LineBreak())
+
+                self.doc.append(NewPage())
+
         self.doc.append(Command('cleardoublepage'))
 
     def saveas(self):

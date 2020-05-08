@@ -155,31 +155,42 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\epstopdf-pkg\epstopdf-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr17.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr8.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr6.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi8.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi6.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy8.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy6.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmex10.tfm
+INPUT C:\Users\qpa001\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT test_report_delete.toc
 INPUT test_report_delete.toc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr5.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi5.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmsy5.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmex10.tfm
 OUTPUT test_report_delete.toc
-INPUT C:\Users\qpa001\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
 INPUT test_report_delete.lof
 INPUT test_report_delete.lof
 OUTPUT test_report_delete.lof
@@ -196,7 +207,6 @@ INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1.png
 INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1.png
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbxi10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmri10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1e.jpg
 INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig1e.jpg
@@ -287,15 +297,20 @@ INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-MOD16A2-G
 INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-MOD16A2-GFZ.jpg
 INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-MOD16A2-GFZ.jpg
 INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig8_GPM-MOD16A2-GFZ.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig5.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig5.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig5.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig5.jpg
+INPUT D:\IHEProjects\TempDev\IHEWAreport\tests\data\area1\fig\fig5.jpg
 INPUT test_report_delete.aux
 INPUT .\test_report_delete.out
 INPUT .\test_report_delete.out
 INPUT test_report_delete.run.xml
 OUTPUT test_report_delete.run.xml
-INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-ec.enc
-INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-mathit.enc
-INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-ts1.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-rm.enc
+INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-mathit.enc
+INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-ec.enc
+INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-ts1.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-mathsy.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbx10.pfb
@@ -305,12 +320,20 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbxi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmbxi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmmi7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr17.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr17.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr7.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr8.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmr8.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmri10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmri10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\lm\lmri9.pfb

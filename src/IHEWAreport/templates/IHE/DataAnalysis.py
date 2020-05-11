@@ -84,12 +84,12 @@ class Template(object):
 
             # TOC
             # doc TOC, no page number
-            self.write_page_toc_no_pagenumber('TOCPage')
-            self.set_page('PreambleHeader', 'roman')
-
-            # doc TOC, with page number
+            # self.write_page_toc_no_pagenumber('TOCPage')
             # self.set_page('PreambleHeader', 'roman')
-            # self.write_page_toc('TOCPage')
+
+            # doc TOC, with Roman page number
+            self.set_page('PreambleHeader', 'roman')
+            self.write_page_toc('TOCPage')
 
             # doc LOF, LOT
             self.write_page_lof('LOFPage')
@@ -148,17 +148,10 @@ class Template(object):
         # Error: Hyperref points Toc \contentsname to Doc-Start
         # If commit tocloft package, Hpyerref ok.
         doc.packages.append(Package('tocloft'))
-
-        # Figure position
-        doc.packages.append(Package('float'))
-        # doc.packages.append(Package('alphabeta'))
-        # Caption
-        doc.packages.append(Package('caption',
+        # Solution add pkg: tocbibind
+        doc.packages.append(Package('tocbibind',
                                     options=[
-                                        'format=plain',
-                                        NoEscape(r'labelfont={bf,it}'),
-                                        'textfont=it'
-                                    ]))
+                                        'notbib']))
 
         # Hyper link
         doc.packages.append(Package('hyperref',
@@ -190,6 +183,20 @@ class Template(object):
                                     ]))
         #                                 'backend=bibtex',
         # doc.packages.append(Package('natbib'))
+
+        # Figure position
+        doc.packages.append(Package('float'))
+
+        # Math
+        # doc.packages.append(Package('alphabeta'))
+
+        # Caption
+        doc.packages.append(Package('caption',
+                                    options=[
+                                        'format=plain',
+                                        NoEscape(r'labelfont={bf,it}'),
+                                        'textfont=it'
+                                    ]))
 
         return doc
 
@@ -559,14 +566,9 @@ class Template(object):
         # self.doc.append(Command('tableofcontents'))
 
         self.doc.append(Command('tableofcontents'))
-        self.doc.append(Command('addcontentsline',
-                                ['toc', 'section', NoEscape(r'\contentsname')]))
-
-        # title = 'Contents'
-        # with self.doc.create(Section(title, numbering=False)):
-        #     self.doc.append(Command('tableofcontents', ['']))
-        #     self.doc.append(Command('addcontentsline',
-        #                             ['toc', 'section', title]))
+        # pkg: tocbibind
+        # self.doc.append(Command('addcontentsline',
+        #                         ['toc', 'section', NoEscape(r'\contentsname')]))
 
         self.doc.append(Command('cleardoublepage'))
 
@@ -577,8 +579,9 @@ class Template(object):
         # self.doc.append(Command('listoffigures'))
 
         self.doc.append(Command('listoffigures'))
-        self.doc.append(Command('addcontentsline',
-                                ['toc', 'section', NoEscape(r'\listfigurename')]))
+        # pkg: tocbibind
+        # self.doc.append(Command('addcontentsline',
+        #                         ['toc', 'section', NoEscape(r'\listfigurename')]))
 
         self.doc.append(Command('cleardoublepage'))
 
@@ -589,8 +592,9 @@ class Template(object):
         # self.doc.append(Command('listoftables'))
 
         self.doc.append(Command('listoftables'))
-        self.doc.append(Command('addcontentsline',
-                                ['toc', 'section', NoEscape(r'\listtablename')]))
+        # pkg: tocbibind
+        # self.doc.append(Command('addcontentsline',
+        #                         ['toc', 'section', NoEscape(r'\listtablename')]))
 
         self.doc.append(Command('cleardoublepage'))
 

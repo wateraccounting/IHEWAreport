@@ -8,10 +8,11 @@
 \usepackage{fancyhdr}%
 \usepackage{ragged2e}%
 \usepackage{tocloft}%
-\usepackage{float}%
-\usepackage[format=plain,labelfont={bf,it},textfont=it]{caption}%
+\usepackage[notbib]{tocbibind}%
 \usepackage[hidelinks,pdfpagemode=UseOutlines,bookmarksopen=true]{hyperref}%
 \usepackage[style=authoryear,sorting=ynt]{biblatex}%
+\usepackage{float}%
+\usepackage[format=plain,labelfont={bf,it},textfont=it]{caption}%
 \usepackage{graphicx}%
 \usepackage{longtable}%
 \usepackage{subcaption}%
@@ -30,16 +31,6 @@
 \author{WA+ team}%
 \date{\today}%
 \maketitle%
-\thispagestyle{empty}
-}%
-\fancypagestyle{TOCPage}{ 
-\renewcommand{\headrulewidth}{0pt}%
-\renewcommand{\footrulewidth}{0pt}%
-\fancyhead{ 
-}%
-\fancyfoot{ 
-}%
-\tableofcontents%
 \thispagestyle{empty}
 }%
 \fancypagestyle{PreambleHeader}{ 
@@ -93,9 +84,6 @@ Mindanao
 \newpage%
 \pagestyle{FirstPage}%
 \cleardoublepage%
-\newpage%
-\pagestyle{TOCPage}%
-\cleardoublepage%
 \clearpage%
 \pagenumbering{roman}%
 \setcounter{page}{1}%
@@ -104,12 +92,13 @@ Mindanao
 \setcounter{figure}{0}%
 \pagestyle{PreambleHeader}%
 \newpage%
+\tableofcontents%
+\cleardoublepage%
+\newpage%
 \listoffigures%
-\addcontentsline{toc}{section}{\listfigurename}%
 \cleardoublepage%
 \newpage%
 \listoftables%
-\addcontentsline{toc}{section}{\listtablename}%
 \cleardoublepage%
 \clearpage%
 \pagenumbering{arabic}%

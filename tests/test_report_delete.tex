@@ -7,14 +7,18 @@
 \usepackage[paper=a4paper,layout=a4paper,includehead=True,includefoot=True,margin=1in]{geometry}%
 \usepackage{fancyhdr}%
 \usepackage{ragged2e}%
-\usepackage[hidelinks]{hyperref}%
+\usepackage{tocloft}%
 \usepackage{float}%
 \usepackage[format=plain,labelfont={bf,it},textfont=it]{caption}%
+\usepackage[hidelinks,pdfpagemode=UseOutlines,bookmarksopen=true]{hyperref}%
 \usepackage[style=authoryear,sorting=ynt]{biblatex}%
 \usepackage{graphicx}%
 \usepackage{longtable}%
 \usepackage{subcaption}%
 %
+\cftsetindents{section}{0em}{3em}%
+\cftsetindents{subsection}{0em}{4em}%
+\cftsetindents{subsubsection}{0em}{5em}%
 \fancypagestyle{FirstPage}{ 
 \renewcommand{\headrulewidth}{0pt}%
 \renewcommand{\footrulewidth}{0pt}%
@@ -26,6 +30,16 @@
 \author{WA+ team}%
 \date{\today}%
 \maketitle%
+\thispagestyle{empty}
+}%
+\fancypagestyle{TOCPage}{ 
+\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\footrulewidth}{0pt}%
+\fancyhead{ 
+}%
+\fancyfoot{ 
+}%
+\tableofcontents%
 \thispagestyle{empty}
 }%
 \fancypagestyle{PreambleHeader}{ 
@@ -40,7 +54,7 @@
 \fancyhead[C]{ 
 }%
 \fancyhead[R]{ 
-IHE
+Mindanao
 }%
 \fancyfoot[L]{ 
 }%
@@ -62,7 +76,7 @@ IHE
 \fancyhead[C]{ 
 }%
 \fancyhead[R]{ 
-IHE
+Mindanao
 }%
 \fancyfoot[L]{ 
 }%
@@ -79,14 +93,16 @@ IHE
 \newpage%
 \pagestyle{FirstPage}%
 \cleardoublepage%
+\newpage%
+\pagestyle{TOCPage}%
+\cleardoublepage%
 \clearpage%
 \pagenumbering{roman}%
 \setcounter{page}{1}%
+\setcounter{section}{0}%
+\setcounter{table}{0}%
+\setcounter{figure}{0}%
 \pagestyle{PreambleHeader}%
-\newpage%
-\tableofcontents%
-\addcontentsline{toc}{section}{\contentsname}%
-\cleardoublepage%
 \newpage%
 \listoffigures%
 \addcontentsline{toc}{section}{\listfigurename}%
@@ -98,6 +114,9 @@ IHE
 \clearpage%
 \pagenumbering{arabic}%
 \setcounter{page}{1}%
+\setcounter{section}{0}%
+\setcounter{table}{0}%
+\setcounter{figure}{0}%
 \pagestyle{SectionHeader}%
 \newpage%
 \RaggedRight%
@@ -131,7 +150,6 @@ Discharge is collected from Flood Observatory. Two flooding periods can be found
 \end{figure}
 
 %
-\RaggedRight%
 \section{RS data analysis}%
 \label{sec:RSdataanalysis}%
 The purpose of this study is to select remote sensing products for water accounting, by evaluating the performance of water balance analysis. Three evaluation criteria are applied in the study, Pearson correlation coefficient (PCC), coefficient of determination (R2) and root mean square error (RMSE).%
@@ -144,7 +162,7 @@ RMSE - The standard deviation of the residuals (prediction errors). It is a meas
 \linebreak%
 \subsection{Review of RS products}%
 \label{subsec:ReviewofRSproducts}%
-To evaluate remote sensing products for water balance analysis, three precipitation products, five evapotranspiration products and three GRACE solutions are collected, see Table \ref{table:tab1}. After download products, all data was clipped to Mindanao River Basin. Then the datasets were resampled to spatial resolution of 0.05 degree and aggregated to monthly and yearly time series. The detail description of each product can be found in Annex \ref{annex:products}.%
+To evaluate remote sensing products for water balance analysis, three precipitation products, five evapotranspiration products and three GRACE solutions are collected, see Table \ref{table:tab1}. After download products, all data was clipped to Mindanao River Basin. Then the datasets were resampled to spatial resolution of 0.05 degree and aggregated to monthly and yearly time series. The detail description of each product can be found in \ref{subsec:Remotesensingproducts}.%
 \linebreak%
 \begin{longtable}{|l|l|l|l|l|}%
 \caption{Remote sensing products}%
@@ -344,7 +362,7 @@ The minimum RMSE value is 64.44. The best performing combination in terms of RMS
 %
 \subsection{Water Balance error}%
 \label{subsec:WaterBalanceerror}%
-Water balance error is the difference between $P-ET-\Delta S$ and runoff. Figure \ref{figure:fig16} shows the yearly mean water balance error. The combination GPM and MOD16A2 has the lowest error ranging around 1.35\%. However GPM, CMRSET and GFZ has the lowest absolute error 584.81 $Mm^3/year$. The runoff maps of these two are plotted in Figure \ref{figure:fig17}.%
+Water balance error is the difference between $P-ET-\Delta S$ and runoff. Figure \ref{figure:fig16} shows the yearly mean water balance error. The combination GPM and MOD16A2 has the lowest error ranging around 1.35\%. However GPM, CMRSET and GFZ has the lowest absolute error 584.81 $Mm^3/year$, see \ref{subsec:TheyearlymeanP{-}ET{-}DeltaSandQ,(unitMm3/year)}, \ref{subsec:ThewaterbalanceP{-}ET{-}DeltaSanddischargeQ,(unitmm/month)}. The runoff maps of these two are plotted in Figure \ref{figure:fig17}.%
 \linebreak%
 
 
@@ -372,7 +390,6 @@ Water balance error is the difference between $P-ET-\Delta S$ and runoff. Figure
 \end{figure}
 
 %
-\RaggedRight%
 \section{Selection of RS products for WA}%
 \label{sec:SelectionofRSproductsforWA}%
 Due to the PCC and R2 scores are not large enough, which means the correlation is not significant between water balance calculated by different combination and runoff. RMSE is considered as the first criteria to select the best combination of remote sensing products in this study.%
@@ -414,14 +431,14 @@ Year&P&ET&$\Delta S$&$P-ET-\Delta S$&Q&Diff&\%Diff\\%
 %
 \cleardoublepage%
 \newpage%
+\RaggedRight%
+\renewcommand{\thesubsection}{Annex \arabic{subsection}}%
 \section*{Annexes}%
 \label{sec:Annexes}%
 \addcontentsline{toc}{section}{Annexes}%
-\RaggedRight%
-\subsection*{Remote sensing products}%
+\subsection{Remote sensing products}%
 \label{subsec:Remotesensingproducts}%
-\addcontentsline{toc}{subsection}{Remote sensing products}%
-\label{annex:products}%
+\label{annex:ann1}%
 \subsubsection*{Precipitation}%
 \label{ssubsec:Precipitation}%
 \textbf{CHIRPS} – The Climate Hazards group Infrared Precipitation with Stations (CHIRPS) dataset, developed by the U.S. Geological Survey Earth Resources Observation and Science Center and Santa Barbara Climate Hazards Group at the University of California is precipitation product based on multiple data sources (Funk et al., 2015). CHIRPS incorporates monthly precipitation climatology (Climate Hazards Group Precipitation Climatology, CHPClim), quasi-global geostationary thermal infrared satellite observations, TRMM product, atmospheric model precipitation fields from the National Oceanic and Atmospheric Administration (NOAA) Climate Forecast System (CFS), and observed precipitation (Funk et al., 2015).%
@@ -456,11 +473,8 @@ Year&P&ET&$\Delta S$&$P-ET-\Delta S$&Q&Diff&\%Diff\\%
 \linebreak
 
 %
-\newpage%
-\RaggedRight%
-\subsection*{The yearly mean $P-ET-\Delta S$ and $Q$, (unit: $Mm^3/year$)}%
+\subsection{The yearly mean $P-ET-\Delta S$ and $Q$, (unit: $Mm^3/year$)}%
 \label{subsec:TheyearlymeanP{-}ET{-}DeltaSandQ,(unitMm3/year)}%
-\addcontentsline{toc}{subsection}{The yearly mean $P-ET-\Delta S$ and $Q$, (unit: $Mm^3/year$)}%
 \begin{longtable}{|l|l|l|l|l|l|l|l|}%
 \hline%
 \textbf{Combination}&\textbf{P}&\textbf{ET}&\textbf{$\Delta S$}&\textbf{$P-ET-\Delta S$}&\textbf{Q}&\textbf{Diff}&\textbf{\%Diff}\\%
@@ -520,21 +534,15 @@ TRMM-SSEBop-JPL&50825&23682&71&27072&20139&6933&38\\%
 \end{longtable}
 
 %
-\newpage%
-\RaggedRight%
-\subsection*{The water balance $P-ET-\Delta S$ and discharge Q, (unit: mm/month)}%
+\subsection{The water balance $P-ET-\Delta S$ and discharge Q, (unit: mm/month)}%
 \label{subsec:ThewaterbalanceP{-}ET{-}DeltaSanddischargeQ,(unitmm/month)}%
-\addcontentsline{toc}{subsection}{The water balance $P-ET-\Delta S$ and discharge Q, (unit: mm/month)}%
 
 
 \begin{figure}[H]%
 \centering%
 \includegraphics[width=0.8\textwidth]{D:/IHEProjects/TempDev/IHEWAreport/tests/data/area1/fig/fig5.jpg}%
-\label{figure:ann1}%
+\label{figure:ann3}%
 \end{figure}
-
-%
-\newpage
 
 %
 \cleardoublepage%

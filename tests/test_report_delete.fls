@@ -33,6 +33,14 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ragged2e\ragged2e.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ragged2e\ragged2e.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ms\everysel.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ms\everysel.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\tocloft\tocloft.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\tocloft\tocloft.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\float\float.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\float\float.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\generic\ltxcmds\ltxcmds.sty
@@ -77,12 +85,6 @@ INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\rerunfilecheck\rerunf
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\rerunfilecheck\rerunfilecheck.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\generic\uniquecounter\uniquecounter.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\float\float.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\float\float.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty
@@ -129,6 +131,8 @@ OUTPUT test_report_delete.aux
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr10.tfm
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\ltcaption.sty
+INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\ltcaption.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\refcount\refcount.sty
@@ -143,8 +147,6 @@ OUTPUT test_report_delete.pdf
 INPUT .\test_report_delete.out
 INPUT .\test_report_delete.out
 OUTPUT test_report_delete.out
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\ltcaption.sty
-INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\ltcaption.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\english.lbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\english.lbx
 OUTPUT test_report_delete.bcf

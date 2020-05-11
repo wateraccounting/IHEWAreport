@@ -70,6 +70,13 @@ class Template(object):
             self.path_temp = make_temp_dir()
             print('Created temp dir:', self.path_temp)
 
+            # ################ #
+            # Set global style #
+            # ################ #
+            self.doc.preamble.append(NoEscape(r'\cftsetindents{section}{0em}{3em}'))
+            self.doc.preamble.append(NoEscape(r'\cftsetindents{subsection}{0em}{4em}'))
+            self.doc.preamble.append(NoEscape(r'\cftsetindents{subsubsection}{0em}{5em}'))
+
             print('>>>>>')
             # doc Cover
             # self.write_cover_page('CoverPage')
@@ -77,10 +84,12 @@ class Template(object):
 
             # TOC
             # doc TOC, no page number
-            # self.write_page_toc_no_pagenumber('TOCPage')
+            self.write_page_toc_no_pagenumber('TOCPage')
+            self.set_page('PreambleHeader', 'roman')
 
             # doc TOC, with page number
-            self.write_page_toc('TOCPage')
+            # self.set_page('PreambleHeader', 'roman')
+            # self.write_page_toc('TOCPage')
 
             # doc LOF, LOT
             self.write_page_lof('LOFPage')
@@ -100,7 +109,11 @@ class Template(object):
             # self.write_test('TestPage')
 
             # doc Appendix
+            # doc Reference
+            # self.set_page('ReferenceHeader', 'roman')
             self.write_page_reference('ReferencePage')
+            # doc Annex
+            # self.set_page('AppendixHeader', 'roman')
             self.write_page_annex('AnnexPage')
             print('<<<<<\n')
 
@@ -130,20 +143,15 @@ class Template(object):
         doc.packages.append(Package('fancyhdr'))
         # Text align
         doc.packages.append(Package('ragged2e'))
-        # Hyper link
-        doc.packages.append(Package('hyperref',
-                                    options=[
-                                        'hidelinks'
-                                    ]))
-        # doc.packages.append(Package('hyperref',
-        #                             options=[
-        #                                 'pdfencoding=auto',
-        #                                 'psdextra'
-        #                             ]))
+
+        # Toc, LoFig, LoTab
+        # Error: Hyperref points Toc \contentsname to Doc-Start
+        # If commit tocloft package, Hpyerref ok.
+        doc.packages.append(Package('tocloft'))
+
         # Figure position
         doc.packages.append(Package('float'))
         # doc.packages.append(Package('alphabeta'))
-
         # Caption
         doc.packages.append(Package('caption',
                                     options=[
@@ -151,6 +159,19 @@ class Template(object):
                                         NoEscape(r'labelfont={bf,it}'),
                                         'textfont=it'
                                     ]))
+
+        # Hyper link
+        doc.packages.append(Package('hyperref',
+                                    options=[
+                                        'hidelinks',
+                                        'pdfpagemode=UseOutlines',
+                                        'bookmarksopen=true'
+                                    ]))
+        # doc.packages.append(Package('hyperref',
+        #                             options=[
+        #                                 'pdfencoding=auto',
+        #                                 'psdextra'
+        #                             ]))
 
         # Reference
         # sorting=ynt
@@ -205,6 +226,10 @@ class Template(object):
         # self.doc.append(NoEscape(r'\setcounter{page}{1}'))
         self.doc.append(Command('setcounter', ['page', '1']))
 
+        self.doc.append(Command('setcounter', ['section', '0']))
+        self.doc.append(Command('setcounter', ['table', '0']))
+        self.doc.append(Command('setcounter', ['figure', '0']))
+
         self.doc.preamble.append(doc_header)
         self.doc.change_document_style(sname)
 
@@ -255,7 +280,7 @@ class Template(object):
             if isinstance(caption, str):
                 if len(caption) > 0:
                     img.add_caption(NoEscape('{}'.format(caption)))
-            img.append(Label('figure:{}'.format(name)))
+                    img.append(Label('figure:{}'.format(name)))
 
     def insert_abbre(self, obj_sec, width, data):
         # tab_style = '{}'.format(' '.join(['X[l]' for i in range(2)]))
@@ -519,58 +544,62 @@ class Template(object):
         self.doc.append(NewPage())
 
         doc_page = PageStyle(sname)
-        # doc_page.append(NoEscape(r'\pdfbookmark[0]{\contentsname}{toc}'))
         doc_page.append(Command('tableofcontents'))
-        # doc_page.append(Command('addcontentsline',
-        #                         ['toc', 'section', NoEscape(r'\contentsname')]))
         doc_page.append(Command('thispagestyle', 'empty'))
 
         self.doc.preamble.append(doc_page)
         self.doc.change_document_style(sname)
         self.doc.append(Command('cleardoublepage'))
 
-        # doc Preamble style
-        self.set_page('PreambleHeader', 'roman')
-
     def write_page_toc(self, sname):
-        # doc Preamble style
-        self.set_page('PreambleHeader', 'roman')
-
         self.doc.append(NewPage())
 
-        # doc_page.append(NoEscape(r'\pdfbookmark[0]{\contentsname}{toc}'))
-        self.doc.append(Command('tableofcontents'))
+        # # self.doc.append(NoEscape(r'\pdfbookmark[0]{\contentsname}{toc}'))  # Chapter
+        # self.doc.append(NoEscape(r'\pdfbookmark[1]{\contentsname}{toc}'))  # Section
+        # self.doc.append(Command('tableofcontents'))
 
+        self.doc.append(Command('tableofcontents'))
         self.doc.append(Command('addcontentsline',
                                 ['toc', 'section', NoEscape(r'\contentsname')]))
+
+        # title = 'Contents'
+        # with self.doc.create(Section(title, numbering=False)):
+        #     self.doc.append(Command('tableofcontents', ['']))
+        #     self.doc.append(Command('addcontentsline',
+        #                             ['toc', 'section', title]))
+
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_lof(self, sname):
         self.doc.append(NewPage())
 
-        # self.doc.append(NoEscape(r'\pdfbookmark[0]{Figures}{lof}'))
-        self.doc.append(Command('listoffigures'))
+        # self.doc.append(NoEscape(r'\pdfbookmark[1]{Figures}{lof}'))  # Section
+        # self.doc.append(Command('listoffigures'))
 
+        self.doc.append(Command('listoffigures'))
         self.doc.append(Command('addcontentsline',
                                 ['toc', 'section', NoEscape(r'\listfigurename')]))
+
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_lot(self, sname):
         self.doc.append(NewPage())
 
-        # doc_page.append(NoEscape(r'\pdfbookmark[0]{Tables}{lot}'))
-        self.doc.append(Command('listoftables'))
+        # self.doc.append(NoEscape(r'\pdfbookmark[1]{Tables}{lot}'))  # Section
+        # self.doc.append(Command('listoftables'))
 
+        self.doc.append(Command('listoftables'))
         self.doc.append(Command('addcontentsline',
                                 ['toc', 'section', NoEscape(r'\listtablename')]))
+
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_acknowledgment(self, sname):
-        key = 'acknowledgement'
-        print('{}'.format(key))
-
         self.doc.append(NewPage())
         self.doc.append(Command('RaggedRight'))
+
+        key = 'acknowledgement'
+        print('{}'.format(key))
 
         opt = self.data['content'][key]
         with self.doc.create(Section(NoEscape(opt['title']), numbering=False)):
@@ -583,11 +612,11 @@ class Template(object):
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_abbreviation(self, sname):
-        key = 'abbreviation'
-        print('{}'.format(key))
-
         self.doc.append(NewPage())
         self.doc.append(Command('RaggedRight'))
+
+        key = 'abbreviation'
+        print('{}'.format(key))
 
         opt = self.data['content'][key]
         with self.doc.create(Section(NoEscape(opt['title']), numbering=False)) as obj_sec:
@@ -598,11 +627,11 @@ class Template(object):
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_summary(self, sname):
-        key = 'summary'
-        print('{}'.format(key))
-
         self.doc.append(NewPage())
         self.doc.append(Command('RaggedRight'))
+
+        key = 'summary'
+        print('{}'.format(key))
 
         opt = self.data['content'][key]
         with self.doc.create(Section(NoEscape(opt['title']), numbering=False)):
@@ -615,6 +644,11 @@ class Template(object):
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_section(self, sname):
+        self.doc.append(NewPage())
+        self.doc.append(Command('RaggedRight'))
+
+        print('{}'.format('section'))
+
         opt = self.data['content']['section']
         try:
             opt_sect = self.__conf['data']['content']['section']
@@ -623,11 +657,7 @@ class Template(object):
             raise KeyError
 
         # print(opt_content)
-        self.doc.append(NewPage())
         for key_l1 in opt.keys():
-            # self.doc.append(NewPage())
-            self.doc.append(Command('RaggedRight'))
-
             val_l1 = opt[key_l1]
             # val_l1_keys = val_l1.keys()
             val_l1_t = val_l1['title']
@@ -723,7 +753,8 @@ class Template(object):
                             self.doc.append(NoEscape(tmp_str_para.format(data=opt_data)))
                         except KeyError:
                             self.doc.append(NoEscape(tmp_str_para))
-                        self.doc.append(LineBreak())
+                        finally:
+                            self.doc.append(LineBreak())
 
                 # key_l2 = val_l1.keys()
                 # key_l2.remove('title')
@@ -824,7 +855,8 @@ class Template(object):
                                         self.doc.append(NoEscape(tmp_str_para.format(data=opt_data)))
                                     except KeyError:
                                         self.doc.append(NoEscape(tmp_str_para))
-                                    self.doc.append(LineBreak())
+                                    finally:
+                                        self.doc.append(LineBreak())
 
                             # key_l3 = val_l2.keys()
                             # key_l3.remove('title')
@@ -924,14 +956,17 @@ class Template(object):
                                                     self.doc.append(NoEscape(tmp_str_para.format(data=opt_data)))
                                                 except KeyError:
                                                     self.doc.append(NoEscape(tmp_str_para))
-                                                self.doc.append(LineBreak())
+                                                finally:
+                                                    self.doc.append(LineBreak())
 
     def write_page_reference(self, sname):
         self.doc.append(NewPage())
+        # self.doc.append(Command('RaggedRight'))
 
-        key = 'reference'
+        print('{}'.format('reference'))
+
         files = []
-        print('{}'.format(key))
+        key = 'reference'
 
         opt = self.data['content'][key]
         # file = os.path.join(self.path, opt['file'])
@@ -970,37 +1005,42 @@ class Template(object):
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_annex(self, sname):
+        self.doc.append(NewPage())
+        self.doc.append(Command('RaggedRight'))
+        # self.doc.append(Command('setcounter', ['section', '0']))
+        self.doc.append(NoEscape(r'\renewcommand{\thesubsection}{Annex \arabic{subsection}}'))
+
         print('{}'.format('annex'))
 
         opt = self.data['content']['annex']
         try:
             opt_annx = self.__conf['data']['content']['annex']
-            opt_data = self.__conf['data']['content']['data']
+            opt_data = self.__conf['data']['content']['data']['annex']
         except KeyError:
             raise KeyError
 
-        self.doc.append(NewPage())
+
         with self.doc.create(Section(NoEscape(opt['title']), numbering=False)):
             self.doc.append(Command('addcontentsline',
                                     ['toc', 'section', opt['title']]))
 
             for key in opt['section'].keys():
                 # self.doc.append(NewPage())
-                self.doc.append(Command('RaggedRight'))
 
                 val = opt['section'][key]
                 if isinstance(val, dict):
                     type = val['type']
 
-                    if type == 'annex':
+                    if type == 'text':
                         name = val['name']
                         section = opt_data[type][name]['caption'].format(data=opt_data)
                         print('{} {}'.format(key, section))
 
-                        with self.doc.create(Subsection(NoEscape(section),
-                                                        numbering=False)) as obj_sec_l1:
-                            self.doc.append(Command('addcontentsline',
-                                                    ['toc', 'subsection', NoEscape(section)]))
+                        # with self.doc.create(Subsection(NoEscape(section),
+                        #                                 numbering=False)) as obj_sec_l1:
+                        # self.doc.append(Command('addcontentsline',
+                        #                         ['toc', 'subsection', NoEscape(section)]))
+                        with self.doc.create(Subsection(NoEscape(section))) as obj_sec_l1:
                             obj_sec_l1.append(Label('annex:{}'.format(name)))
 
                             for var_name, var_val in opt_data[type][name]['detail'].items():
@@ -1031,11 +1071,11 @@ class Template(object):
                         section = opt_data[type][name]['caption'].format(data=opt_data)
                         print('{} {}'.format(key, section))
 
-                        with self.doc.create(Subsection(NoEscape(section),
-                                                        numbering=False)) as obj_sec_l1:
-                            self.doc.append(Command('addcontentsline',
-                                                    ['toc', 'subsection', NoEscape(section)]))
-
+                        # with self.doc.create(Subsection(NoEscape(section),
+                        #                                 numbering=False)) as obj_sec_l1:
+                        # self.doc.append(Command('addcontentsline',
+                        #                         ['toc', 'subsection', NoEscape(section)]))
+                        with self.doc.create(Subsection(NoEscape(section))) as obj_sec_l1:
                             dir = opt_data[type]['dir']
 
                             caption = ''
@@ -1069,10 +1109,11 @@ class Template(object):
                         section = opt_data[type][name]['caption'].format(data=opt_data)
                         print('{} {}'.format(key, section))
 
-                        with self.doc.create(Subsection(NoEscape(section),
-                                                        numbering=False)) as obj_sec_l1:
-                            self.doc.append(Command('addcontentsline',
-                                                    ['toc', 'subsection', NoEscape(section)]))
+                        # with self.doc.create(Subsection(NoEscape(section),
+                        #                                 numbering=False)) as obj_sec_l1:
+                        # self.doc.append(Command('addcontentsline',
+                        #                         ['toc', 'subsection', NoEscape(section)]))
+                        with self.doc.create(Subsection(NoEscape(section))) as obj_sec_l1:
                             dir = opt_data[type]['dir']
 
                             caption = ''
@@ -1099,10 +1140,10 @@ class Template(object):
                             NoEscape(tmp_str_para.format(data=opt_data)))
                     except KeyError:
                         self.doc.append(NoEscape(tmp_str_para))
-                    self.doc.append(LineBreak())
+                    finally:
+                        self.doc.append(LineBreak())
 
-                self.doc.append(NewPage())
-
+                # self.doc.append(NewPage())
         self.doc.append(Command('cleardoublepage'))
 
     def saveas(self):

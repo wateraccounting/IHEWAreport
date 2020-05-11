@@ -30,7 +30,7 @@ content:
   acknowledgement:
     title: 'Acknowledgements'
     paragraph:
-      1: ''
+      1: 'Acknowledgements'
 
   abbreviation:
     title: 'Abbreviations and Acronyms'
@@ -40,7 +40,7 @@ content:
   summary:
     title: 'Executive summary'
     paragraph:
-      1: ''
+      1: 'Executive summary'
 
   # Section
   section:
@@ -89,7 +89,7 @@ content:
                   After download products, all data was clipped to {data[value][basin][name]}. Then the datasets
                   were resampled to spatial resolution of {data[value][RS][resolution]} degree and aggregated
                   to monthly and yearly time series. The detail description of each product can be found in
-                  {data[annex][products][reference]}.'
+                  {data[annex][text][ann1][reference]}.'
           2.1-2:
             type: 'table'
             name: 'tab1'
@@ -235,7 +235,8 @@ content:
                   The combination {data[value][WB][diffpct][min][0]} and {data[value][WB][diffpct][min][1]}
                   has the lowest error ranging around {data[value][WB][diffpct][min][3]}\%.
                   However {data[value][WB][diff][min][0]}, {data[value][WB][diff][min][1]} and {data[value][WB][diff][min][2]}
-                  has the lowest absolute error {data[value][WB][diff][min][3]} $Mm^3/year$.
+                  has the lowest absolute error {data[value][WB][diff][min][3]} $Mm^3/year$,
+                  see {data[annex][table][ann2][reference]}, {data[annex][figure][ann3][reference]}.
                   The runoff maps of these two are plotted in {data[figure][fig17][reference]}.'
           2.3-2:
             type: 'figure'
@@ -268,14 +269,14 @@ content:
     title: 'Annexes'
     section:
       1:
-        type: 'annex'
-        name: 'products'
+        type: 'text'
+        name: 'ann1'
       2:
         type: 'table'
-        name: 'ann1'
+        name: 'ann2'
       3:
         type: 'figure'
-        name: 'ann1'
+        name: 'ann3'
 
 ###########
 # Example #

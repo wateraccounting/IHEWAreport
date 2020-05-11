@@ -12,6 +12,14 @@ IHEWAreport.templates.IHE.ADB module
    :undoc-members:
    :show-inheritance:
 
+IHEWAreport.templates.IHE.DataAnalysis module
+---------------------------------------------
+
+.. automodule:: IHEWAreport.templates.IHE.DataAnalysis
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 IHEWAreport.templates.IHE.FAO module
 ------------------------------------
 

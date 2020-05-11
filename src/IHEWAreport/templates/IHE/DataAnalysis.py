@@ -64,55 +64,70 @@ class Template(object):
 
         doc = self.create()
         if doc is not None:
-            self.doc = doc
-
             print('\nLaTex Start')
             self.path_temp = make_temp_dir()
             print('Created temp dir:', self.path_temp)
 
-            # ################ #
-            # Set global style #
-            # ################ #
+            print('>>>>>')
+            # ################### #
+            # Start class article #
+            # ################### #
+            self.doc = doc
+
+            # Set global style
             self.doc.preamble.append(NoEscape(r'\cftsetindents{section}{0em}{3em}'))
             self.doc.preamble.append(NoEscape(r'\cftsetindents{subsection}{0em}{4em}'))
             self.doc.preamble.append(NoEscape(r'\cftsetindents{subsubsection}{0em}{5em}'))
 
-            print('>>>>>')
-            # doc Cover
+            # ##### #
+            # Cover #
+            # ##### #
             # self.write_cover_page('CoverPage')
             self.write_title_page('FirstPage')
 
+            # ######## #
+            # Preamble #
+            # ######## #
             # TOC
-            # doc TOC, no page number
+            # Opt1: no page number
             # self.write_page_toc_no_pagenumber('TOCPage')
             # self.set_page('PreambleHeader', 'roman')
 
-            # doc TOC, with Roman page number
+            # Opt2: with Roman page number
             self.set_page('PreambleHeader', 'roman')
             self.write_page_toc('TOCPage')
 
-            # doc LOF, LOT
+            # LOT
             self.write_page_lof('LOFPage')
+
+            # LOT
             self.write_page_lot('LOTPage')
 
-            # doc Preamble
             # self.write_page_acknowledgment('AcknowledgementPage')
             # self.write_page_abbreviation('AbbreviationPage')
             # self.write_page_summary('SummaryPage')
 
-            # doc Contents style
+            # ######## #
+            # Contents #
+            # ######## #
+            # Set Contents style
             self.set_page('SectionHeader', 'arabic')
             # doc Contents
             self.write_page_section('SectionPage')
 
-            # doc Tests
+            # ##### #
+            # Tests #
+            # ##### #
             # self.write_test('TestPage')
 
-            # doc Appendix
-            # doc Reference
+            # ######## #
+            # Appendix #
+            # ######## #
+            # Reference
             # self.set_page('ReferenceHeader', 'roman')
             self.write_page_reference('ReferencePage')
-            # doc Annex
+
+            # Annex
             # self.set_page('AppendixHeader', 'roman')
             self.write_page_annex('AnnexPage')
             print('<<<<<\n')
@@ -201,6 +216,17 @@ class Template(object):
         return doc
 
     def set_page(self, sname, ntype):
+        """Set page style, re-count number.
+
+        - Re-count page number: 1.
+        - Re-count section number: 0.
+        - Re-count figure number: 0.
+        - Re-count table number: 0.
+
+        Args:
+            sname (str): Style name, etc, SectionHeader.
+            ntype (str): Numbering style, etc Roman.
+        """
         opt_header = self.data['page']['header']
         if 'header' in self.__conf['data']['page'].keys():
             if self.__conf['data']['page']['header'] is not None:
@@ -234,8 +260,8 @@ class Template(object):
         self.doc.append(Command('setcounter', ['page', '1']))
 
         self.doc.append(Command('setcounter', ['section', '0']))
-        self.doc.append(Command('setcounter', ['table', '0']))
         self.doc.append(Command('setcounter', ['figure', '0']))
+        self.doc.append(Command('setcounter', ['table', '0']))
 
         self.doc.preamble.append(doc_header)
         self.doc.change_document_style(sname)

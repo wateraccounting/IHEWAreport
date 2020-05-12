@@ -1,9 +1,15 @@
 layout:
-  paper: 'a4paper'
-  layout: 'a4paper'
-  includehead: True
-  includefoot: True
-  margin: '1in'
+  document:
+    class: 'article'
+    options:
+      - 'oneside'
+      - 'openany'
+  geometry:
+    paper: 'a4paper'
+    layout: 'a4paper'
+    includehead: True
+    includefoot: True
+    margin: '1in'
 
 page:
   header:

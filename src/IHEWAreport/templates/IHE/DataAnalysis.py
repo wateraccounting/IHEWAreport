@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+"""
+`Document structure <https://en.wikibooks.org/wiki/LaTeX/Document_Structure>`_
+
+"""
 import inspect
 import os
 from datetime import datetime, date
@@ -76,8 +80,8 @@ class Template(object):
 
             # Set global style
             self.doc.preamble.append(NoEscape(r'\cftsetindents{section}{0em}{3em}'))
-            self.doc.preamble.append(NoEscape(r'\cftsetindents{subsection}{0em}{4em}'))
-            self.doc.preamble.append(NoEscape(r'\cftsetindents{subsubsection}{0em}{5em}'))
+            self.doc.preamble.append(NoEscape(r'\cftsetindents{subsection}{0em}{5em}'))
+            self.doc.preamble.append(NoEscape(r'\cftsetindents{subsubsection}{0em}{7em}'))
 
             # ##### #
             # Cover #
@@ -118,6 +122,7 @@ class Template(object):
             # ##### #
             # Tests #
             # ##### #
+            # TODO, Test
             # self.write_test('TestPage')
 
             # ######## #
@@ -152,8 +157,13 @@ class Template(object):
         return data
 
     def create(self) -> object:
-        opt_geometry = self.data['layout']
-        doc = Document(geometry_options=opt_geometry)
+        opt_document = self.data['layout']['document']
+        opt_geometry = self.data['layout']['geometry']
+
+        doc = Document(documentclass=opt_document['class'],
+                       document_options=opt_document['options'],
+                       # document_options=['twoside', 'openany'],
+                       geometry_options=opt_geometry)
         # Header and footer
         doc.packages.append(Package('fancyhdr'))
         # Text align
@@ -171,7 +181,9 @@ class Template(object):
         # Hyper link
         doc.packages.append(Package('hyperref',
                                     options=[
-                                        'hidelinks',
+                                        'linktocpage',
+                                        # 'hidelinks',
+                                        'colorlinks=true',
                                         'pdfpagemode=UseOutlines',
                                         'bookmarksopen=true'
                                     ]))
@@ -326,7 +338,57 @@ class Template(object):
             for key, val in data.items():
                 table.add_row([key, val])
 
-    def insert_table(self, obj_sec, name, caption, width, file):
+    def insert_table_data(self, obj_sec, name, caption, width, header, data):
+        tab_style = '|{}|'.format('|'.join(['l' for i in range(data.shape[1])]))
+        with obj_sec.create(LongTable(tab_style)) as table:
+            # http://texdoc.net/texmf-dist/doc/latex/tools/longtable.pdf
+            # Specifies rows to appear at the top the first page
+            if isinstance(caption, str):
+                if len(caption) > 0:
+                    table.append(Command('caption',
+                                         options=[],
+                                         arguments=[NoEscape('{}'.format(caption))]))
+                    table.append(NoEscape(r'\label{%s}\\' % 'table:{}'.format(name)))
+
+            table.add_hline()
+            table.add_row([bold(NoEscape(val)) for val in header])
+            table.add_hline()
+            table.append(Command('endfirsthead'))
+
+            # Specifies rows to appear at the top of every page
+            table.add_hline()
+            table.add_row([NoEscape(val) for val in header])
+            table.add_hline()
+            table.end_table_header()
+
+            # Specifies rows to appear at the bottom of every page
+            # table.add_hline()
+            # table.add_row((MultiColumn(3,
+            #                            align='r',
+            #                            data='Continued on Next Page'),))
+            table.add_hline()
+            table.end_table_footer()
+
+            # Specifies rows to appear at the bottom of the last page
+            # table.add_hline()
+            # table.add_row((MultiColumn(3,
+            #                            align='r',
+            #                            data='Not Continued on Next Page'),))
+            # table.add_hline()
+            # table.end_table_last_footer()
+
+            for i in range(data.shape[0]):
+                # table.add_row(data[i])
+
+                str_row = []
+                for val in data[i]:
+                    if isinstance(val, float):
+                        str_row.append('{:.0f}'.format(val))
+                    else:
+                        str_row.append(NoEscape(val))
+                table.add_row(str_row)
+
+    def insert_table_csv(self, obj_sec, name, caption, width, file):
         # https://en.wikibooks.org/wiki/LaTeX/Tables
         # header = ['header 1', 'header 2', 'header 3']
         # data = np.array([['1', 2, 3]])
@@ -455,7 +517,7 @@ class Template(object):
                 # data = np.array([['1', 2, 3]])
                 data = np.zeros((50, 3))
 
-                self.insert_table(obj_sec, name, caption, r'1\textwidth', header, data)
+                self.insert_table_data(obj_sec, name, caption, r'1\textwidth', header, data)
 
             # Math, equation, numpy
             with self.doc.create(Subsection('Equation numpy')) as obj_sec:
@@ -511,7 +573,9 @@ class Template(object):
                     obj_agn.append(Label('equation:{}'.format(name)))
                     # print(obj_agn)
 
-        self.doc.append(Command('cleardoublepage'))
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
+        # self.doc.append(Command('cleardoublepage'))
 
     def write_cover_page(self, sname):
         # fmt_date = "%d %b %Y"
@@ -531,6 +595,8 @@ class Template(object):
         doc_page.append(Command('thispagestyle', 'empty'))
         self.doc.preamble.append(doc_page)
         self.doc.change_document_style(sname)
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
         self.doc.append(Command('cleardoublepage'))
 
     def write_title_page(self, sname):
@@ -571,6 +637,8 @@ class Template(object):
         doc_page.append(Command('thispagestyle', 'empty'))
         self.doc.preamble.append(doc_page)
         self.doc.change_document_style(sname)
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_toc_no_pagenumber(self, sname):
@@ -582,6 +650,8 @@ class Template(object):
 
         self.doc.preamble.append(doc_page)
         self.doc.change_document_style(sname)
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_toc(self, sname):
@@ -596,6 +666,8 @@ class Template(object):
         # self.doc.append(Command('addcontentsline',
         #                         ['toc', 'section', NoEscape(r'\contentsname')]))
 
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_lof(self, sname):
@@ -609,6 +681,8 @@ class Template(object):
         # self.doc.append(Command('addcontentsline',
         #                         ['toc', 'section', NoEscape(r'\listfigurename')]))
 
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_lot(self, sname):
@@ -622,6 +696,8 @@ class Template(object):
         # self.doc.append(Command('addcontentsline',
         #                         ['toc', 'section', NoEscape(r'\listtablename')]))
 
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_acknowledgment(self, sname):
@@ -639,7 +715,10 @@ class Template(object):
 
         self.doc.append(Command('addcontentsline',
                                 ['toc', 'section', opt['title']]))
-        self.doc.append(Command('cleardoublepage'))
+
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
+        # self.doc.append(Command('cleardoublepage'))
 
     def write_page_abbreviation(self, sname):
         self.doc.append(NewPage())
@@ -654,6 +733,9 @@ class Template(object):
 
         self.doc.append(Command('addcontentsline',
                                 ['toc', 'section', opt['title']]))
+
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_summary(self, sname):
@@ -671,6 +753,9 @@ class Template(object):
 
         self.doc.append(Command('addcontentsline',
                                 ['toc', 'section', opt['title']]))
+
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
         self.doc.append(Command('cleardoublepage'))
 
     def write_page_section(self, sname):
@@ -762,11 +847,11 @@ class Template(object):
                             width = opt_data[type_l1][name]['width']
 
                             file = os.path.join(self.workspace, dir, fname)
-                            self.insert_table(obj_sec_l1,
-                                              name,
-                                              caption,
-                                              r'1\textwidth',
-                                              file)
+                            self.insert_table_csv(obj_sec_l1,
+                                                  name,
+                                                  caption,
+                                                  r'1\textwidth',
+                                                  file)
 
                         if type_l1 == 'reference':
                             pass
@@ -864,11 +949,11 @@ class Template(object):
                                         width = opt_data[type_l2][name]['width']
 
                                         file = os.path.join(self.workspace, dir, fname)
-                                        self.insert_table(obj_sec_l2,
-                                                          name,
-                                                          caption,
-                                                          r'1\textwidth',
-                                                          file)
+                                        self.insert_table_csv(obj_sec_l2,
+                                                              name,
+                                                              caption,
+                                                              r'1\textwidth',
+                                                              file)
 
                                     if type_l2 == 'reference':
                                         pass
@@ -965,11 +1050,11 @@ class Template(object):
 
                                                     file = os.path.join(self.workspace,
                                                                         dir, fname)
-                                                    self.insert_table(obj_sec_l3,
-                                                                      name,
-                                                                      caption,
-                                                                      r'1\textwidth',
-                                                                      file)
+                                                    self.insert_table_csv(obj_sec_l3,
+                                                                          name,
+                                                                          caption,
+                                                                          r'1\textwidth',
+                                                                          file)
 
                                                 if type_l3 == 'reference':
                                                     pass
@@ -988,6 +1073,9 @@ class Template(object):
                                                     self.doc.append(NoEscape(tmp_str_para))
                                                 finally:
                                                     self.doc.append(LineBreak())
+                # self.doc.append(NewPage())
+                # self.doc.append(Command('clearpage'))
+                # self.doc.append(Command('cleardoublepage'))
 
     def write_page_reference(self, sname):
         self.doc.append(NewPage())
@@ -1032,12 +1120,15 @@ class Template(object):
                                         'heading=none'],
                                     arguments=[]))
 
-        self.doc.append(Command('cleardoublepage'))
+        # self.doc.append(NewPage())
+        self.doc.append(Command('clearpage'))
+        # self.doc.append(Command('cleardoublepage'))
 
     def write_page_annex(self, sname):
         self.doc.append(NewPage())
+        # self.doc.append(Command('clearpage'))
+        # self.doc.append(Command('cleardoublepage'))
         self.doc.append(Command('RaggedRight'))
-        # self.doc.append(Command('setcounter', ['section', '0']))
         self.doc.append(NoEscape(r'\renewcommand{\thesubsection}{Annex \arabic{subsection}}'))
 
         print('{}'.format('annex'))
@@ -1049,14 +1140,11 @@ class Template(object):
         except KeyError:
             raise KeyError
 
-
-        with self.doc.create(Section(NoEscape(opt['title']), numbering=False)):
-            self.doc.append(Command('addcontentsline',
-                                    ['toc', 'section', opt['title']]))
+        with self.doc.create(Section(NoEscape(opt['title']), numbering=False)) as obj_sec_l0:
+            obj_sec_l0.append(Command('addcontentsline',
+                                      ['toc', 'section', opt['title']]))
 
             for key in opt['section'].keys():
-                # self.doc.append(NewPage())
-
                 val = opt['section'][key]
                 if isinstance(val, dict):
                     type = val['type']
@@ -1068,14 +1156,11 @@ class Template(object):
 
                         # with self.doc.create(Subsection(NoEscape(section),
                         #                                 numbering=False)) as obj_sec_l1:
-                        # self.doc.append(Command('addcontentsline',
-                        #                         ['toc', 'subsection', NoEscape(section)]))
-                        with self.doc.create(Subsection(NoEscape(section))) as obj_sec_l1:
-                            obj_sec_l1.append(Label('annex:{}'.format(name)))
-
+                        #     self.doc.append(Command('addcontentsline',
+                        #                             ['toc', 'subsection', NoEscape(section)]))
+                        with obj_sec_l0.create(Subsection(NoEscape(section))) as obj_sec_l1:
                             for var_name, var_val in opt_data[type][name]['detail'].items():
-                                with self.doc.create(Subsubsection(NoEscape(var_name),
-                                                                   numbering=False)) as obj_sec_l2:
+                                with obj_sec_l1.create(Subsubsection(NoEscape(var_name), numbering=False)) as obj_sec_l2:
                                     if isinstance(var_val, dict):
                                         for prod_name, prod_val in var_val.items():
                                             try:
@@ -1088,7 +1173,8 @@ class Template(object):
                                                     NoEscape(tmp_str_para.format(data=opt_data)))
                                             except KeyError:
                                                 obj_sec_l2.append(NoEscape(tmp_str_para))
-                                            obj_sec_l2.append(LineBreak())
+                                            finally:
+                                                obj_sec_l2.append(LineBreak())
 
                                     else:
                                         pass
@@ -1103,9 +1189,9 @@ class Template(object):
 
                         # with self.doc.create(Subsection(NoEscape(section),
                         #                                 numbering=False)) as obj_sec_l1:
-                        # self.doc.append(Command('addcontentsline',
-                        #                         ['toc', 'subsection', NoEscape(section)]))
-                        with self.doc.create(Subsection(NoEscape(section))) as obj_sec_l1:
+                        #     self.doc.append(Command('addcontentsline',
+                        #                             ['toc', 'subsection', NoEscape(section)]))
+                        with obj_sec_l0.create(Subsection(NoEscape(section))) as obj_sec_l1:
                             dir = opt_data[type]['dir']
 
                             caption = ''
@@ -1141,9 +1227,9 @@ class Template(object):
 
                         # with self.doc.create(Subsection(NoEscape(section),
                         #                                 numbering=False)) as obj_sec_l1:
-                        # self.doc.append(Command('addcontentsline',
-                        #                         ['toc', 'subsection', NoEscape(section)]))
-                        with self.doc.create(Subsection(NoEscape(section))) as obj_sec_l1:
+                        #     self.doc.append(Command('addcontentsline',
+                        #                             ['toc', 'subsection', NoEscape(section)]))
+                        with obj_sec_l0.create(Subsection(NoEscape(section))) as obj_sec_l1:
                             dir = opt_data[type]['dir']
 
                             caption = ''
@@ -1151,11 +1237,11 @@ class Template(object):
                             width = opt_data[type][name]['width']
 
                             file = os.path.join(self.workspace, dir, fname)
-                            self.insert_table(obj_sec_l1,
-                                              name,
-                                              caption,
-                                              r'1\textwidth',
-                                              file)
+                            self.insert_table_csv(obj_sec_l1,
+                                                  name,
+                                                  caption,
+                                                  r'1\textwidth',
+                                                  file)
                 else:
                     if val[0] == '{' and val[-1] == '}':
                         val = val.format(data=opt_data)
@@ -1166,15 +1252,16 @@ class Template(object):
                         tmp_str_para = val
 
                     try:
-                        self.doc.append(
+                        obj_sec_l0.append(
                             NoEscape(tmp_str_para.format(data=opt_data)))
                     except KeyError:
-                        self.doc.append(NoEscape(tmp_str_para))
+                        obj_sec_l0.append(NoEscape(tmp_str_para))
                     finally:
-                        self.doc.append(LineBreak())
+                        obj_sec_l0.append(LineBreak())
 
-                # self.doc.append(NewPage())
-        self.doc.append(Command('cleardoublepage'))
+                # obj_sec_l0.append(NewPage())
+                obj_sec_l0.append(Command('clearpage'))
+                obj_sec_l0.append(Command('cleardoublepage'))
 
     def saveas(self):
         fname = self.__conf['data']['doc']['name']

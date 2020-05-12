@@ -10,8 +10,8 @@ template:
 page:
   header:
     left: ''
-    center: ''
-    right: 'Mindanao'
+    center: 'Mindanao River Basin'
+    right: ''
   footer:
     left: ''
     center: ''

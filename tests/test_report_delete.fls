@@ -133,6 +133,10 @@ OUTPUT test_report_delete.aux
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmr10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
 INPUT C:\Users\qpa001\AppData\Roaming\MiKTeX\2.9\tex\latex\refcount\refcount.sty

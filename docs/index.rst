@@ -9,18 +9,13 @@ This project is fully developed by Water Accounting team at IHE-Delft.
 
 `MiKTeX <https://miktex.org/>`_ is required to generate tex and pdf file.
 
+`pandoc <https://pandoc.org/>`_ is used to generate word document.
+
     - .py  -> latexmk  -> .tex & .run.xml
     - .tex -> pdflatex -> .bcf
     - .bcf -> biber    -> .bbl
     - .bbl -> pdflatex -> .pdf 1st time
     - .bbl -> pdflatex -> .pdf 2ed time, make sure
-
-.. warning::
-
-    Set gdal executable files to system "PATH".
-
-    Must contain **config.yml** file,
-    see `config.yml-example <https://github.com/wateraccounting/IHEWAreport/tree/master/examples>`_.
 
 
 Installation

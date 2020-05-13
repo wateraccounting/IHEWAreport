@@ -644,6 +644,9 @@ class Template(object):
     def write_page_toc_no_pagenumber(self, sname):
         self.doc.append(NewPage())
 
+        key = 'toc'
+        print('{}'.format(key))
+
         doc_page = PageStyle(sname)
         doc_page.append(Command('tableofcontents'))
         doc_page.append(Command('thispagestyle', 'empty'))
@@ -656,6 +659,9 @@ class Template(object):
 
     def write_page_toc(self, sname):
         self.doc.append(NewPage())
+
+        key = 'toc'
+        print('{}'.format(key))
 
         # # self.doc.append(NoEscape(r'\pdfbookmark[0]{\contentsname}{toc}'))  # Chapter
         # self.doc.append(NoEscape(r'\pdfbookmark[1]{\contentsname}{toc}'))  # Section
@@ -673,6 +679,9 @@ class Template(object):
     def write_page_lof(self, sname):
         self.doc.append(NewPage())
 
+        key = 'lof'
+        print('{}'.format(key))
+
         # self.doc.append(NoEscape(r'\pdfbookmark[1]{Figures}{lof}'))  # Section
         # self.doc.append(Command('listoffigures'))
 
@@ -687,6 +696,9 @@ class Template(object):
 
     def write_page_lot(self, sname):
         self.doc.append(NewPage())
+
+        key = 'lot'
+        print('{}'.format(key))
 
         # self.doc.append(NoEscape(r'\pdfbookmark[1]{Tables}{lot}'))  # Section
         # self.doc.append(Command('listoftables'))
@@ -762,11 +774,12 @@ class Template(object):
         self.doc.append(NewPage())
         self.doc.append(Command('RaggedRight'))
 
-        print('{}'.format('section'))
+        key = 'section'
+        print('{}'.format(key))
 
-        opt = self.data['content']['section']
+        opt = self.data['content'][key]
         try:
-            opt_sect = self.__conf['data']['content']['section']
+            opt_sect = self.__conf['data']['content'][key]
             opt_data = self.__conf['data']['content']['data']
         except KeyError:
             raise KeyError
@@ -777,11 +790,11 @@ class Template(object):
             # val_l1_keys = val_l1.keys()
             val_l1_t = val_l1['title']
             val_l1_p = val_l1['paragraph']
-            print('{} {}'.format(key_l1, val_l1_t))
+            print(' {} {}'.format(key_l1, val_l1_t))
 
             with self.doc.create(Section(NoEscape(val_l1_t))) as obj_sec_l1:
                 for tmp_key_l1, tmp_val_l1 in val_l1_p.items():
-                    print(' {}'.format(tmp_key_l1))
+                    # print('  {}'.format(tmp_key_l1))
 
                     # self.doc.append(val.format_map(opt_data))
                     if isinstance(tmp_val_l1, dict):
@@ -1081,10 +1094,10 @@ class Template(object):
         self.doc.append(NewPage())
         # self.doc.append(Command('RaggedRight'))
 
-        print('{}'.format('reference'))
+        key = 'reference'
+        print('{}'.format(key))
 
         files = []
-        key = 'reference'
 
         opt = self.data['content'][key]
         # file = os.path.join(self.path, opt['file'])
@@ -1126,17 +1139,19 @@ class Template(object):
 
     def write_page_annex(self, sname):
         self.doc.append(NewPage())
+
+        key = 'annex'
+        print('{}'.format(key))
+
         # self.doc.append(Command('clearpage'))
         # self.doc.append(Command('cleardoublepage'))
         self.doc.append(Command('RaggedRight'))
         self.doc.append(NoEscape(r'\renewcommand{\thesubsection}{Annex \arabic{subsection}}'))
 
-        print('{}'.format('annex'))
-
-        opt = self.data['content']['annex']
+        opt = self.data['content'][key]
         try:
-            opt_annx = self.__conf['data']['content']['annex']
-            opt_data = self.__conf['data']['content']['data']['annex']
+            opt_annx = self.__conf['data']['content'][key]
+            opt_data = self.__conf['data']['content']['data'][key]
         except KeyError:
             raise KeyError
 

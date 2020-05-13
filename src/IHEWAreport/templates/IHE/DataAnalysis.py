@@ -9,14 +9,16 @@ from datetime import datetime, date
 import yaml
 
 import matplotlib
-matplotlib.use('Agg')  # Not to use X server. For TravisCI.
+# Not to use X server. For TravisCI.
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 import numpy as np
 import pandas as pd
 import quantities as pq
 
-from pylatex import Package, Document, Command, NoEscape, \
+from pylatex import \
+    Package, Document, Command, NoEscape, \
     PageStyle, Head, Foot, \
     Section, Subsection, Subsubsection, NewPage, NewLine, LineBreak, \
     Itemize, \

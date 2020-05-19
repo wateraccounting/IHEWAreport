@@ -8,6 +8,7 @@ Subpackages
 
    IHEWAreport.scripts
    IHEWAreport.templates
+   IHEWAreport.utils
 
 Submodules
 ----------

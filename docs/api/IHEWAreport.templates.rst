@@ -8,18 +8,6 @@ Subpackages
 
    IHEWAreport.templates.IHE
 
-Submodules
-----------
-
-IHEWAreport.templates.util module
----------------------------------
-
-.. automodule:: IHEWAreport.templates.util
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
 Module contents
 ---------------
 

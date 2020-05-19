@@ -73,7 +73,7 @@ class Report(Base):
     def __init__(self, workspace='', config='', **kwargs):
         """Class instantiation
         """
-        self.allow_keys = {
+        self.must_keys = {
             'doc': ['name', 'saveas'],
             'template': ['provider', 'name'],
             'page': ['header', 'footer'],
@@ -92,10 +92,10 @@ class Report(Base):
                 'end': None
             },
             'data': {
-                'doc': {},
-                'template': None,
-                'page': {},
-                'context': {}
+                # 'doc': {},
+                # 'template': None,
+                # 'page': {},
+                # 'context': {}
             }
         }
         self.__tmp = {
@@ -153,10 +153,12 @@ class Report(Base):
             data = yaml.load(fp, Loader=yaml.FullLoader)
 
         if data is not None:
-            status_code += self._conf_keys('doc', data)
-            status_code += self._conf_keys('template', data)
-            status_code += self._conf_keys('page', data)
-            status_code += self._conf_keys('content', data)
+            for key in self.must_keys.keys():
+                status_code += self._conf_keys(key, data)
+                # status_code += self._conf_keys('doc', data)
+                # status_code += self._conf_keys('template', data)
+                # status_code += self._conf_keys('page', data)
+                # status_code += self._conf_keys('content', data)
         else:
             status_code = 1
 
@@ -175,7 +177,7 @@ class Report(Base):
         except KeyError:
             status_code = 1
         else:
-            for data_key in self.allow_keys[key]:
+            for data_key in self.must_keys[key]:
                 if data_key not in data_keys:
                     status_code += 1
 

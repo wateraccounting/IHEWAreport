@@ -70,7 +70,7 @@ class Report(Base):
         config (str): Configuration yaml file name.
         kwargs (dict): Other arguments.
     """
-    def __init__(self, workspace='', config='', **kwargs):
+    def __init__(self, workspace='', config='', isclean=True, **kwargs):
         """Class instantiation
         """
         self.must_keys = {
@@ -84,8 +84,10 @@ class Report(Base):
             'code': 0
         }
         self.__conf = {
+            'workspace': '',
             'path': '',
             'name': '',
+            'isclean': True,
             'time': {
                 'start': None,
                 'now': None,
@@ -104,15 +106,22 @@ class Report(Base):
         }
 
         if isinstance(workspace, str):
+            # path = os.path.join(workspace, 'IHEWAreport')
             path = os.path.join(workspace)
             if not os.path.exists(path):
                 os.makedirs(path)
+            self.__conf['workspace'] = workspace
             self.__conf['path'] = path
         else:
             self.__status['code'] = 1
 
         if isinstance(config, str):
             self.__conf['name'] = config
+        else:
+            self.__status['code'] = 1
+
+        if isinstance(isclean, bool):
+            self.__conf['isclean'] = isclean
         else:
             self.__status['code'] = 1
 
@@ -148,7 +157,7 @@ class Report(Base):
         status_code = 0
         data = None
 
-        file_conf = os.path.join(self.__conf['path'], self.__conf['name'])
+        file_conf = os.path.join(self.__conf['workspace'], self.__conf['name'])
         with open(file_conf) as fp:
             data = yaml.load(fp, Loader=yaml.FullLoader)
 

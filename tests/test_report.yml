@@ -189,9 +189,9 @@ content:
         diffpct:
             min:
               - 'GPM'
-              - 'MOD16A2'
-              - ''
-              - '1.35'
+              - 'ALEXI'
+              - 'GFZ'
+              - '0.61'
 
       RS:
         resolution: '0.05'
@@ -200,15 +200,15 @@ content:
                  calculated by different combination and runoff. RMSE is
                  considered as the first criteria to select the best combination
                  of remote sensing products in this study.'
-        PCP: 'CMRSET'
-        ETA: 'GPM'
+        PCP: 'GPM'
+        ETA: 'ALEXI'
         dS: 'GFZ'
         dif:
           mean:
-            pct: '3'
-            val: '585'
+            pct: '0.7'
+            val: '6717'
           max:
-            year: '2012'
+            year: '2011'
 
     figure:
       dir: 'data/area1/fig/'
@@ -306,7 +306,7 @@ content:
         reference: 'Figure \ref{figure:fig16}'
         caption: 'Water Balance error'
         main:
-          fname: 'fig7.jpg'
+          fname: 'fig8.jpg'
           width: '0.8'
       fig17:
         reference: 'Figure \ref{figure:fig17}'
@@ -314,10 +314,10 @@ content:
         width: '1'
         sub:
           a:
-            fname: 'fig8_GPM-CMRSET-GFZ.jpg'
+            fname: 'fig9_GPM-CMRSET-GFZ.jpg'
             caption: 'In term of difference'
           b:
-            fname: 'fig8_GPM-MOD16A2-GFZ.jpg'
+            fname: 'fig9_GPM-ALEXI-GFZ.jpg'
             caption: 'In term of difference percentage'
 
     table:
@@ -329,7 +329,7 @@ content:
         width: '0.8'
       tab2:
         reference: 'Table \ref{table:tab2}'
-        fname: 'fig7_yearly-GPM-CMRSET-GFZ.FloodObservatory.csv'
+        fname: 'fig8_yearly-GPM-ALEXI-GFZ.FloodObservatory.csv'
         caption: 'The annual $P-ET-\Delta S$ and $Q$, (unit: $Mm^3/year$)'
         width: '0.8'
 
@@ -401,7 +401,7 @@ content:
         dir: 'data/area1/csv/'
         ann2:
           reference: '\ref{subsec:TheyearlymeanP{-}ET{-}DeltaSandQ,(unitMm3/year)}'
-          fname: 'fig7_yearly.csv'
+          fname: 'fig8_yearly.csv'
           caption: 'The yearly mean $P-ET-\Delta S$ and $Q$, (unit: $Mm^3/year$)'
           width: '0.8'
 

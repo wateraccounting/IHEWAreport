@@ -1,0 +1,12 @@
+Product,Type,Duration,Temporal Res.,Spatial Res.
+ALEXI,Evapotranspiration,2005 - 2012,daily,$0.05^{o}$
+CMRSET,Evapotranspiration,2005 - 2012,monthly,$0.05^{o}$
+GLEAM,Evapotranspiration,2005 - 2012,monthly,$0.25^{o}$
+MOD16A2,Evapotranspiration,2005 - 2012,eight-daily,463m
+SSEBop,Evapotranspiration,2005 - 2012,monthly,1km
+CHIRPS,Precipitation,2005 - 2012,monthly,$0.05^{o}$
+GPM,Precipitation,2005 - 2012,monthly,$0.1^{o}$
+TRMM,Precipitation,2005 - 2012,monthly,$0.25^{o}$
+CSR,GRACE,2005 - 2012,quasi-monthly,$1^{o}$
+GFZ,GRACE,2005 - 2012,quasi-monthly,$1^{o}$
+JPL,GRACE,2005 - 2012,quasi-monthly,$1^{o}$

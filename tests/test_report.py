@@ -22,7 +22,8 @@ def test_report():
     )
     # os.chdir(path)
 
-    report = IHEWAreport.Report(path, 'test_report.yml')
+    report = IHEWAreport.Report(path, 'test_report.yml', isclean=True)
+    # report = IHEWAreport.Report(path, 'test_report.yml', isclean=False)
 
     # report.get_config()
     # print(report._Report__conf['path'], '\n',

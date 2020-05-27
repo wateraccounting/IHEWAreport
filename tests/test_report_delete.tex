@@ -355,13 +355,13 @@ The minimum RMSE value is 64.44. The best performing combination in terms of RMS
 %
 \subsection{Water Balance error}%
 \label{subsec:WaterBalanceerror}%
-Water balance error is the difference between $P-ET-\Delta S$ and runoff. Figure \ref{figure:fig16} shows the yearly mean water balance error. The combination GPM and MOD16A2 has the lowest error ranging around 1.35\%. However GPM, CMRSET and GFZ has the lowest absolute error 584.81 $Mm^3/year$, see \ref{subsec:TheyearlymeanP{-}ET{-}DeltaSandQ,(unitMm3/year)}, \ref{subsec:ThewaterbalanceP{-}ET{-}DeltaSanddischargeQ,(unitmm/month)}. The runoff maps of these two are plotted in Figure \ref{figure:fig17}.%
+Water balance error is the difference between $P-ET-\Delta S$ and runoff. Figure \ref{figure:fig16} shows the yearly mean water balance error. The combination GPM and ALEXI has the lowest error ranging around 0.61\%. However GPM, CMRSET and GFZ has the lowest absolute error 584.81 $Mm^3/year$, see \ref{subsec:TheyearlymeanP{-}ET{-}DeltaSandQ,(unitMm3/year)}, \ref{subsec:ThewaterbalanceP{-}ET{-}DeltaSanddischargeQ,(unitmm/month)}. The runoff maps of these two are plotted in Figure \ref{figure:fig17}.%
 \linebreak%
 
 
 \begin{figure}[H]%
 \centering%
-\includegraphics[width=0.8\textwidth]{D:/IHEProjects/Public/IHEWAreport/tests/data/area1/fig/fig7.jpg}%
+\includegraphics[width=0.8\textwidth]{D:/IHEProjects/Public/IHEWAreport/tests/data/area1/fig/fig8.jpg}%
 \caption{Water Balance error}%
 \label{figure:fig16}%
 \end{figure}
@@ -371,11 +371,11 @@ Water balance error is the difference between $P-ET-\Delta S$ and runoff. Figure
 
 \begin{figure}[H]%
 \begin{subfigure}[c]{0.5\textwidth}%
-\includegraphics[width=\textwidth]{D:/IHEProjects/Public/IHEWAreport/tests/data/area1/fig/fig8_GPM-CMRSET-GFZ.jpg}%
+\includegraphics[width=\textwidth]{D:/IHEProjects/Public/IHEWAreport/tests/data/area1/fig/fig9_GPM-CMRSET-GFZ.jpg}%
 \caption{In term of difference}%
 \end{subfigure}%
 \begin{subfigure}[c]{0.5\textwidth}%
-\includegraphics[width=\textwidth]{D:/IHEProjects/Public/IHEWAreport/tests/data/area1/fig/fig8_GPM-MOD16A2-GFZ.jpg}%
+\includegraphics[width=\textwidth]{D:/IHEProjects/Public/IHEWAreport/tests/data/area1/fig/fig9_GPM-ALEXI-GFZ.jpg}%
 \caption{In term of difference percentage}%
 \end{subfigure}%
 \caption{Yearly mean runoff generation map of the best combination}%
@@ -387,9 +387,9 @@ Water balance error is the difference between $P-ET-\Delta S$ and runoff. Figure
 \label{sec:SelectionofRSproductsforWA}%
 Due to the PCC and R2 scores are not large enough, which means the correlation is not significant between water balance calculated by different combination and runoff. RMSE is considered as the first criteria to select the best combination of remote sensing products in this study.%
 \linebreak%
-Thus, evapotranspiration precipitation product GPM, product CMRSET and GRACE solution GFZ are selected for further analysis.%
+Thus, precipitation product GPM, evapotranspiration product ALEXI and GRACE solution GFZ are selected for further analysis.%
 \linebreak%
-Without the full information on other basin transfers, the water balance $P-ET-\Delta S$ is considered in reasonable agreement with outflow. The total observed outflow is 3\% lower than the water balance. The average $P-ET-\Delta S$ is 585 $Mm^3/year$ higher than the sum of flow at outlet. The largest difference is found in the year 2012, which might be attributed to other unaccounted transfers, see Table \ref{table:tab2}.%
+Without the full information on other basin transfers, the water balance $P-ET-\Delta S$ is considered in reasonable agreement with outflow. The precipitation is 0.7\% lower than the water balance. The average $P-ET-\Delta S$ is 6717 $Mm^3/year$ higher than the sum of flow at outlet. The largest difference is found in the year 2011, which might be attributed to other unaccounted transfers, see Table \ref{table:tab2}.%
 \linebreak%
 \begin{longtable}{|l|l|l|l|l|l|l|l|}%
 \caption{The annual $P-ET-\Delta S$ and $Q$, (unit: $Mm^3/year$)}%
@@ -404,14 +404,14 @@ Year&P&ET&$\Delta S$&$P-ET-\Delta S$&Q&Diff&\%Diff\\%
 \endhead%
 \hline%
 \endfoot%
-2005&43522&29755&{-}151&13918&13171&747&6\\%
-2006&43777&29616&{-}10&14170&16063&{-}1892&{-}12\\%
-2007&43650&29405&366&13879&15815&{-}1936&{-}12\\%
-2008&59217&29764&273&29180&26240&2940&11\\%
-2009&55307&29938&{-}653&26022&25128&894&4\\%
-2010&51478&30601&337&20541&16035&4506&28\\%
-2011&58280&29171&762&28347&23374&4974&21\\%
-2012&49785&30214&{-}158&19730&25283&{-}5553&{-}22\\%
+2005&43522&29662&{-}151&14011&13171&840&2\\%
+2006&43777&30991&{-}10&12796&16063&{-}3267&{-}7\\%
+2007&43650&30471&366&12813&15815&{-}3002&{-}7\\%
+2008&59217&29990&273&28954&26240&2713&5\\%
+2009&55307&30384&{-}653&25576&25128&448&1\\%
+2010&51478&30931&337&20210&16035&4175&8\\%
+2011&58280&27427&762&30091&23374&6717&12\\%
+2012&49785&28512&{-}158&21431&25283&{-}3852&{-}8\\%
 \end{longtable}
 
 %
@@ -480,51 +480,51 @@ Combination&P&ET&$\Delta S$&$P-ET-\Delta S$&Q&Diff&\%Diff\\%
 \endhead%
 \hline%
 \endfoot%
-CHIRPS-ALEXI-CSR&62240&29796&69&32375&20139&12236&64\\%
-GPM-ALEXI-CSR&50627&29796&69&20762&20139&623&3\\%
-TRMM-ALEXI-CSR&50825&29796&69&20960&20139&821&4\\%
-CHIRPS-CMRSET-CSR&62240&29808&69&32363&20139&12224&65\\%
-GPM-CMRSET-CSR&50627&29808&69&20750&20139&612&3\\%
-TRMM-CMRSET-CSR&50825&29808&69&20948&20139&809&5\\%
-CHIRPS-GLEAM-CSR&62240&24616&69&37554&20139&17416&92\\%
-GPM-GLEAM-CSR&50627&24616&69&25942&20139&5803&30\\%
-TRMM-GLEAM-CSR&50825&24616&69&26140&20139&6001&32\\%
-CHIRPS-MOD16A2-CSR&62240&29410&69&32761&20139&12622&63\\%
-GPM-MOD16A2-CSR&50627&29410&69&21148&20139&1010&2\\%
-TRMM-MOD16A2-CSR&50825&29410&69&21346&20139&1208&3\\%
-CHIRPS-SSEBop-CSR&62240&23682&69&38488&20139&18350&98\\%
-GPM-SSEBop-CSR&50627&23682&69&26876&20139&6737&37\\%
-TRMM-SSEBop-CSR&50825&23682&69&27074&20139&6935&38\\%
-CHIRPS-ALEXI-GFZ&62240&29796&96&32348&20139&12209&64\\%
-GPM-ALEXI-GFZ&50627&29796&96&20735&20139&597&2\\%
-TRMM-ALEXI-GFZ&50825&29796&96&20933&20139&794&4\\%
-CHIRPS-CMRSET-GFZ&62240&29808&96&32336&20139&12197&64\\%
-GPM-CMRSET-GFZ&50627&29808&96&20723&20139&585&3\\%
-TRMM-CMRSET-GFZ&50825&29808&96&20921&20139&783&5\\%
-CHIRPS-GLEAM-GFZ&62240&24616&96&37528&20139&17389&91\\%
-GPM-GLEAM-GFZ&50627&24616&96&25915&20139&5776&30\\%
-TRMM-GLEAM-GFZ&50825&24616&96&26113&20139&5974&32\\%
-CHIRPS-MOD16A2-GFZ&62240&29410&96&32734&20139&12596&63\\%
+CHIRPS-ALEXI-CSR&62240&29796&69&32375&20139&12236&20\\%
+GPM-ALEXI-CSR&50627&29796&69&20762&20139&623&1\\%
+TRMM-ALEXI-CSR&50825&29796&69&20960&20139&821&1\\%
+CHIRPS-CMRSET-CSR&62240&29808&69&32363&20139&12224&20\\%
+GPM-CMRSET-CSR&50627&29808&69&20750&20139&612&1\\%
+TRMM-CMRSET-CSR&50825&29808&69&20948&20139&809&1\\%
+CHIRPS-GLEAM-CSR&62240&24616&69&37554&20139&17416&28\\%
+GPM-GLEAM-CSR&50627&24616&69&25942&20139&5803&11\\%
+TRMM-GLEAM-CSR&50825&24616&69&26140&20139&6001&12\\%
+CHIRPS-MOD16A2-CSR&62240&29410&69&32761&20139&12622&20\\%
+GPM-MOD16A2-CSR&50627&29410&69&21148&20139&1010&1\\%
+TRMM-MOD16A2-CSR&50825&29410&69&21346&20139&1208&2\\%
+CHIRPS-SSEBop-CSR&62240&23682&69&38488&20139&18350&30\\%
+GPM-SSEBop-CSR&50627&23682&69&26876&20139&6737&13\\%
+TRMM-SSEBop-CSR&50825&23682&69&27074&20139&6935&14\\%
+CHIRPS-ALEXI-GFZ&62240&29796&96&32348&20139&12209&19\\%
+GPM-ALEXI-GFZ&50627&29796&96&20735&20139&597&1\\%
+TRMM-ALEXI-GFZ&50825&29796&96&20933&20139&794&1\\%
+CHIRPS-CMRSET-GFZ&62240&29808&96&32336&20139&12197&20\\%
+GPM-CMRSET-GFZ&50627&29808&96&20723&20139&585&1\\%
+TRMM-CMRSET-GFZ&50825&29808&96&20921&20139&783&1\\%
+CHIRPS-GLEAM-GFZ&62240&24616&96&37528&20139&17389&28\\%
+GPM-GLEAM-GFZ&50627&24616&96&25915&20139&5776&11\\%
+TRMM-GLEAM-GFZ&50825&24616&96&26113&20139&5974&12\\%
+CHIRPS-MOD16A2-GFZ&62240&29410&96&32734&20139&12596&19\\%
 GPM-MOD16A2-GFZ&50627&29410&96&21122&20139&983&1\\%
-TRMM-MOD16A2-GFZ&50825&29410&96&21319&20139&1181&3\\%
-CHIRPS-SSEBop-GFZ&62240&23682&96&38462&20139&18323&98\\%
-GPM-SSEBop-GFZ&50627&23682&96&26849&20139&6710&36\\%
-TRMM-SSEBop-GFZ&50825&23682&96&27047&20139&6908&38\\%
-CHIRPS-ALEXI-JPL&62240&29796&71&32373&20139&12234&64\\%
-GPM-ALEXI-JPL&50627&29796&71&20760&20139&621&2\\%
-TRMM-ALEXI-JPL&50825&29796&71&20958&20139&819&4\\%
-CHIRPS-CMRSET-JPL&62240&29808&71&32361&20139&12222&64\\%
-GPM-CMRSET-JPL&50627&29808&71&20748&20139&610&3\\%
-TRMM-CMRSET-JPL&50825&29808&71&20946&20139&807&5\\%
-CHIRPS-GLEAM-JPL&62240&24616&71&37552&20139&17414&91\\%
-GPM-GLEAM-JPL&50627&24616&71&25940&20139&5801&30\\%
-TRMM-GLEAM-JPL&50825&24616&71&26138&20139&5999&32\\%
-CHIRPS-MOD16A2-JPL&62240&29410&71&32759&20139&12620&63\\%
+TRMM-MOD16A2-GFZ&50825&29410&96&21319&20139&1181&2\\%
+CHIRPS-SSEBop-GFZ&62240&23682&96&38462&20139&18323&30\\%
+GPM-SSEBop-GFZ&50627&23682&96&26849&20139&6710&13\\%
+TRMM-SSEBop-GFZ&50825&23682&96&27047&20139&6908&14\\%
+CHIRPS-ALEXI-JPL&62240&29796&71&32373&20139&12234&20\\%
+GPM-ALEXI-JPL&50627&29796&71&20760&20139&621&1\\%
+TRMM-ALEXI-JPL&50825&29796&71&20958&20139&819&1\\%
+CHIRPS-CMRSET-JPL&62240&29808&71&32361&20139&12222&20\\%
+GPM-CMRSET-JPL&50627&29808&71&20748&20139&610&1\\%
+TRMM-CMRSET-JPL&50825&29808&71&20946&20139&807&1\\%
+CHIRPS-GLEAM-JPL&62240&24616&71&37552&20139&17414&28\\%
+GPM-GLEAM-JPL&50627&24616&71&25940&20139&5801&11\\%
+TRMM-GLEAM-JPL&50825&24616&71&26138&20139&5999&12\\%
+CHIRPS-MOD16A2-JPL&62240&29410&71&32759&20139&12620&20\\%
 GPM-MOD16A2-JPL&50627&29410&71&21146&20139&1008&1\\%
-TRMM-MOD16A2-JPL&50825&29410&71&21344&20139&1206&3\\%
-CHIRPS-SSEBop-JPL&62240&23682&71&38486&20139&18348&98\\%
-GPM-SSEBop-JPL&50627&23682&71&26874&20139&6735&36\\%
-TRMM-SSEBop-JPL&50825&23682&71&27072&20139&6933&38\\%
+TRMM-MOD16A2-JPL&50825&29410&71&21344&20139&1206&2\\%
+CHIRPS-SSEBop-JPL&62240&23682&71&38486&20139&18348&30\\%
+GPM-SSEBop-JPL&50627&23682&71&26874&20139&6735&13\\%
+TRMM-SSEBop-JPL&50825&23682&71&27072&20139&6933&14\\%
 \end{longtable}
 
 %

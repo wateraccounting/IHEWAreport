@@ -1,9 +1,0 @@
-[0] Config.pm:304> INFO - This is Biber 2.14
-[0] Config.pm:307> INFO - Logfile is 'test_report_delete.blg'
-[74] biber-MSWIN64:322> INFO - === 
-[105] Biber.pm:415> INFO - Reading 'test_report_delete.bcf'
-[204] Biber.pm:943> INFO - Found 0 citekeys in bib section 0
-[212] Utils.pm:304> WARN - The file 'test_report_delete.bcf' does not contain any citations!
-[224] bbl.pm:652> INFO - Writing 'test_report_delete.bbl' with encoding 'UTF-8'
-[224] bbl.pm:755> INFO - Output to test_report_delete.bbl
-[225] Biber.pm:128> INFO - WARNINGS: 1

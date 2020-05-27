@@ -64,7 +64,8 @@ class Template(object):
         if len(data.keys()) > 0:
             self.path = path
             self.data = data
-            self.workspace = self.__conf['path']
+            self.workspace = self.__conf['workspace']  # tests
+            # self.path = self.__conf['path']  # tests/output
         else:
             raise IHEClassInitError(template) from None
 
@@ -1309,8 +1310,10 @@ class Template(object):
                         os._exit(1)
                 # pkg natbib will cause latex style error!
                 # Opt 1
-                # self.doc.generate_pdf(file, clean=True, clean_tex=False)
-                self.doc.generate_pdf(file, clean=False, clean_tex=False)
+                if self.__conf['isclean']:
+                    self.doc.generate_pdf(file, clean=True, clean_tex=False)
+                else:
+                    self.doc.generate_pdf(file, clean=False, clean_tex=False)
 
                 # Opt 2
                 # .py  -> latexmk  -> .tex & .run.xml

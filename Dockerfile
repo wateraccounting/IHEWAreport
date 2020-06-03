@@ -75,6 +75,11 @@ RUN apt-get install -y \
 RUN git clone --recursive https://github.com/wateraccounting/IHEWAreport.git
 RUN cd IHEWAreport
 
+# Install python dependencies
+RUN pip3 install -r requirements.txt
+
+# Install package
+
 # Workspace
 WORKDIR /
 RUN mkdir /notebooks

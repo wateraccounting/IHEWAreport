@@ -13,10 +13,5 @@ set -e
 apt-get update
 apt-get install -y texlive-full
 
-# Test installation
-echo "=========="
-miktex --version
-echo "=========="
-
 # change back to travis build dir
 cd $TRAVIS_BUILD_DIR

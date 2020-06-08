@@ -31,7 +31,7 @@ from pylatex.utils import italic, bold, make_temp_dir, rm_temp_dir
 
 try:
     # IHEClassInitError, IHEStringError, IHETypeError, IHEKeyError, IHEFileError
-    from .exception import IHEClassInitError
+    from ...exception import IHEClassInitError
 except ImportError:
     from IHEWAreport.exception import IHEClassInitError
 

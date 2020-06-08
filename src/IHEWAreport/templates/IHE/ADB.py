@@ -10,7 +10,7 @@ from pylatex.utils import italic
 
 try:
     # IHEClassInitError, IHEStringError, IHETypeError, IHEKeyError, IHEFileError
-    from .exception import IHEClassInitError
+    from ...exception import IHEClassInitError
 except ImportError:
     from IHEWAreport.exception import IHEClassInitError
 

@@ -78,9 +78,10 @@ before_install:
   - python -m pip install -U pip
   - python -m pip install wheel
   # Install Miktex
-  - travis_wait 30 . ./ci/travis_miktex_install.sh
+  # - travis_wait 30 . ./ci/travis_miktex_install.sh
+  - . ./ci/travis_texlive_install.sh
 
-# PyScaffold
+  # PyScaffold
 #install:
   #- source ci/travis_install.sh
   #- pip install -r requirements.txt

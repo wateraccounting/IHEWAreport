@@ -7,12 +7,27 @@ set -e
 # Miktex
 # https://miktex.org/howto/install-miktex-unx
 # https://hub.docker.com/r/miktex/miktex/dockerfile
+#
+# pandoc
+# https://github.com/pandoc/dockerfiles#available-images
 ########################################
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889
+apt-get update
+apt-get install -y --no-install-recommends \
+        apt-transport-https \
+        ca-certificates \
+        dirmngr \
+        ghostscript \
+        gnupg \
+        gosu \
+        make \
+        perl
 
-echo "deb http://miktex.org/download/ubuntu bionic universe" | sudo tee /etc/apt/sources.list.d/miktex.list
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889
 
-sudo apt-get install -y --no-install-recommends miktex
+echo "deb http://miktex.org/download/ubuntu bionic universe" | tee /etc/apt/sources.list.d/miktex.list
+
+apt-get update
+apt-get install -y --no-install-recommends miktex
 
 miktexsetup finish
 initexmf --admin --set-config-value=[MPM]AutoInstall=1

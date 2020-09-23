@@ -11,8 +11,8 @@
 .. |ReadTheDocs| image:: https://readthedocs.org/projects/ihewareport/badge/?version=latest
 .. _ReadTheDocs: https://ihewareport.readthedocs.io/en/latest/
 
-.. |DockerHub| image:: https://img.shields.io/docker/cloud/build/wateraccounting/ihewareport
-.. _DockerHub: https://hub.docker.com/r/wateraccounting/ihewareport
+.. |DockerHub| image:: https://img.shields.io/docker/cloud/build/ihewa/ihewareport
+.. _DockerHub: https://hub.docker.com/r/ihewa/ihewareport
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/IHEWAreport
 .. _PyPI: https://pypi.org/project/IHEWAreport/

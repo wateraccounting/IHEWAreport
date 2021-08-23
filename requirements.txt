@@ -18,7 +18,7 @@
 # Export installed requirements to requirements.txt:
 # pip3 freeze > requirements.txt
 
-jupyterlab==1.1.4
+jupyterlab==1.2.21
 numpy>=1.11
 pandas>=0.20
 pylatex>=1.3
